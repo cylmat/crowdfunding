@@ -1,8 +1,8 @@
 <?php
 
-namespace Admin\Front;
+namespace Ctrl;
 
 class Defaults
 {
-
+    
 }
