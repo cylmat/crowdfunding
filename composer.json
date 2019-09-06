@@ -1,0 +1,14 @@
+{
+    "name": "cyril/project",
+    "description": "Projet de fin d'\u0000tude",
+    "type": "project",
+    "license": "GPL2",
+    "authors": [
+        {
+            "name": "freeonisland",
+            "email": "freeonisland@yahoo.fr"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {}
+}
