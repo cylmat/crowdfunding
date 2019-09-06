@@ -7,7 +7,6 @@ class App
     const DEFAULT_CTRL='Defaults';
     const DEFAULT_ACTION='index';
     const PREG_URL='/^(\w\&?)*/'; //format ctrl&action&id
-    //const CTRL_PATH=__DIR__.'/../Ctrl';
 
     /**
      * @var array
@@ -24,14 +23,15 @@ class App
     /**
      * Run the application
      */
-    function run()
+    function run(): void
     {
         //get query request
         $this->setRequest();
-        $this->callController();
+        $response = $this->callController();
+        $this->applyTemplate( $response );
     }
 
-    function setRequest()
+    function setRequest(): void
     {
         $request = $_REQUEST;
 
@@ -73,13 +73,27 @@ class App
     /**
      * Call controller and view
      */
-    function callController()
+    function callController(): array
     {
         $classCtrl = 'Ctrl\\'.ucfirst($this->request['ctrl']);
+        $action = $this->request['action'].'Action';
+        $params = $this->request['params'];
+
         if(class_exists($classCtrl)) {
             $ctrl = new $classCtrl();
+            if(method_exists($classCtrl, $action)) { echo 'u';
+                $responseParams = $ctrl->$action( ...$params );
+            } else {
+                throw new InvalidArgumentException("L'action n'existe pas");
+            }
+            return $responseParams;
         } else {
             throw new InvalidArgumentException("Le controller n'existe pas");
         }
+    }
+
+    function applyTemplate( array $responseParams ): void
+    {
+        include VIEW.'layout.phtml';
     }
 }
