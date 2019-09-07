@@ -2,17 +2,18 @@
 
 namespace Ctrl;
 
+use Classes\Records;
+
 class Defaults
 {
     function indexAction()
     {
-        /*$user = new UserEntity();
+        $user = new Records('User');
         $user->name = 'alpha';
+        /*
+        $user->create();
 
-        $userRepo = new UserRepo( $user );
-        $userRepo->create();
-
-        $userRepo->getId(3);*/
+        $user->getId(3);*/
 
         $params = [
             'index'=>'alphanu'
