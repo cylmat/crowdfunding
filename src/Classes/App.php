@@ -15,7 +15,7 @@ class App
      */
     private $request;
 
-    function __construct()
+    public function __construct()
     {
         $this->run();
     }
@@ -23,14 +23,15 @@ class App
     /**
      * Run the application
      */
-    function run(): void
+    public function run(): void
     {
         //get query request
         $this->setRequest();
         $response = $this->callController();
+        $this->getDatAccess();
     }
 
-    function setRequest(): void
+    public function setRequest(): void
     {
         $request = $_REQUEST;
 
@@ -72,7 +73,7 @@ class App
     /**
      * Call controller and view
      */
-    function callController(): void
+    public function callController(): void
     {
         $ctrlName = $this->request['ctrl'];
         $classCtrl = 'Ctrl\\'.ucfirst($ctrlName);
@@ -94,7 +95,7 @@ class App
         }
     }
 
-    function applyTemplate( string $ctrl, string $action, array $responseParams ): void
+    public function applyTemplate( string $ctrl, string $action, array $responseParams ): void
     {
         extract($responseParams);
         
