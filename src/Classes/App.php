@@ -28,7 +28,6 @@ class App
         //get query request
         $this->setRequest();
         $response = $this->callController();
-        $this->getDatAccess();
     }
 
     public function setRequest(): void
