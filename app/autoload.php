@@ -6,7 +6,7 @@ function autoload($class)
     if(file_exists($file)) {
         require $file;
     } else {
-        throw new InvalidArgumentException("La classe n'existe pas");
+        throw new \InvalidArgumentException("La classe $class n'existe pas");
     }
 }
 

@@ -1,8 +1,13 @@
 <?php
 
-namespace Admin\Front;
+namespace Ctrl;
 
 class Project
 {
-    
+    function alphonseAction()
+    {
+        return [
+            'foo'=>'bar'
+        ];
+    }
 }

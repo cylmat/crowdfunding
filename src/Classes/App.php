@@ -28,7 +28,6 @@ class App
         //get query request
         $this->setRequest();
         $response = $this->callController();
-        $this->applyTemplate( $response );
     }
 
     function setRequest(): void
@@ -73,27 +72,37 @@ class App
     /**
      * Call controller and view
      */
-    function callController(): array
+    function callController(): void
     {
-        $classCtrl = 'Ctrl\\'.ucfirst($this->request['ctrl']);
-        $action = $this->request['action'].'Action';
+        $ctrlName = $this->request['ctrl'];
+        $classCtrl = 'Ctrl\\'.ucfirst($ctrlName);
+        $actionName = $this->request['action'];
+        $action = $actionName.'Action';
         $params = $this->request['params'];
 
         if(class_exists($classCtrl)) {
-            $ctrl = new $classCtrl();
-            if(method_exists($classCtrl, $action)) { echo 'u';
-                $responseParams = $ctrl->$action( ...$params );
+            $ctrlObject = new $classCtrl();
+            if(method_exists($classCtrl, $action)) { 
+                $responseParams = $ctrlObject->$action( ...$params );
+                $this->applyTemplate( $ctrlName, $actionName, $responseParams );
             } else {
-                throw new InvalidArgumentException("L'action n'existe pas");
+                throw new \InvalidArgumentException("L'action $actionName n'existe pas");
             }
-            return $responseParams;
+            //return $responseParams;
         } else {
-            throw new InvalidArgumentException("Le controller n'existe pas");
+            throw new \InvalidArgumentException("Le controller $ctrlName n'existe pas");
         }
     }
 
-    function applyTemplate( array $responseParams ): void
+    function applyTemplate( string $ctrl, string $action, array $responseParams ): void
     {
+        extract($responseParams);
+        
+        ob_start();
+        include VIEW. strtolower($ctrl) . '/' . $action . '.phtml';
+        $content = ob_get_contents();
+        ob_end_clean();
+
         include VIEW.'layout.phtml';
     }
 }

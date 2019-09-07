@@ -6,9 +6,8 @@ class Defaults
 {
     function indexAction()
     {
-        echo 'i';
         $params = [
-            'index'=>'test'
+            'index'=>'alphanu'
         ];
         return $params;
     }
