@@ -20,6 +20,6 @@
         "nunomaduro/phpinsights": "^1.9"
     },
     "scripts": {
-        "test": "phpunit --bootstrap app/autoload.php --debug tests"
+        "test": "phpunit --bootstrap app/autoload.php tests"
     }
 }
