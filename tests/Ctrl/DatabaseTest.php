@@ -6,7 +6,7 @@ class DatabaseTest extends \PHPUnit\Framework\TestCase
 {
     function testAlpha()
     {
-        new Database;
-        $this->assertTrue(true);
+        $db = new Database;
+        $this->assertInstanceOf(Database::class, $db);
     }
 }
