@@ -16,7 +16,7 @@ Les caractéristiques du projet vont être :
 * Les fonds nécessaires à sa réalisation.
 * La date de fin de collecte des fonds.
 
-Ensuite celui-ci est mis à disposition du public, afin que chacun puisse faire un don, "virtuel dans le cadre de ce projet", 
+Ensuite celui-ci est mis à disposition du public, afin que chacun puisse faire un don (virtuel dans le cadre de ce projet), 
 sans la nécessité que le ou le donateur(trice) ai besoin de s'inscrire sur le site. Le don est anonyme et effectué directement. 
 
 # Mise en oeuvre
