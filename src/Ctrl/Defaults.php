@@ -10,6 +10,7 @@ class Defaults
     {
         //$user = new Record\User;
         //$user->name = 'alpha';
+
         /*
         $user->create();
 
