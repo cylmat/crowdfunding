@@ -8,8 +8,8 @@ class Defaults
 {
     function indexAction()
     {
-        $user = new Records('User');
-        $user->name = 'alpha';
+        //$user = new Record\User;
+        //$user->name = 'alpha';
         /*
         $user->create();
 
