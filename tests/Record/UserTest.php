@@ -14,10 +14,5 @@ class UserTest extends \PHPUnit\Framework\TestCase
 
         $this->expectException('InvalidArgumentException');
         $user->notexistsproperty = 'alpha';
-        
-        /*$userRepo = new UserRepo( $user );
-        $userRepo->create();
-
-        $userRepo->getId(3);*/
     }
 }

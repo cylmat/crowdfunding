@@ -1,0 +1,8 @@
+-- MySql
+USE crowd;
+
+CREATE TABLE IF NOT EXISTS user (
+    id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(100),
+    email VARCHAR(100)
+) ENGINE=MyISAM;
