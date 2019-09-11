@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types = 1);
 
 namespace Classes;
 
@@ -83,8 +83,8 @@ class App
         if(class_exists($classCtrl)) {
             $ctrlObject = new $classCtrl();
             if(method_exists($classCtrl, $action)) { 
-                $responseParams = $ctrlObject->$action( ...$params );
-                $this->applyTemplate( $ctrlName, $actionName, $responseParams );
+                $responseParams = $ctrlObject->$action(...$params);
+                $this->applyTemplate($ctrlName, $actionName, $responseParams);
             } else {
                 throw new \InvalidArgumentException("L'action $actionName n'existe pas");
             }

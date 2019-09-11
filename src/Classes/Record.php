@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types = 1);
 
 namespace Classes;
 
@@ -28,7 +28,7 @@ abstract class Record extends Database
     {
         parent::__construct();
         if(!$tableName) {
-            $this->tableName = strtolower( basename(self::class) );
+            $this->tableName = strtolower(basename(self::class));
         } else {
             $this->tableName = $tableName;
         }
@@ -118,9 +118,11 @@ abstract class Record extends Database
     protected function bindingList(): array
     {
         $values = array_flip($this->values);
-        array_walk($values, function(&$v, $k){
-            $v = ':'.$v;
-        });
+        array_walk(
+            $values, function (&$v, $k) {
+                $v = ':'.$v;
+            }
+        );
         return array_flip($values);
     }
 
@@ -129,7 +131,7 @@ abstract class Record extends Database
      */
     protected function keysList(): string
     {
-        return implode(', ',array_keys($this->values));
+        return implode(', ', array_keys($this->values));
     }
 
     /**
@@ -137,10 +139,12 @@ abstract class Record extends Database
      */
     protected function valuesToPrepare(): string
     {
-        $values = array_map(function($v){
-            return ':'.$v;
-        }, array_keys($this->values));
-        return implode(',',$values);
+        $values = array_map(
+            function ($v) {
+                return ':'.$v;
+            }, array_keys($this->values)
+        );
+        return implode(',', $values);
     }
 
     /**
@@ -152,9 +156,11 @@ abstract class Record extends Database
         if(false !== ($key = array_search('id', $values))) {
             unset($values[$key]);
         }
-        array_walk($values, function(&$v, $k){
-            $v = $v.'=:'.$v;
-        });
-        return implode(', ',$values);
+        array_walk(
+            $values, function (&$v, $k) {
+                $v = $v.'=:'.$v;
+            }
+        );
+        return implode(', ', $values);
     }
 }
