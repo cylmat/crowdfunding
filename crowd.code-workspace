@@ -4,5 +4,18 @@
 			"path": "."
 		}
 	],
-	"settings": {}
+	"settings": {
+		"sqltools.connections": [
+			{
+				"connectionTimeout": 30,
+				"database": "crowd",
+				"dialect": "MySQL",
+				"name": "localhost",
+				"password": "root",
+				"port": 8889,
+				"server": "127.0.0.1",
+				"username": "root"
+			}
+		]
+	}
 }

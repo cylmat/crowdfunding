@@ -65,7 +65,7 @@ class RecordTest extends \PHPUnit\Framework\TestCase
     function testCanDelete(int $lastId)
     {
         $userTest = $this->user();
-        $this->assertTrue(is_int($lastId) && $lastId>1, 'Last id');
+        $this->assertTrue(is_int($lastId) && $lastId>0, 'Last id '.$lastId);
         $userTest->delete($lastId);
     }
 }

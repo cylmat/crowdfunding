@@ -22,13 +22,22 @@
         "nunomaduro/phpinsights": "^1.9",
         "squizlabs/php_codesniffer": "^3.4",
         "phpmd/phpmd": "^2.7",
-        "monolog/monolog": "^1.2"
+        "monolog/monolog": "^1.2",
+        "jokkedk/webgrind": "^1.6"
     },
     "scripts": {
-        "test": "phpunit --bootstrap app/autoload.php tests --color=always",
+        "test": "phpunit --bootstrap app/autoload.php unitests --color=always --coverage-html var/coverage --whitelist src",
+        "cest": "codecept run --steps",
+        "analyse": "phpstan analyse --level max src",
         "cs": "phpcs",
         "fix": "phpcbf",
         "md": "phpmd src text cleancode, codesize, controversial, design, naming, unusedcode",
-        "check": "phpcs -p src"
+        "check": "phpcs -p src",
+        "insights": "phpinsights"
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "": "src/"
+        }
     }
 }

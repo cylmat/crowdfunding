@@ -1,3 +1,4 @@
 *.code-w
 vendor
 bin
+/var
