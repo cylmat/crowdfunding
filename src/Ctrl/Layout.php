@@ -4,13 +4,17 @@ namespace Ctrl;
 
 class Layout
 {
-    function getHeader()
+    function headerAction()
     {
-        
+        return [
+            'title'=>'titreendefault'
+        ];
     }
 
-    function getFooter()
+    function footerAction()
     {
-        
+        return [
+            'f'=>'ooter'
+        ];
     }
 }

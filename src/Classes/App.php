@@ -37,10 +37,11 @@ class App
         $actionName = $request['action'];
         $params = $request['params'];
 
-        $response = $this->callController($ctrlName, $actionName, $params);
-        $content = $this->applyTemplate($ctrlName, $actionName, $response);
-
-        $this->send($content);
+        $header = $this->callController('layout', 'header', $params);
+        $content = $this->callController($ctrlName, $actionName, $params);
+        $footer = $this->callController('layout', 'footer', $params);
+        
+        $this->sendToLayout(['header'=>$header, 'content'=>$content, 'footer'=>$footer]);
     }
 
     public function getRequest(): ?array
@@ -90,7 +91,7 @@ class App
     /**
      * Call controller and view
      */
-    public function callController($ctrlName, $actionName, $params=[]): array
+    public function callController($ctrlName, $actionName, $params=[]): string
     {
         $classCtrl = 'Ctrl\\'.ucfirst($ctrlName);
         $action = $actionName.'Action';
@@ -98,9 +99,8 @@ class App
         if(class_exists($classCtrl)) {
             $ctrlObject = new $classCtrl();
             if(method_exists($classCtrl, $action)) { 
-                return $ctrlObject->$action($params);
-            } elseif(method_exists($classCtrl, $actionName)) { 
-                return $ctrlObject->$actionName($params);
+                $return = $ctrlObject->$action($params);
+                return $this->applyView($ctrlName, $actionName, $return??[]);
             } else {
                 throw new \InvalidArgumentException("L'action $actionName n'existe pas");
             }
@@ -109,7 +109,7 @@ class App
         }
     }
 
-    public function applyTemplate( string $ctrl, string $action, array $responseParams ): string
+    public function applyView( string $ctrl, string $action, array $responseParams ): string
     {
         extract($responseParams);
 
@@ -119,11 +119,11 @@ class App
         ob_end_clean();
 
         return $content;
-        //include VIEW.'layout.phtml';
     }
 
-    public function send($render)
+    public function sendToLayout($params)
     {
-        echo $render;
+        extract($params);
+        include VIEW.'layout.phtml';
     }
 }
