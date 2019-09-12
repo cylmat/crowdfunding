@@ -31,7 +31,7 @@
         "cest": "codecept run --steps",
         "analyse": "phpstan analyse --level max src",
         "cs": "phpcs",
-        "fix": "phpcbf",
+        "fix": "phpcbf -v",
         "md": "phpmd src text cleancode, codesize, controversial, design, naming, unusedcode",
         "check": "phpcs -p src",
         "insights": "phpinsights"
