@@ -14,3 +14,5 @@ function autoload($class)
 }
 
 spl_autoload_register('autoload');
+
+require_once 'routes.php';

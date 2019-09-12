@@ -7,14 +7,14 @@ class Layout
     function headerAction()
     {
         return [
-            'title'=>'titreendefault'
+            
         ];
     }
 
     function footerAction()
     {
         return [
-            'f'=>'ooter'
+            
         ];
     }
 }

@@ -114,7 +114,12 @@ class App
         extract($responseParams);
 
         ob_start();
-        include VIEW. strtolower($ctrl) . '/' . $action . '.phtml';
+        $file = VIEW. strtolower($ctrl) . '/' . $action . '.phtml';
+        if(!file_exists($file)) {
+            throw new \InvalidArgumentException("Le fichier ".strtolower($ctrl) . '/' . $action . '.phtml'." n'existe pas");
+            return '';
+        }
+        include $file;
         $content = ob_get_contents();
         ob_end_clean();
 
@@ -124,6 +129,6 @@ class App
     public function sendToLayout($params)
     {
         extract($params);
-        include VIEW.'layout.phtml';
+        include VIEW.'layout/layout.phtml';
     }
 }

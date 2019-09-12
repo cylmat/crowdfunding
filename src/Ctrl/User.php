@@ -2,7 +2,15 @@
 
 namespace Ctrl;
 
-class Project
+class User
 {
-    
+    function signinAction()
+    {
+        
+    }
+
+    function subscribeAction()
+    {
+
+    }
 }
