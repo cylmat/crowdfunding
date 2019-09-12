@@ -26,7 +26,7 @@
         "jokkedk/webgrind": "^1.6"
     },
     "scripts": {
-        "test": "phpunit",
+        "test": "phpunit --color=always",
         "test2": "phpunit --bootstrap app/autoload.php unitests --color=always --coverage-html var/coverage --whitelist src",
         "cest": "codecept run --steps",
         "analyse": "phpstan analyse --level max src",

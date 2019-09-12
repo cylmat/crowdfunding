@@ -83,14 +83,14 @@ abstract class Record extends Database
 
     function delete(int $id): bool
     {
-        $smt = $this->db->prepare("DELETE FROM {$this->tableName} WHERE id=:id;");
-        return $smt->execute([':id'=>$id]);
+        $smt = $this->db->prepare("DELETE FROM {$this->tableName} WHERE id=?;");
+        return $smt->execute([$id]);
     }
 
     function get(int $id): ?array
     {
-        $smt = $this->db->prepare("SELECT * FROM {$this->tableName} WHERE id=:id;");
-        $smt->execute([':id'=>$id]);
+        $smt = $this->db->prepare("SELECT * FROM {$this->tableName} WHERE id=?;");
+        $smt->execute([$id]);
         
         if(false !== ($res = $smt->fetch(\PDO::FETCH_ASSOC))) {
             $this->values = $res;
