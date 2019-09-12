@@ -29,7 +29,9 @@ class App
     public function run(): void
     {
         //get query request
-        $request = $this->getRequest();
+        if(null === ($request = $this->getRequest())) {
+            return;
+        }
         
         $ctrlName = $request['ctrl'];
         $actionName = $request['action'];
@@ -44,6 +46,10 @@ class App
     public function getRequest(): ?array
     {
         $request = $_REQUEST;
+
+        if(!isset($_SERVER['QUERY_STRING'])) { 
+            return null;
+        }
 
         $query = $_SERVER['QUERY_STRING'];
         if(!preg_match(self::PREG_URL, $query)) {
