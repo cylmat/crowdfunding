@@ -2,6 +2,8 @@
 
 namespace Classes;
 
+use Ctrl\Layout;
+
 class App
 {
     const DEFAULT_CTRL='Defaults';
@@ -9,9 +11,10 @@ class App
     const PREG_URL='/^(\w\&?)*/'; //format ctrl&action&id
 
     /**
-     * @var array
      * Request value with controller
      * action and params if any
+     * 
+     * @var array
      */
     private $request;
 
@@ -26,17 +29,25 @@ class App
     public function run(): void
     {
         //get query request
-        $this->setRequest();
-        $this->callController();
+        $request = $this->getRequest();
+        
+        $ctrlName = $request['ctrl'];
+        $actionName = $request['action'];
+        $params = $request['params'];
+
+        $response = $this->callController($ctrlName, $actionName, $params);
+        $content = $this->applyTemplate($ctrlName, $actionName, $response);
+
+        $this->send($content);
     }
 
-    public function setRequest(): void
+    public function getRequest(): ?array
     {
         $request = $_REQUEST;
 
         $query = $_SERVER['QUERY_STRING'];
         if(!preg_match(self::PREG_URL, $query)) {
-            return;
+            return null;
         }
 
         //default
@@ -62,47 +73,51 @@ class App
         }
 
         //set
-        $this->request = [
+        $request = [
             'ctrl'=>$ctrl,
             'action'=>$action,
             'params'=>$params
         ];
+        return $request;
     }
 
     /**
      * Call controller and view
      */
-    public function callController(): void
+    public function callController($ctrlName, $actionName, $params=[]): array
     {
-        $ctrlName = $this->request['ctrl'];
         $classCtrl = 'Ctrl\\'.ucfirst($ctrlName);
-        $actionName = $this->request['action'];
         $action = $actionName.'Action';
-        $params = $this->request['params'];
-
+        
         if(class_exists($classCtrl)) {
             $ctrlObject = new $classCtrl();
             if(method_exists($classCtrl, $action)) { 
-                $responseParams = $ctrlObject->$action($params);
-                $this->applyTemplate($ctrlName, $actionName, $responseParams);
+                return $ctrlObject->$action($params);
+            } elseif(method_exists($classCtrl, $actionName)) { 
+                return $ctrlObject->$actionName($params);
             } else {
                 throw new \InvalidArgumentException("L'action $actionName n'existe pas");
             }
-            //return $responseParams;
         } else {
             throw new \InvalidArgumentException("Le controller $ctrlName n'existe pas");
         }
     }
 
-    public function applyTemplate( string $ctrl, string $action, array $responseParams ): void
+    public function applyTemplate( string $ctrl, string $action, array $responseParams ): string
     {
         extract($responseParams);
-        
+
         ob_start();
         include VIEW. strtolower($ctrl) . '/' . $action . '.phtml';
         $content = ob_get_contents();
         ob_end_clean();
 
-        include VIEW.'layout.phtml';
+        return $content;
+        //include VIEW.'layout.phtml';
+    }
+
+    public function send($render)
+    {
+        echo $render;
     }
 }

@@ -4,10 +4,10 @@ namespace Ctrl;
 
 class Project
 {
-    function alphonseAction()
+    function createAction()
     {
         return [
-            'foo'=>'bar'
+            
         ];
     }
 }
