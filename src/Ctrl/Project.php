@@ -7,7 +7,10 @@ use Classes\Ctrl;
 class Project extends Ctrl
 {
     function createAction()
-    {
+    {   
+        if(!$this->post) return;
+        
+        
         return [
             
         ];

@@ -11,6 +11,6 @@ CREATE TABLE IF NOT EXISTS `crowd`.`project` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 ALTER TABLE `crowd`.`project` 
-ADD CONSTRAINT `Fk_id_user` FOREIGN KEY (`fk_id_user`) 
+ADD CONSTRAINT `fk_id_user` FOREIGN KEY (`fk_id_user`) 
 REFERENCES `user`(`id`) 
 ON DELETE RESTRICT ON UPDATE RESTRICT;
