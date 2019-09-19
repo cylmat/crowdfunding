@@ -25,8 +25,10 @@ class ProjectTest extends \PHPUnit\Framework\TestCase
 
         $project->create();
         $lastId = $project->lastInsertId();
-        echo $project->getLastError();
+        
         $this->assertGreaterThan(1, $lastId);
-        //$project->delete($lastId);
+        $project->delete($lastId);
+
+        $this->assertNull($project->get($lastId));
     }
 }
