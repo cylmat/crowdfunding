@@ -2,7 +2,9 @@
 
 namespace Ctrl;
 
-class User
+use Classes\Ctrl;
+
+class User extends Ctrl
 {
     function signinAction()
     {

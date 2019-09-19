@@ -2,7 +2,9 @@
 
 namespace Ctrl;
 
-class Project
+use Classes\Ctrl;
+
+class Project extends Ctrl
 {
     function createAction()
     {

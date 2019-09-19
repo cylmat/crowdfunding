@@ -2,7 +2,9 @@
 
 namespace Ctrl;
 
-class Admin
+use Classes\Ctrl;
+
+class Admin extends Ctrl 
 {
     
 }
