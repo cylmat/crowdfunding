@@ -22,16 +22,19 @@ abstract class Record extends Database
     protected $tableName;
 
     /**
+     * Statement
+     * 
+     * @var PDOStatement
+     */
+    protected $smt;
+
+    /**
      * Recupere la table correspondant à la class
      */
-    public function __construct($tableName=null)
+    public function __construct(string $tableName)
     {
         parent::__construct();
-        if(!$tableName) {
-            $this->tableName = strtolower(basename(self::class));
-        } else {
-            $this->tableName = $tableName;
-        }
+        $this->tableName = $tableName;
     }
 
     /**
@@ -65,6 +68,7 @@ abstract class Record extends Database
     {
         $smt = $this->db->prepare("INSERT INTO {$this->tableName} ( {$this->keysList()} ) VALUES ( {$this->valuesToPrepare()} );");
         $res = $smt->execute($this->bindingList());
+        $this->smt = $smt;
         if(true ===$res) {
             $this->id = $this->lastInsertId();
         }
@@ -75,22 +79,24 @@ abstract class Record extends Database
     {
         $prep = "UPDATE {$this->tableName} SET {$this->valuesToUpdate()} WHERE id={$this->id};";
         $smt = $this->db->prepare($prep);
-        /*foreach($this->bindingList() as $k=>$v) {
-            $res = str_replace($k,$this->db->quote($v),$res);
-        }*/
-        return $smt->execute($this->bindingList());
+        $exec = $smt->execute($this->bindingList());
+        $this->smt = $smt;
+        return $exec;
     }
 
     function delete(int $id): bool
     {
         $smt = $this->db->prepare("DELETE FROM {$this->tableName} WHERE id=?;");
-        return $smt->execute([$id]);
+        $exec = $smt->execute([$id]);
+        $this->smt = $smt;
+        return $exec;
     }
 
     function get(int $id): ?array
     {
         $smt = $this->db->prepare("SELECT * FROM {$this->tableName} WHERE id=?;");
         $smt->execute([$id]);
+        $this->smt = $smt;
         
         if(false !== ($res = $smt->fetch(\PDO::FETCH_ASSOC))) {
             $this->values = $res;
@@ -110,6 +116,19 @@ abstract class Record extends Database
     {
         return (int)$this->db->lastInsertId();
     }
+
+    /**
+     * Get mysql statemement error
+     */
+    public function getLastError(): ?string
+    {
+        if($this->smt && $e=$this->smt->errorInfo()[2]) {
+            return $e;
+        } else {
+            return null;
+        }
+    }
+
 
 
     /**
