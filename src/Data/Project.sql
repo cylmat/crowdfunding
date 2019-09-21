@@ -1,12 +1,13 @@
 -- MySql
 USE crowd;
 
+DROP TABLE IF EXISTS `crowd`.`project`;
 CREATE TABLE IF NOT EXISTS `crowd`.`project` (
-  `id_project` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(255) NOT NULL,
   `description` text NOT NULL,
   `fk_id_user` int(11) NOT NULL,
-  PRIMARY KEY (`id_project`),
+  PRIMARY KEY (`id`),
   KEY `FK_ID_USER` (`fk_id_user`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 

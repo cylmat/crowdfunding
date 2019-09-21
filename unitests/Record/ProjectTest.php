@@ -2,7 +2,7 @@
 
 namespace Record;
 
-class ProjectTest extends \PHPUnit\Framework\TestCase
+class ProjectTgest extends \PHPUnit\Framework\TestCase
 {
     function testCanUpdateProperty()
     {
@@ -18,17 +18,28 @@ class ProjectTest extends \PHPUnit\Framework\TestCase
 
     function testCanCreate()
     {
+        $user = new User('user');
+        $user->nom = 'john';
+        $user->create();
+        $lastUserId = $user->lastInsertId();
+
         $project = new Project('project');
         $project->title = 'title of the project';
         $project->description = 'this is the one';
-        $project->fk_id_user = 149;
+        $project->fk_id_user = $lastUserId;
 
         $project->create();
         $lastId = $project->lastInsertId();
         
         $this->assertGreaterThan(1, $lastId);
+
+        //delete project
         $project->delete($lastId);
 
+        //delete user
+        $user->delete($lastUserId);
+
         $this->assertNull($project->get($lastId));
+        $this->assertNull($user->get($lastUserId));
     }
 }

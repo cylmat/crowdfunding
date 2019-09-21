@@ -4,7 +4,7 @@ namespace Classes;
 
 class DatabaseTest extends \PHPUnit\Framework\TestCase
 {
-    function testAlpha()
+    function testConnexion()
     {
         $db = new Database;
         $this->assertInstanceOf(Database::class, $db);

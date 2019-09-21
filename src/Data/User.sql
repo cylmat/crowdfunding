@@ -1,16 +1,24 @@
 -- MySql
 USE crowd;
 
-/*CREATE TABLE IF NOT EXISTS `crowd`.`user` (
-    `id_user` INT NOT NULL , PRIMARY KEY AUTO_INCREMENT ,
-    `name` VARCHAR(100) ,
-    `email` VARCHAR(100)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;*/
-
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE IF NOT EXISTS `user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(100) DEFAULT NULL,
-  `email` varchar(100) DEFAULT NULL,
-  PRIMARY KEY (`id`)
+
+  `login` varchar(100),
+  `password` TEXT,
+
+  `civilite` varchar(100),
+  `nom` varchar(100),
+  `prenom` varchar(100),
+
+  `titre` varchar(100),
+  `emploi` varchar(100),
+
+  `ville` varchar(100),
+
+  `fk_id_login` int(11) NOT NULL,
+  
+  PRIMARY KEY (`id`),
+  KEY `FK_ID_LOGIN` (`fk_id_login`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

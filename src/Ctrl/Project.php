@@ -3,7 +3,7 @@
 namespace Ctrl;
 
 use Classes\Ctrl;
-use Record\Project;
+use Record\Project as ProjectRecord;
 
 class Project extends Ctrl
 {
@@ -11,7 +11,7 @@ class Project extends Ctrl
     {   
         //Envoi du formulaire de création
         if($this->post) {
-            $project = new Project('project');
+            $project = new ProjectRecord('project');
             $project = $this->post['title'];
         }
         
