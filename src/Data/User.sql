@@ -5,17 +5,17 @@ DROP TABLE IF EXISTS `user`;
 CREATE TABLE IF NOT EXISTS `user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
 
-  `login` varchar(100),
-  `password` TEXT,
+  `login` varchar(255) UNIQUE NOT NULL,
+  `password` text NOT NULL
 
-  `civilite` varchar(100),
-  `nom` varchar(100),
-  `prenom` varchar(100),
+  `civilite` varchar(100) NULL,
+  `nom` varchar(100) NULL,
+  `prenom` varchar(100) NULL,
 
-  `titre` varchar(100),
-  `emploi` varchar(100),
+  `titre` varchar(100) NULL,
+  `emploi` varchar(100) NULL,
 
-  `ville` varchar(100),
+  `ville` varchar(100) NULL,
 
   `fk_id_login` int(11) NOT NULL,
   
