@@ -10,6 +10,11 @@ abstract class Record extends Database
     protected $values = [];
 
     /**
+     * Columns
+     */
+    protected $columns;
+
+    /**
      * Id
      */
     protected $id;
@@ -35,6 +40,7 @@ abstract class Record extends Database
     {
         parent::__construct();
         $this->tableName = $tableName;
+        $this->columns = $this->getColumns();
     }
 
     /**
@@ -42,7 +48,7 @@ abstract class Record extends Database
      */
     function __set(string $name, string $value)
     {
-        if(property_exists($this, $name)) {
+        if(in_array($name, $this->columns)) {
             $this->values[$name] = $value;
             return;
         }
@@ -130,6 +136,28 @@ abstract class Record extends Database
     }
 
 
+
+
+    protected function getColumns(): ?array
+    {
+        $smt = $this->db->prepare(
+            "SELECT column_name FROM information_schema.columns WHERE table_name = ? AND table_schema='crowd';"
+        );
+        $smt->execute([$this->tableName]);
+        $this->smt = $smt;
+
+        if(false !== ($res = $smt->fetchAll(\PDO::FETCH_ASSOC))) {
+            $columns=[];
+            foreach($res as $n => $vals) {
+                if('id' !== $vals['column_name']) {
+                    $columns[] = $vals['column_name'];
+                }
+            }
+            return $columns;
+        } else {
+            return null;
+        }
+    }
 
     /**
      * @return array [:k1=>val1, :k2=>val2]

@@ -2,11 +2,17 @@
 
 namespace Record;
 
-class ProjectTgest extends \PHPUnit\Framework\TestCase
+class ProjectTest extends \PHPUnit\Framework\TestCase
 {
+    function setUp(): void 
+    {
+        $this->user = new User('user');
+        $this->project = new Project('project');
+    }
+
     function testCanUpdateProperty()
     {
-        $project = new Project('project');
+        $project = $this->project;
         $this->assertInstanceOf(Project::class, $project);
         
         $project->title = 'alpha';
@@ -18,12 +24,12 @@ class ProjectTgest extends \PHPUnit\Framework\TestCase
 
     function testCanCreate()
     {
-        $user = new User('user');
+        $user = $this->user;
         $user->nom = 'john';
         $user->create();
         $lastUserId = $user->lastInsertId();
 
-        $project = new Project('project');
+        $project = $this->project;
         $project->title = 'title of the project';
         $project->description = 'this is the one';
         $project->fk_id_user = $lastUserId;
@@ -31,7 +37,7 @@ class ProjectTgest extends \PHPUnit\Framework\TestCase
         $project->create();
         $lastId = $project->lastInsertId();
         
-        $this->assertGreaterThan(1, $lastId);
+        $this->assertTrue(is_int($lastId) && $lastId>=0);
 
         //delete project
         $project->delete($lastId);

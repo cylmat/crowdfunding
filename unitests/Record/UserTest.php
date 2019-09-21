@@ -20,8 +20,8 @@ class UserTest extends \PHPUnit\Framework\TestCase
         $userTest = $this->user;
         $this->assertInstanceOf(User::class, $userTest);
 
-        $userTest->name = 'alpha';
-        $userTest->email = 'email';
+        $userTest->nom = 'alpha';
+        $userTest->prenom = 'email';
 
         $userTest->create();
         return $userTest->lastInsertId();
@@ -49,7 +49,7 @@ class UserTest extends \PHPUnit\Framework\TestCase
 
         $userTest = $this->user;
         $userTest->get($lastId);
-        $this->assertSame('emailupdated', $userTest->email);
+        $this->assertSame('preupdated', $userTest->prenom);
     }
 
     /**
@@ -58,7 +58,7 @@ class UserTest extends \PHPUnit\Framework\TestCase
     function testCanDelete(int $lastId)
     {
         $userTest = $this->user;
-        $this->assertTrue(is_int($lastId) && $lastId>0, 'Last id '.$lastId);
+        $this->assertTrue(is_int($lastId) && $lastId>=0, 'Last id '.$lastId);
         $userTest->delete($lastId);
     }
 
@@ -67,8 +67,8 @@ class UserTest extends \PHPUnit\Framework\TestCase
         $user = $this->user;
         $this->assertInstanceOf(User::class, $user);
         
-        $user->name = 'alpha';
-        $this->assertEquals('alpha', $user->name);
+        $user->nom = 'alpha';
+        $this->assertEquals('alpha', $user->nom);
 
         $this->expectException('InvalidArgumentException');
         $user->notexistsproperty = 'nothing';

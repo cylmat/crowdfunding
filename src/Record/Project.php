@@ -6,5 +6,5 @@ use Classes\Record;
 
 class Project extends Record
 {
-    protected $title, $description, $fk_id_user;
+    
 }
