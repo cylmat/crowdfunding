@@ -3,13 +3,17 @@
 namespace Ctrl;
 
 use Classes\Ctrl;
+use Record\Project;
 
 class Project extends Ctrl
 {
     function createAction()
     {   
-        if(!$this->post) return;
-        
+        //Envoi du formulaire de création
+        if($this->post) {
+            $project = new Project('project');
+            $project = $this->post['title'];
+        }
         
         return [
             
