@@ -112,6 +112,7 @@ class App
     public function applyView( string $ctrl, string $action, array $responseParams ): string
     {
         extract($responseParams);
+        $post = $_POST;
 
         ob_start();
         $file = VIEW. strtolower($ctrl) . '/' . $action . '.phtml';
