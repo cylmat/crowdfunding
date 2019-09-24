@@ -2,9 +2,16 @@
 <nav>
     <ul>
         <li><a href="/">Home</a></li>
+        <li><a href="<?=url('project_list')?>">Voir tous les projets</a></li>
     </ul>
+    
+    <?php if($logged): ?>
+    <ul>
+        <li><a href="<?=url('project_create')?>">Ajouter un projet</a></li>
+    </ul>
+    <?php endif ?>
 </nav>
-<?php if(isset($logged) && $logged): ?>
+<?php if($logged): ?>
     <p><?= $user ?> <a href="<?=url('user_disconnect')?>">Déconnection</a></p>
 <?php else: ?>
     <p>

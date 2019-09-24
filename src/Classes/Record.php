@@ -113,9 +113,16 @@ abstract class Record extends Database
         return null; 
     }
 
-    public function gets(): array
+    public function getAll(): array
     {
-
+        $smt = $this->db->prepare("SELECT * FROM {$this->tableName};");
+        $smt->execute();
+        $this->smt = $smt;
+        
+        if(false !== ($res = $smt->fetchAll(\PDO::FETCH_ASSOC))) {
+            return $res;
+        }
+        return null; 
     }
 
     public function lastInsertId(): int
