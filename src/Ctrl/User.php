@@ -14,15 +14,15 @@ class User extends Ctrl
     
     function subscribeAction()
     {
-        $creation=false;
+        $creation=null;
 
         //Envoi du formulaire
         if($this->post) {
             $user = new UserRecord('user');
             $user->login = $this->post['login'];
 
-            if($this->post['password'] === $this->post['retype_password']) {
-                $pass = password_hash($this->post['password'], PASSWORD_DEFAULT);
+            if($this->post['password'] === $this->post['retype_password'] && strlen($this->post['retype_password'])>3) {
+                $pass = $this->post['password']; //password_hash($this->post['password'], PASSWORD_DEFAULT);
                 $user->password = $pass;
             }
 
@@ -32,7 +32,7 @@ class User extends Ctrl
                 $creation = 'already_exists';
             }
         }
-
+        
         return [
             'creation'=>$creation
         ];

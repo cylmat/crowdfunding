@@ -10,12 +10,13 @@ class User extends Record
     {
         $smt = $this->db->prepare("SELECT count(*) AS cnt FROM `user` WHERE login=?");
         $smt->execute([$login]);
+        $res = $smt->fetch();
 
-        if(!isset($smt->fetch()['cnt']) || false === $smt->fetch()) {
+        if(!isset($res['cnt']) || false === $res) {
             return null;
-        } elseif(0 !== $smt->fetch()['cnt']) {
-            return true;
+        } elseif($res['cnt']==0) {
+            return false;
         }
-        return false;
+        return true;
     }
 }
