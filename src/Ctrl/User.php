@@ -21,12 +21,19 @@ class User extends Ctrl
 
             if(null !== ($id = $user->checkLoginPassword($login, $password))) {
                 Session::set('id_user',$id);
+                redirect('/');
             }
         }
         
         return [
             
         ];
+    }
+
+    function disconnectAction()
+    {
+        Session::set('id_user',null);
+        redirect('/');
     }
     
     function subscribeAction()

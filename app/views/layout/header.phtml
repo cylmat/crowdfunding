@@ -1,5 +1,14 @@
 <div>LOGO</div>
-<p>
-    <a href="<?=url('user_signin')?>">Connection</a>
-    <a href="<?=url('user_subscribe')?>">S'inscrire</a>
-</p>
+<nav>
+    <ul>
+        <li><a href="/">Home</a></li>
+    </ul>
+</nav>
+<?php if(isset($logged) && $logged): ?>
+    <p><?= $user ?> <a href="<?=url('user_disconnect')?>">Déconnection</a></p>
+<?php else: ?>
+    <p>
+        <a href="<?=url('user_signin')?>">Connection</a>
+        <a href="<?=url('user_subscribe')?>">S'inscrire</a>
+    </p>
+<?php endif; ?>
