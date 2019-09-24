@@ -19,4 +19,19 @@ class User extends Record
         }
         return true;
     }
+
+    public function checkLoginPassword(string $login, string $password)
+    {
+        $smt = $this->db->prepare("SELECT id FROM `user` WHERE login=? AND password=?");
+        $smt->execute([$login, $password]);
+        $res = $smt->fetch();
+
+        if(!isset($res['id']) || false === $res) {
+            return null;
+        } elseif(!is_int( (int)$res['id'] )) {
+            return false;
+        }
+
+        return $res['id'];
+    }
 }
