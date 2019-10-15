@@ -1,16 +1,32 @@
+
 <div class="logo">
     <a href="/"><img src="https://image.freepik.com/vecteurs-libre/dessin-anime-mignon-chouette_33070-2653.jpg" alt="logo"/></a>
 </div>
+
 <nav>
     <ul>
-        <li>Les projets</li>
+        <li><a href="/">Home</a></li>
+        <li><a href="<?=url('project_list')?>">Voir tous les projets</a></li>
         <li>Un projet au hasard</li>
         <li>Concept</li>
         <li>Statistiques</li>
         <li>Contact</li>
+
+        <?php if($logged): ?>
+        <ul>
+            <li><a href="<?=url('project_create')?>">Ajouter un projet</a></li>
+        </ul>
+        <?php endif ?>
     </ul>
 </nav>
-<p class="connexion">
-    <a href="<?=url('user_signin')?>">Connection</a>
-    <a href="<?=url('user_subscribe')?>">S'inscrire</a>
-</p>
+
+<?php if($logged): ?>
+    <p><?= $user ?> <a href="<?=url('user_disconnect')?>">Déconnection</a></p>
+<?php else: ?>
+    <p>
+        <a href="<?=url('user_signin')?>">Connection</a>
+        <a href="<?=url('user_subscribe')?>">S'inscrire</a>
+    </p>
+<?php endif; ?>
+
+
