@@ -5,6 +5,12 @@
         <li>Concept</li>
         <li>Statistiques</li>
         <li>Contact</li>
+
+        <?php if($logged): ?>
+            <ul>
+                <li><a href="<?=url('project_create')?>">Ajouter un projet</a></li>
+            </ul>
+        <?php endif ?>
     </ul>
 </nav>
 <div class="social">

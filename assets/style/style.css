@@ -1,0 +1,50 @@
+* {
+    box-sizing: border-box;
+  }
+  
+  a {
+    text-decoration: none;
+  }
+  
+  ul {
+    padding-left: 0;
+  }
+  
+  li {
+    list-style-type: none;
+  }
+  
+  /* header */
+  header {
+    width: 100%;
+    margin: 0 auto;
+    border-bottom: solid 3px #22b;
+    text-align: center;
+    padding: 0.5rem;
+  }
+  
+  header img {
+    width: 2rem;
+  }
+  
+  header nav {
+    
+  }
+  
+  header nav ul li {
+    
+  }
+  
+  /* container */
+  .container {
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+  }
+  
+  /* footer */
+  footer {
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+  }

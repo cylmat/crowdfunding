@@ -13,20 +13,20 @@
         <li>Contact</li>
 
         <?php if($logged): ?>
-        <ul>
-            <li><a href="<?=url('project_create')?>">Ajouter un projet</a></li>
-        </ul>
+            <ul>
+                <li><a href="<?=url('project_create')?>">Ajouter un projet</a></li>
+            </ul>
         <?php endif ?>
     </ul>
 </nav>
 
 <?php if($logged): ?>
-    <p><?= $user ?> <a href="<?=url('user_disconnect')?>">Déconnection</a></p>
+    <div><?= $user ?> <div class="button"><a href="<?=url('user_disconnect')?>">Déconnection</a></div></div>
 <?php else: ?>
-    <p>
-        <a href="<?=url('user_signin')?>">Connection</a>
-        <a href="<?=url('user_subscribe')?>">S'inscrire</a>
-    </p>
+    <div>
+        <div class="button"><a href="<?=url('user_signin')?>">Connection</a></div>
+        <div class="button"><a href="<?=url('user_subscribe')?>">S'inscrire</a></div>
+    </div>
 <?php endif; ?>
 
 
