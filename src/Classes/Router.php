@@ -4,19 +4,11 @@ namespace Classes;
 
 class Router
 {
-    const DEFAULT_CTRL='Defaults';
+    const DEFAULT_CTRL='Default';
     const DEFAULT_ACTION='index';
     const PREG_URL='/^(\w\&?)*/'; //format ctrl&action&id
 
-    /**
-     * Request value with controller
-     * action and params if any
-     * 
-     * @var array
-     */
-    private $request;
-
-    public function getRequest(): ?array
+    public static function getRequest(): ?array
     {
         $request = $_REQUEST;
 

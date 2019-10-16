@@ -39,6 +39,7 @@ class UserCtrl extends Ctrl
     function subscribeAction()
     {
         $creation=null;
+        $msg = '';
 
         //Envoi du formulaire
         if($this->post) {
@@ -61,8 +62,8 @@ class UserCtrl extends Ctrl
             } else {
                 $creation = 'already_exists';
             }
+            $msg = \Model\UserModel::getFormMessage($creation) . $user->getLastError();
         }
-        $msg = \Model\UserModel::getFormMessage($creation) . $user->getLastError();
         
         return [
             'msg' => $msg
