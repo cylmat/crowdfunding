@@ -67,13 +67,14 @@ header img {
 
 nav li {
    margin: 0.2rem; 
+   padding: 0 5px;
   display:inline-block;
 }
 
 nav ul li:hover {
-  border-top: solid 1px grey;
-  border-bottom: solid 1px grey;
-  padding: 2px 0;
+  border-left: solid 2px red;
+  border-right: solid 2px red;
+  padding: 0 0.2rem;
   cursor: pointer;
 }
 
