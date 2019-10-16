@@ -5,7 +5,7 @@ namespace Ctrl;
 use Classes\Ctrl;
 use Classes\Records;
 
-class Defaults extends Ctrl
+class DefaultCtrl extends Ctrl
 {
     function indexAction()
     {

@@ -2,11 +2,11 @@
 
 namespace Model;
 
-class User
+class UserModel
 {
     public static function getFormMessage($creation): string
     {
-        $message = '';
+        $message = 'Une erreur est survenue pendant la création du compte';
 
         switch($creation){
             case 'already_exists': 

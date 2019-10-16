@@ -9,40 +9,46 @@ abstract class Record extends Database
      */
     protected $values = [];
 
+    
     /**
      * Columns
      */
     protected $columns;
-
+    
     /**
      * Id
      */
     protected $id;
-
+    
     /**
      * Class name
      * 
      * @var string
      */
     protected $tableName;
-
+    
     /**
      * Statement
      * 
      * @var PDOStatement
      */
     protected $smt;
-
+    
     /**
-     * Recupere la table correspondant à la class
+     * DEbug mode
+     */
+    protected static $debug = false;
+    
+    /**
+     * Recupere la table correspondant à la classe
      */
     public function __construct(string $tableName)
     {
         parent::__construct();
-        $this->tableName = $tableName;
+        $this->tableName = strtolower(basename(static::class));
         $this->columns = $this->getColumns();
     }
-
+    
     /**
      * throw InvalidArgumentException
      */
@@ -52,7 +58,7 @@ abstract class Record extends Database
             $this->values[$name] = $value;
             return;
         }
-        throw new \InvalidArgumentException("Le paramètre $name n'existe pas");
+        throw new \InvalidArgumentException("Le paramètre $name n'existe pas dans la base de données");
     }
 
     /**
@@ -67,18 +73,24 @@ abstract class Record extends Database
         if(array_key_exists($name, $this->values)) {
             return $this->values[$name];
         }
-        throw new \InvalidArgumentException("Le paramètre $name n'existe pas");
+        throw new \InvalidArgumentException("Le paramètre $name n'existe pas dans la base de données");
     }
 
     function create(): bool
     {
         $smt = $this->db->prepare("INSERT INTO {$this->tableName} ( {$this->keysList()} ) VALUES ( {$this->valuesToPrepare()} );");
-        $res = $smt->execute($this->bindingList());
-        $this->smt = $smt;
-        if(true ===$res) {
-            $this->id = $this->lastInsertId();
+        if(self::$debug) {
+            print "INSERT INTO {$this->tableName} ( {$this->keysList()} ) VALUES ( {$this->valuesToPrepare()} );";
+            print_r($this->bindingList());
+            return false;
+        } else {
+            $res = $smt->execute($this->bindingList());
+            $this->smt = $smt;
+            if(true ===$res) {
+                $this->id = $this->lastInsertId();
+            }
+            return $res;
         }
-        return $res;
     }
 
     function update(): bool
@@ -144,7 +156,9 @@ abstract class Record extends Database
 
 
 
-
+    /**
+     * Recupere les informations de schema à partir de la base de donnée
+     */
     protected function getColumns(): ?array
     {
         $smt = $this->db->prepare(

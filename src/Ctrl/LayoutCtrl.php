@@ -2,9 +2,10 @@
 
 namespace Ctrl;
 
+use Classes\Ctrl;
 use Classes\Session;
 
-class Layout
+class LayoutCtrl extends Ctrl
 {
     function headerAction()
     {

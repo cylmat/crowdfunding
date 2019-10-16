@@ -4,7 +4,7 @@ namespace Ctrl;
 
 use Classes\Ctrl;
 
-class Admin extends Ctrl 
+class AdminCtrl extends Ctrl 
 {
     
 }

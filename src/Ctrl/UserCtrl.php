@@ -6,7 +6,7 @@ use Classes\Ctrl;
 use Record\User as UserRecord;
 use Classes\Session;
 
-class User extends Ctrl
+class UserCtrl extends Ctrl
 {
     function signinAction()
     {
@@ -32,7 +32,7 @@ class User extends Ctrl
 
     function disconnectAction()
     {
-        Session::set('id_user',null);
+        Session::destroy();
         redirect('/');
     }
     
@@ -43,20 +43,26 @@ class User extends Ctrl
         //Envoi du formulaire
         if($this->post) {
             $user = new UserRecord('user');
+            $user->nom = $this->post['nom'];
+            $user->prenom = $this->post['prenom'];
+            $user->email = $this->post['email'];
+            $user->telephone = $this->post['telephone'];
+            $user->ville = $this->post['ville'];
             $user->login = $this->post['login'];
 
-            if($this->post['password'] === $this->post['retype_password'] && strlen($this->post['retype_password'])>3) {
+            if($this->post['password'] === $this->post['retype_password'] && strlen($this->post['retype_password'])>2) {
                 $pass = $this->post['password']; //password_hash($this->post['password'], PASSWORD_DEFAULT);
                 $user->password = $pass;
             }
 
             if(false === $user->loginExists($this->post['login'])) {
+                //$user->debug = true;
                 $creation = $user->create();
             } else {
                 $creation = 'already_exists';
             }
         }
-        $msg = \Model\User::getFormMessage($creation);
+        $msg = \Model\UserModel::getFormMessage($creation) . $user->getLastError();
         
         return [
             'msg' => $msg

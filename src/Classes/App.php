@@ -6,7 +6,7 @@ use Ctrl\Layout;
 
 class App
 {
-    const DEFAULT_CTRL='Defaults';
+    const DEFAULT_CTRL='Default';
     const DEFAULT_ACTION='index';
     const PREG_URL='/^(\w\&?)*/'; //format ctrl&action&id
 
@@ -93,7 +93,7 @@ class App
      */
     public function callController($ctrlName, $actionName, $params=[]): string
     {
-        $classCtrl = 'Ctrl\\'.ucfirst($ctrlName);
+        $classCtrl = 'Ctrl\\'.ucfirst($ctrlName).'Ctrl';
         $action = $actionName.'Action';
         
         if(class_exists($classCtrl)) {

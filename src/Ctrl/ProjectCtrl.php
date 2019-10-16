@@ -6,7 +6,7 @@ use Classes\Ctrl;
 use Record\Project as ProjectRecord;
 use Classes\Session;
 
-class Project extends Ctrl
+class ProjectCtrl extends Ctrl
 {
     function createAction()
     {   

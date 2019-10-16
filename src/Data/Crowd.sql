@@ -11,17 +11,16 @@ CREATE TABLE IF NOT EXISTS `crowd`.`project` (
   KEY `FK_ID_USER` (`fk_id_user`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-DROP TABLE IF EXISTS `user`;
-CREATE TABLE IF NOT EXISTS `user` (
+DROP TABLE IF EXISTS `crowd`.`user`;
+CREATE TABLE IF NOT EXISTS `crowd`.`user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `login` varchar(255) UNIQUE NOT NULL,
-  `password` text NOT NULL,
-  `civilite` varchar(100),
+  `login` varchar(50) UNIQUE NOT NULL,
+  `password` varchar(200) NOT NULL,
   `nom` varchar(100),
   `prenom` varchar(100),
-  `titre` varchar(100),
-  `emploi` varchar(100),
-  `ville` varchar(100),
+  `email` varchar(100),
+  `telephone` int(10),
+  `ville` varchar(200),
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
