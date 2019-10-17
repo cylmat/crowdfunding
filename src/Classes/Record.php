@@ -42,17 +42,23 @@ abstract class Record extends Database
     /**
      * Recupere la table correspondant à la classe
      */
-    public function __construct(string $tableName)
+    public function __construct()
     {
         parent::__construct();
         $this->tableName = strtolower(basename(static::class));
         $this->columns = $this->getColumns();
     }
+
+    public function debug()
+    {
+        self::$debug = true;
+        return $this;
+    }
     
     /**
      * throw InvalidArgumentException
      */
-    function __set(string $name, string $value)
+    function __set(string $name,  $value)
     {
         if(in_array($name, $this->columns)) {
             $this->values[$name] = $value;

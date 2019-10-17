@@ -11,23 +11,29 @@ class LayoutCtrl extends Ctrl
     {
         Session::start();
         
-        $user = Session::get('id_user');
-        $logged = null!==$user ? true : false;
+        $id_user = Session::get('id_user');
+        $user = null!==$id_user ? Session::get('user_name') : false;
+        $logged = null!==$id_user ? true : false;
+        $admin = $logged?(Session::get('is_admin')?true:false):false;
 
         return [
             'user' => $user,
-            'logged' => $logged
+            'logged' => $logged,
+            'is_admin' => $admin
         ];
     }
 
     function footerAction()
     {
-        $user = Session::get('id_user');
-        $logged = null!==$user ? true : false;
+        $id_user = Session::get('id_user');
+        $user = null!==$id_user ? Session::get('user_name') : false;
+        $logged = null!==$id_user ? true : false;
+        $admin = $logged?(Session::get('is_admin')?true:false):false;
 
         return [
             'user' => $user,
-            'logged' => $logged
+            'logged' => $logged,
+            'is_admin' => $admin
         ];
     }
 }

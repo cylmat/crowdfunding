@@ -1,0 +1,20 @@
+
+
+    <div class="prj">
+        <div class="header">
+            <a href="<?=url('project_get',['id'=>$project['id']])?>">
+                <img src="<?= $project['image_url'] ?>" alt=""/>
+            
+                <p class="short"><?= $project['resume'] ?></p>
+                <p class="stats">32% grâce à 256 donateurs</p>
+            </a>
+        </div>
+        <div class="footer">
+            <p class="category"><?= $project['category_num'] ?></p>
+            <p class="titre"><?= $project['titre'] ?></p>
+            <p class="createur"><?= 'bebere' ?></p>
+            <p class="days"><?= 'j-5' ?></p>
+            <p class="fonds"><?= '5' ?></p>
+            <div class="module"></div>
+        </div>
+    </div>

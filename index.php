@@ -3,9 +3,11 @@
 error_reporting(E_ALL);
 ini_set('display_errors',1);
 
-/*IntlChar::chr(0x26b6).'<br/>'.
-mb_convert_encoding("\x26\xb7", 'UTF-8', 'UTF-16') .'<br/>'.
-"\u{1f600}".'<br/>';*/
+define('APP', __DIR__.'/app/');
+define('VIEW', APP.'views/');
+define('CORE', APP.'/../src/');
+define('CONFIG', parse_ini_file(APP.'config.ini',true));
+define('ASSETS', APP.'../assets/');
 
 include 'app/autoload.php';
 

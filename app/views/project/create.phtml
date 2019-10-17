@@ -1,9 +1,33 @@
 <h2>Création de votre projet</h2>
 
 <div>
-    <form action="<?=$_SERVER['REQUEST_URI']?>" method="post">
-        <label for="title"><input type="text" name="title" placeholder="Titre" /></label>
-        <label for="description"><textarea name="description" placeholder="Description"></textarea></label>
-        <button type="submit">Enregistrer</button>
+    <?= $msg ?>
+    <form action="<?=$_SERVER['REQUEST_URI']?>" method="post" enctype="multipart/form-data" >
+        <fieldset>
+            <legend>Créateur du projet</legend>
+            <label><?=$nom_user?></label>
+        </fieldset>
+
+        <fieldset>
+            <legend>Détails de votre projet</legend>
+            <div><label for="titre">Titre :</label>
+                <input type="text" required name="titre" placeholder="Titre" value="<?=$form['titre']??''?>"/></div>
+            <div><label for="description">Description :</label>
+                <textarea required name="description" placeholder="Description"><?=$form['description']??''?></textarea></div>
+            <div><label for="resume">Résumé : (opt)</label><input type="text" name="resume" value="<?=$form['resume']??''?>"></div>
+            <div><label for="image_url">Image (WxH) :</label>
+                <input required type="file" name="image_url" accept=".bmp,.jpg,.jpeg,.gif,.png"></div>
+        </fieldset>
+        
+        <fieldset>
+            <legend>Réalisation nécéssaire</legend>
+            <div><label>Fonds nécessaires >800€ :</label>
+                <input required min="800" type="number" name="somme" value="<?=$form['somme']??''?>"/></div>
+            <div><label>Date de fin (10j-3 mois) :</label>
+                <input type="date" required name="max_date" 
+                    min="<?= (new \DateTime())->add(new DateInterval('P10D'))->format('Y-m-d') ?>"
+                    max="<?= (new \DateTime())->add(new DateInterval('P3M'))->format('Y-m-d') ?>" value="<?=$form['max_date']??''?>"/></div>
+            <div><label>&nbsp;</label><button type="submit">Enregistrer</button></div>
+        </fieldset>
     </form>
 </div>

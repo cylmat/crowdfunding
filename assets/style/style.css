@@ -13,6 +13,7 @@
 body {
   font-family: 'Copse', serif;
   line-height: 1.2rem;
+  min-width: 13rem;
 }
 
 a {
@@ -93,14 +94,14 @@ form {
 }
 
 form label {
-  width: 20%;
+  width: 90%;
   text-align: left;
-  display: inline-block;
+  display: block;
 }
 
 form input {
-  display: inline-block;
-  width: 79%;
+  display: block;
+  width: 90%;
 }
 
 form div {
@@ -195,9 +196,19 @@ footer {
 }
 
 @media screen and (min-width:724px) {
-  nav li {
-     
+  form {
+    width: 80%;
+    margin: 0 auto;
   }
 
-  
+  form label {
+    width: 20%;
+    text-align: left;
+    display: inline-block;
+  }
+
+  form input, form textarea {
+    display: inline-block;
+    width: 79%;
+  }
 }

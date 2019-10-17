@@ -14,13 +14,16 @@ class UserCtrl extends Ctrl
 
         //Envoi du formulaire
         if($this->post) {
-            $user = new UserRecord('user');
+            $user = new UserRecord();
             $login = $this->post['login'];
             ////password_hash($this->post['password'], PASSWORD_DEFAULT);
             $password = $this->post['password']; 
 
             if(null !== ($id = $user->checkLoginPassword($login, $password))) {
+                $user_values = $user->get($id);
                 Session::set('id_user',$id);
+                Session::set('nom_user',$user->nom);
+                Session::set('prenom_user',$user->prenom);
                 redirect('/');
             }
         }
@@ -43,7 +46,7 @@ class UserCtrl extends Ctrl
 
         //Envoi du formulaire
         if($this->post) {
-            $user = new UserRecord('user');
+            $user = new UserRecord();
             $user->nom = $this->post['nom'];
             $user->prenom = $this->post['prenom'];
             $user->email = $this->post['email'];

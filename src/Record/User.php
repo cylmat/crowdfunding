@@ -20,7 +20,7 @@ class User extends Record
         return true;
     }
 
-    public function checkLoginPassword(string $login, string $password)
+    public function checkLoginPassword(string $login, string $password): ?int
     {
         $smt = $this->db->prepare("SELECT id FROM `user` WHERE login=? AND password=?");
         $smt->execute([$login, $password]);
@@ -32,6 +32,6 @@ class User extends Record
             return false;
         }
 
-        return $res['id'];
+        return (int)$res['id'];
     }
 }
