@@ -1,7 +1,4 @@
 
-
-
-
 <nav class="main">
     <ul>
 
@@ -10,8 +7,6 @@
         <li><a href="<?=url('project_rand')?>">Un projet au hasard</a></li>
         <li><a href="<?=url('page_concept')?>">Concept</a></li>
         <li><a href="<?=url('page_stats')?>">Statistiques</a></li>
-        <li><a href="<?=url('page_contact')?>">Contact</a></li>
-
     </ul>
 </nav>
 
@@ -22,6 +17,7 @@
 <nav class="admin">
     <ul>
     <?php if($logged): ?>
+        <li><?= $user ?> <div class="button_h"><a href="<?=url('project_listmy')?>">Mes projets</a></div></li>
             <li><?= $user ?> <div class="button_h"><a href="<?=url('project_create')?>">Ajouter un projet</a></div></li>
         <?php endif ?>
     
@@ -30,10 +26,10 @@
         <?php endif; ?>
             
         <?php if($logged): ?>
-            <li><?= $user ?> <div class="button_h"><a href="<?=url('user_disconnect')?>">Déconnection</a></div></li>
+            <li><?= $user ?> <div class="button_h"><a href="<?=url('user_disconnect')?>">Déconnexion</a></div></li>
         <?php else: ?>
-            <li class="button_h"><div><a href="<?=url('user_signin')?>">Connection</a></div></li>
             <li class="button_h"><div><a href="<?=url('user_subscribe')?>">S'inscrire</a></div></li>
+            <li class="button_h"><div><a href="<?=url('user_signin')?>">Connexion</a></div></li>
         <?php endif; ?>
     </ul>
 </nav>

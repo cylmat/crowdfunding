@@ -8,6 +8,7 @@ use Classes\Session;
 
 class UserCtrl extends Ctrl
 {
+    //connexion
     function signinAction()
     {
         $creation=null;
@@ -22,6 +23,9 @@ class UserCtrl extends Ctrl
             if(null !== ($id = $user->checkLoginPassword($login, $password))) {
                 $user_values = $user->get($id);
                 Session::set('id_user',$id);
+                if('1' === $user->is_admin) {
+                    Session::set('id_admin', 1);
+                }
                 Session::set('nom_user',$user->nom);
                 Session::set('prenom_user',$user->prenom);
                 redirect('/');

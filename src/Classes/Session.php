@@ -29,5 +29,6 @@ class Session
         if(!empty($_SESSION[$key])) {
             return $_SESSION[$key];
         }
+        return null;
     }
 }

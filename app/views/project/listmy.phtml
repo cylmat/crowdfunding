@@ -1,0 +1,38 @@
+
+    <h2>Liste des projets</h2>
+    
+<section class="list">
+    <table>
+        <thead>
+            <tr>
+                <th>Nom du projet</th><th>Résumé</th><th>Fonds collectés</th><th>Jours restants</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach($list as $project): ?>
+                <tr>
+                    <td><?= $project['titre']?></td>
+                    <td><?= $project['resume']?></td>
+                    <td><?= $project['somme']?></td>
+                    <td><?= $project['max_date']?></td>
+                    <td><a href="<?=url('project_update_id='.$project['id'])?>">Modifier</a></td>
+                    <td><a href="<?=url('project_remove_id='.$project['id'])?>">Supprimer</a></td>
+                </tr>
+            <?php endforeach; ?>
+
+            <?php if(is_admin() && !empty($others)): 
+                echo '<tr><td>Autres projets</td><td colspan="3"></td></tr>'; 
+                foreach($others as $project): ?>
+                
+                <tr>
+                    <td><?= $project['titre']?></td>
+                    <td><?= $project['resume']?></td>
+                    <td><?= $project['somme']?></td>
+                    <td><?= $project['max_date']?></td>
+                    <td><a href="<?=url('project_update_id='.$project['id'])?>">Modifier</a></td>
+                    <td><a href="<?=url('project_remove_id='.$project['id'])?>">Supprimer</a></td>
+                </tr>
+            <?php endforeach; endif; ?>
+        </tbody>
+    </table>
+</section>

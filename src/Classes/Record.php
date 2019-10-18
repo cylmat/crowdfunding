@@ -103,9 +103,15 @@ abstract class Record extends Database
     {
         $prep = "UPDATE {$this->tableName} SET {$this->valuesToUpdate()} WHERE id={$this->id};";
         $smt = $this->db->prepare($prep);
-        $exec = $smt->execute($this->bindingList());
-        $this->smt = $smt;
-        return $exec;
+        if(self::$debug) {
+            print $prep;
+            print_r($this->bindingList());
+            return false;
+        } else {
+            $exec = $smt->execute($this->bindingList());
+            $this->smt = $smt;
+            return $exec;
+        }
     }
 
     function delete(int $id): bool

@@ -52,8 +52,13 @@ class App
         
         if(class_exists($classCtrl)) {
             $ctrlObject = new $classCtrl();
+            //ex: UpdateAction()
             if(method_exists($classCtrl, $action)) { 
                 $return = $ctrlObject->$action($params);
+                return $this->applyView($ctrlName, $actionName, $return??[]);
+            } elseif(method_exists($classCtrl, $actionName)) { 
+                //ex: update()
+                $return = $ctrlObject->$actionName($params);
                 return $this->applyView($ctrlName, $actionName, $return??[]);
             } else {
                 //throw new \InvalidArgumentException("L'action $actionName n'existe pas");
