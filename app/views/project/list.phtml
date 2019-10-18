@@ -1,13 +1,13 @@
-<ul>
+
     <?php foreach($list as $project): ?>
         
-
     <div class="prj">
         <div class="header">
             <a href="<?=url('project_get',['id'=>$project['id']])?>">
                 <img src="<?= $project['image_url'] ?>" alt=""/>
             
                 <p class="short"><?= $project['resume'] ?></p>
+                <p class="description"><?= $project['description'] ?></p>
                 <p class="stats">32% grâce à 256 donateurs</p>
             </a>
         </div>
@@ -22,4 +22,3 @@
     </div>
 
     <?php endforeach; ?>
-</ul>

@@ -1,10 +1,10 @@
 
-<div class="logo">
-    <a href="/"><img src="https://image.freepik.com/vecteurs-libre/dessin-anime-mignon-chouette_33070-2653.jpg" alt="logo"/></a>
-</div>
 
-<nav>
+
+
+<nav class="main">
     <ul>
+
         <li><a href="/">Home</a></li>
         <li><a href="<?=url('project_list')?>">Voir tous les projets</a></li>
         <li><a href="<?=url('project_rand')?>">Un projet au hasard</a></li>
@@ -12,23 +12,30 @@
         <li><a href="<?=url('page_stats')?>">Statistiques</a></li>
         <li><a href="<?=url('page_contact')?>">Contact</a></li>
 
-        <?php if($logged): ?>
-            <div><?= $user ?> <div class="button"><a href="<?=url('project_create')?>">Ajouter un projet</a></div></div>
-        <?php endif ?>
     </ul>
 </nav>
 
-<?php if($is_admin): ?>
+<div class="logo">
+    <a href="/"><img src="https://image.freepik.com/vecteurs-libre/dessin-anime-mignon-chouette_33070-2653.jpg" alt="logo"/></a>
+</div>
 
-<?php endif; ?>
-    ADMINISTRATOR
-<?php if($logged): ?>
-    <div><?= $user ?> <div class="button"><a href="<?=url('user_disconnect')?>">Déconnection</a></div></div>
-<?php else: ?>
-    <div>
-        <div class="button"><a href="<?=url('user_signin')?>">Connection</a></div>
-        <div class="button"><a href="<?=url('user_subscribe')?>">S'inscrire</a></div>
-    </div>
-<?php endif; ?>
+<nav class="admin">
+    <ul>
+    <?php if($logged): ?>
+            <li><?= $user ?> <div class="button_h"><a href="<?=url('project_create')?>">Ajouter un projet</a></div></li>
+        <?php endif ?>
+    
+
+        <?php if($is_admin): ?>
+        <?php endif; ?>
+            
+        <?php if($logged): ?>
+            <li><?= $user ?> <div class="button_h"><a href="<?=url('user_disconnect')?>">Déconnection</a></div></li>
+        <?php else: ?>
+            <li class="button_h"><div><a href="<?=url('user_signin')?>">Connection</a></div></li>
+            <li class="button_h"><div><a href="<?=url('user_subscribe')?>">S'inscrire</a></div></li>
+        <?php endif; ?>
+    </ul>
+</nav>
 
 

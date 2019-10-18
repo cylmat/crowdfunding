@@ -4,14 +4,17 @@ namespace Ctrl;
 
 use Classes\Ctrl;
 use Classes\Records;
+use Record\Project as ProjectRecord;
 
 class DefaultCtrl extends Ctrl
 {
     function indexAction()
     {
-        $params = [
-            'index'=>'alphanu'
+        $project = new ProjectRecord();
+        $list = $project->getAll();
+
+        return [
+            'list' => $list
         ];
-        return $params;
     }
 }

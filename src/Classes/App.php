@@ -35,10 +35,11 @@ class App
         $params = $request['params'];
 
         $header = $this->callController('layout', 'header', $params);
+        $banner = $this->callController('layout', 'banner', $params);
         $content = $this->callController($ctrlName, $actionName, $params);
         $footer = $this->callController('layout', 'footer', $params);
         
-        $this->sendToLayout(['header'=>$header, 'content'=>$content, 'footer'=>$footer]);
+        $this->sendToLayout(['header'=>$header, 'content'=>$content, 'banner'=>$banner, 'footer'=>$footer]);
     }
 
     /**
@@ -55,10 +56,12 @@ class App
                 $return = $ctrlObject->$action($params);
                 return $this->applyView($ctrlName, $actionName, $return??[]);
             } else {
-                throw new \InvalidArgumentException("L'action $actionName n'existe pas");
+                //throw new \InvalidArgumentException("L'action $actionName n'existe pas");
+                redirect(url(''));
             }
         } else {
-            throw new \InvalidArgumentException("Le controller $ctrlName n'existe pas");
+            //throw new \InvalidArgumentException("Le controller $ctrlName n'existe pas");
+            redirect(url(''));
         }
     }
 

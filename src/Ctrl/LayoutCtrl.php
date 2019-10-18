@@ -23,6 +23,17 @@ class LayoutCtrl extends Ctrl
         ];
     }
 
+    function bannerAction()
+    {
+        //home
+        
+        if(empty($_GET))
+            return [
+                'banner_html'=>'<img src="assets/img/frog.jpg" alt="banner" />'
+            ];
+        return ['banner_html'=>''];
+    }
+
     function footerAction()
     {
         $id_user = Session::get('id_user');

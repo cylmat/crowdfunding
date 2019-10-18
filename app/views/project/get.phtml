@@ -1,20 +1,32 @@
 
 
-    <div class="prj">
-        <div class="header">
-            <a href="<?=url('project_get',['id'=>$project['id']])?>">
-                <img src="<?= $project['image_url'] ?>" alt=""/>
-            
-                <p class="short"><?= $project['resume'] ?></p>
-                <p class="stats">32% grâce à 256 donateurs</p>
-            </a>
-        </div>
-        <div class="footer">
+    <div class="view_prj">
+        <section class="main">
+            <h3><?= $project['titre'] ?></h3>
+            <img src="<?= $project['image_url'] ?>" alt=""/>
+            <p class="short"><?= $project['resume'] ?></p>
             <p class="category"><?= $project['category_num'] ?></p>
-            <p class="titre"><?= $project['titre'] ?></p>
-            <p class="createur"><?= 'bebere' ?></p>
-            <p class="days"><?= 'j-5' ?></p>
-            <p class="fonds"><?= '5' ?></p>
-            <div class="module"></div>
-        </div>
+            <p class="description"><?= $project['description'] ?></p>
+        </section>
+
+        <section class="side">
+            <div class="contribute">
+                <h3>32% grâce à 256 donateurs</h3>
+                <p class="days"><?= 'j-5' ?></p>
+                <p class="fonds"><?= '5' ?></p>
+                <button type="button">Contribuer</button>
+                <div class="module"></div>
+            </div>
+
+            <div class="creator">
+                <h3>Créateur du projet</h3>
+                <p class="createur"><?= 'bebere' ?></p>
+                <p class="stats_ville">Miroflay</p>
+                <p class="stats_date">Membre depuis le 23/8/2019</p>
+            </div>
+        </section>
+
+        
+
     </div>
+
