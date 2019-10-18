@@ -49,6 +49,15 @@ class ProjectCtrl extends Ctrl
         ];
     }
 
+    function randAction()
+    {
+        $project = new ProjectRecord();
+        $list = $project->getAll();
+
+        $id = $list[array_rand($list)]['id'];
+        redirect(url('project_get_id='.$id));
+    }
+
     function getAction()
     {
         if(is_null($this->get['id'] || !ctype_digit($this->get['id']))) {

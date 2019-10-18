@@ -29,9 +29,9 @@ class LayoutCtrl extends Ctrl
         
         if(empty($_GET))
             return [
-                'banner_html'=>'<img src="assets/img/frog.jpg" alt="banner" />'
+                'banner_html'=>1
             ];
-        return ['banner_html'=>''];
+        return ['banner_html'=>0];
     }
 
     function footerAction()

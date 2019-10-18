@@ -12,7 +12,7 @@ function url(string $url, array $params=[]): string
 }
 
 /**
- * REdirection
+ * Redirection
  */
 function redirect(string $url): void
 {

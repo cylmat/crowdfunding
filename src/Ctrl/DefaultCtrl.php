@@ -13,8 +13,12 @@ class DefaultCtrl extends Ctrl
         $project = new ProjectRecord();
         $list = $project->getAll();
 
+        $last = $project->getLast();
+        $last['category'] = \Model\Category::LIST[$last['category_num']];
+
         return [
-            'list' => $list
+            'list' => $list,
+            'last_project' => $last
         ];
     }
 }

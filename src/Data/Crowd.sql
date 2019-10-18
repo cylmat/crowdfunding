@@ -13,6 +13,7 @@ CREATE TABLE IF NOT EXISTS `crowd`.`project` (
   `max_date` DATE NULL DEFAULT NULL,
   `image_url` varchar(255) NOT NULL,
   `category_num` int(2) NOT NULL,
+  `date` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   KEY `FK_ID_USER` (`fk_id_user`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -28,6 +29,7 @@ CREATE TABLE IF NOT EXISTS `crowd`.`user` (
   `telephone` int(10) NOT NULL,
   `ville` varchar(200) NOT NULL,
   `is_admin` tinyint(1) NOT NULL,
+  `date` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 

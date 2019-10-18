@@ -1,33 +1,37 @@
 
 
 <?php if(!empty($last_project)): ?>
+    <h2>Dernier projet</h2>
     <section class="last_proj">
-        <div class="prj">
-            <div class="header">
-                <a href="<?=url('project_get',['id'=>$project['id']])?>">
-                    <img src="<?= $project['image_url'] ?>" alt=""/>
-                
-                    <p class="short"><?= $project['resume'] ?></p>
-                    <p class="description"><?= $project['description'] ?></p>
-                    <p class="stats">32% grâce à 256 donateurs</p>
+
+        <div class="solo_prj">
+            <div class="img">
+                <a href="<?=url('project_get',['id'=>$last_project['id']])?>">
+                    <img src="<?= $last_project['image_url'] ?>" alt=""/>
                 </a>
             </div>
-            <div class="footer">
-                <p class="category"><?= $project['category_num'] ?></p>
-                <p class="titre"><?= $project['titre'] ?></p>
-                <p class="createur"><?= 'bebere' ?></p>
+            <div class="side">
+                <h3 class="titre"><?= ucfirst($last_project['titre']) ?></h3>
+                <p class="createur">Créateur du projet: <?= 'bebere' ?></p>
+                <p class="category">Catégorie - <?= $last_project['category'] ?> -</p>
+
+                <p class="short"><?= $last_project['resume'] ?></p>
+                <p class="description"><?= $last_project['description'] ?></p>
+                <p class="stats">32% grâce à 256 donateurs</p>
+                <p class="fonds"><?= '5' ?>€ récoltés</p>
                 <p class="days"><?= 'j-5' ?></p>
-                <p class="fonds"><?= '5' ?></p>
-                <div class="module"></div>
+
+                <div class="module"><div></div></div>
             </div>
         </div>
+
     </section>
 <?php endif; ?>
 
 
 
+    <h2>Les projets du moment</h2>
 <section id="#projects_list">
-
     <?php foreach($list as $project): ?>
         
         <div class="prj">
@@ -42,11 +46,11 @@
             </div>
             <div class="footer">
                 <p class="category"><?= $project['category_num'] ?></p>
-                <p class="titre"><?= $project['titre'] ?></p>
+                <p class="titre"><?= ucfirst($project['titre']) ?></p>
                 <p class="createur"><?= 'bebere' ?></p>
                 <p class="days"><?= 'j-5' ?></p>
-                <p class="fonds"><?= '5' ?></p>
-                <div class="module"></div>
+                <p class="fonds"><?= '5' ?>€</p>
+                <div class="module"><div></div></div>
             </div>
         </div>
     

@@ -19,13 +19,14 @@ body {
 
 .back  {
   position: absolute;
+  background-size: cover;
+  background-image: url('https://wallpapercave.com/wp/ffu4sLX.jpg');
   z-index: -100;
   top: 0;
   bottom: 0;
   left: 0;
   right: 0;
   opacity: 0.3;
-  background-image: url('https://wallpapercave.com/wp/ffu4sLX.jpg')
 }
 
 a {
@@ -59,8 +60,21 @@ img {
   box-shadow: 2px 2px 2px grey; 
 }
 
-.banner img {
+section {
+  width: 800px;
+  margin: 0 auto;
+}
+
+/* banner */
+.banner {
   height: 20rem;
+  overflow: hidden;
+  padding:0; 
+  width: 100%;
+}
+
+.banner img {
+  height: 25rem;
   width: 100%;
   background-size: cover;
 }
@@ -80,6 +94,7 @@ header .logo {
   float: left;
 }
 
+/* nav */
 nav.main {
   float: left;
   height: 3rem;
@@ -104,12 +119,21 @@ nav ul li:hover {
   cursor: pointer;
 }
 
+
 /* container */
 .container {
   margin: 0 auto;
-  padding: 0 10%;
   text-align: center;
-  width: 80%;
+  width: 100%;
+  padding: 3rem 0;
+  padding-bottom: 8rem;
+}
+
+h2 {
+  border-top: solid 1px grey;
+  border-bottom: solid 1px grey;
+  padding: 0.8rem; 
+  text-shadow: 2px 3px 3px grey;
 }
 
 /* forms */
@@ -132,6 +156,53 @@ form input {
 form div {
   margin: 0.2rem;
 }
+
+
+/* last project */
+.solo_prj {
+  height: 20rem;
+}
+
+.solo_prj .img {
+  display: inline-block;
+  width: 69%;
+  height: 20rem;
+}
+
+.solo_prj img {
+  width: 100%;
+  height: 100%;
+}
+
+.solo_prj .side {
+  display: inline-block;
+  position: relative;
+  width: 25%;
+  background-color: white;
+  vertical-align: top;
+  height: 100%;
+  border: solid 1px grey;
+  font-size: 0.8rem;
+}
+
+.solo_prj .side h3 {
+  background-color: #ddd;
+  margin: 0;
+  padding: 0.5rem 0;
+}
+
+.solo_prj .fonds {
+  float: left;
+}
+
+.solo_prj .days {
+  float: right;
+}
+
+.solo_prj .side p {
+  padding: 0.05rem 1rem;
+}
+
 
 /* project list */
 .prj {
@@ -181,8 +252,9 @@ form div {
 }
 
 .prj .footer {
-  padding: 0.2rem 0.5rem 0;
+  padding: 0.2rem 0.5rem 0.4rem;
   overflow: hidden;
+  position: relative;
 }
 
 .prj .footer p {
@@ -203,16 +275,21 @@ form div {
   float: right;
 }
 
-.prj .module {
+/* barre */
+div.module {
+  position: absolute;
+  left:0;
+  right:0;
+  bottom: 0;
+}
+
+div.module div {
   background: linear-gradient(to right, purple 50%, white 50%, white 100%);
-  padding: 3px;
+  padding: 3px 0;
   width: 100%;
-  float:left;
-  margin-left: -1rem;
 }
 
 /* view_project */
-
 .view_prj {
   width: 100%;
   text-align: center;
