@@ -1,10 +1,9 @@
-    <div class="prj">
+        <div class="prj">
             <div class="header">
                 <a href="<?=url('project_get',['id'=>$project['id']])?>">
                     <img src="<?= $project['image_url'] ?>" alt=""/>
                 
                     <p class="short"><?= $project['resume'] ?></p>
-                    <p class="description"><?= $project['description'] ?></p>
                     <p class="stats">
                         <?= $project['percent'] ?>% 
                         grâce à <?= $project['stats_nb_dons'] ?> donateurs
@@ -12,11 +11,11 @@
                 </a>
             </div>
             <div class="footer">
-                <p class="category"><?= $project['category_num'] ?></p>
-                <p class="titre"><?= ucfirst($project['titre']) ?></p>
-                <p class="createur"><?= 'bebere' ?></p>
+                <p class="category"><?= $project['category'] ?></p>
+                <p class="titre"><?= substr(ucfirst($project['titre']),0,20) ?></p>
+                <p class="createur"><?= $project['user_login'] ?></p>
                 <p class="days"> j-<?= $project['days_reste'] ?> </p>
-                <p class="fonds"><?= $project['stats_somme_rec'] ?>€</p>
+                <p class="fonds"><?= $project['stats_somme_rec'] ?>/<?= $project['somme_necessaire'] ?>€</p>
                 <div class="module" data-percent="<?=$project['percent']>100?100:$project['percent']?>"><div></div></div>
             </div>
         </div>

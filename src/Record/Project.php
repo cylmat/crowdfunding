@@ -3,6 +3,7 @@
 namespace Record;
 
 use Classes\Record;
+use Record\User as UserRecord;
 
 class Project extends Record
 {
@@ -46,22 +47,27 @@ class Project extends Record
         $res['category'] = \Model\ProjectModel::getCategory($res['category_num']);
         $res['percent'] = \Model\ProjectModel::getDonatorPercent($res['somme_necessaire'], $res['stats_somme_rec']);
         $res['days_reste'] = \Model\ProjectModel::getDaysToEnd($res['date_fin']);
+
+        $user = new UserRecord();
+        $userData = $user->get((int)$res['fk_id_user']);
+        $res += [
+            'user_login' => ucfirst($userData['login'])
+        ];
     }
 
-    /*
-     * @param $somme int Somme récoltée
-     * @param $dons int Nombre de donateurs
+    /**
+     * Simulation de somme récupéré
      */
-    function randomizeStats(int $somme=1000, int $dons=300)
+    function getRandSomme(int $somme_max)
     {
-        $sql = "UPDATE project SET stats_somme_rec = ROUND(RAND()*?), stats_nb_dons = ROUND(RAND()*?)";
-        $smt = $this->db->prepare($sql);
-        $smt->execute([$somme, $dons]);
-        $this->smt = $smt;
-        
-        if(false !== ($res = $smt->fetch(\PDO::FETCH_ASSOC))) {
-            return $res;
-        }
-        return null; 
+        return rand(200,$somme_max);
+    }
+
+    /**
+     * Simulation du nombre de donateurs
+     */
+    function getRandDons()
+    {
+        return rand(100,300);
     }
 }

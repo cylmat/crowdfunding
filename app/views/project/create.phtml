@@ -12,10 +12,12 @@
         <fieldset>
             <legend>Détails de votre projet</legend>
             <div><label for="titre">Titre :</label>
-                <input type="text" required name="titre" placeholder="Titre" value="<?=$form['titre']??''?>"/></div>
+                <input type="text" required maxlength="20" name="titre" placeholder="Titre" value="<?=$form['titre']??''?>"/></div>
             <div><label for="description">Description :</label>
-                <textarea required name="description" placeholder="Description"><?=$form['description']??''?></textarea></div>
-            <div><label for="resume">Résumé :</label><input type="text" name="resume" value="<?=$form['resume']??''?>"></div>
+                <textarea required name="description" rows="15" placeholder="Description"><?=$form['description']??''?></textarea></div>
+            <div><label for="resume">Résumé :</label>
+                <input type="text" name="resume" maxlength="50" value="<?=$form['resume']??''?>">
+            </div>
             <div><label for="image_url">Image :</label>
                 <input <?php if($is_create) echo 'required' ?> type="file" name="image_url" accept=".bmp,.jpg,.jpeg,.gif,.png"></div>
             <?php if(!$is_create): ?>

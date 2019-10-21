@@ -20,7 +20,7 @@ body {
 .back  {
   position: absolute;
   background-size: cover;
-  background-image: url('https://wallpapercave.com/wp/ffu4sLX.jpg');
+  background-image: url('../img/use/fond.jpg');
   z-index: -100;
   top: 0;
   bottom: 0;
@@ -161,6 +161,7 @@ form div {
 /* last project */
 .solo_prj {
   height: 20rem;
+  position: relative;
 }
 
 .solo_prj .img {
@@ -191,12 +192,21 @@ form div {
   padding: 0.5rem 0;
 }
 
+.solo_prj .stats {
+  position: absolute;
+  top: 15rem;
+}
+
 .solo_prj .fonds {
-  float: left;
+  color: green;
+  position: absolute;
+  top: 17rem;
 }
 
 .solo_prj .days {
-  float: right;
+  position: absolute;
+  top: 17rem;
+  right: 0.6rem;
 }
 
 .solo_prj .side p {
@@ -218,8 +228,8 @@ form div {
 .prj .header {
   width: 100%;
   height: 10rem;
+  position: relative;
   overflow: hidden;
-  background-color: #8a3;
 }
 
 .prj .header p {
@@ -235,7 +245,8 @@ form div {
 }
 
 .prj .header:hover img {
-  display: none;
+  opacity: 0.2;
+  position: absolute;
 }
 
 .prj .header:hover .short,
@@ -248,7 +259,13 @@ form div {
 }
 
 .prj .header .stats {
-  margin-top: 6rem;
+  top: 7rem;
+  color: green;
+  position: absolute;
+}
+
+.prj .fonds {
+  color: green;
 }
 
 .prj .footer {
@@ -271,7 +288,6 @@ form div {
 }
 
 .prj .footer .category {
-  text-transform: uppercase;
   float: right;
 }
 
@@ -349,6 +365,21 @@ form div {
   background-color: white;
 }
 
+
+
+
+/* dialog contribute */
+#dialog-message {
+  background-color: #ddd;
+  border-radius: 15px;
+  box-shadow: 0 0 5px green;
+  padding-bottom: 1rem;
+  margin: 0.3rem;
+}
+
+#dialog-message h2 {
+  border-top: none;
+}
 
 /* footer */
 footer {

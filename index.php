@@ -9,6 +9,9 @@ define('CORE', APP.'/../src/');
 define('CONFIG', parse_ini_file(APP.'config.ini',true));
 define('ASSETS', APP.'../assets/');
 
+/* lien relatif */
+define('REL_ASSETS', 'assets/');
+
 include 'app/autoload.php';
 
 new Classes\App();
