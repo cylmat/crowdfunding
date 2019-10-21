@@ -58,7 +58,7 @@ class ProjectCtrl extends Ctrl
         $form = [];
 
         $project = new ProjectRecord();
-        $form = $project->getData((int)$this->get['id']);         
+        $form = $project->getDataId((int)$this->get['id']);         
 
         $user = new UserRecord;
         $user->get( (int)$project->fk_id_user );
@@ -110,7 +110,7 @@ class ProjectCtrl extends Ctrl
         }
 
         $project = new ProjectRecord();
-        $project = $project->getData((int)$this->get['id']);
+        $project = $project->getDataId((int)$this->get['id']);
         if(is_null($project)) {
             redirect(url('project_list'));
         }

@@ -20,7 +20,7 @@
                 <input <?php if($is_create) echo 'required' ?> type="file" name="image_url" accept=".bmp,.jpg,.jpeg,.gif,.png"></div>
             <?php if(!$is_create): ?>
                 <div><label>&nbsp;</label><button type="submit">Enregistrer</button></div>
-            <?php endif ?>
+            <?php endif; ?>
         </fieldset>
         
         <?php if($is_create): ?>
@@ -36,6 +36,6 @@
                     value="<?=$form['date_fin']??''?>"/></div>
             <div><label>&nbsp;</label><button type="submit">Enregistrer</button></div>
         </fieldset>
-        <? endif ?>
+        <?php endif; ?>
     </form>
 </section>
