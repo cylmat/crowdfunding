@@ -370,11 +370,15 @@ form div {
 
 /* dialog contribute */
 #dialog-message {
-  background-color: #ddd;
+  background-color: #cfc;
   border-radius: 15px;
   box-shadow: 0 0 5px green;
   padding-bottom: 1rem;
   margin: 0.3rem;
+}
+
+#dialog-message, #thanks_don {
+  display: none;
 }
 
 #dialog-message h2 {

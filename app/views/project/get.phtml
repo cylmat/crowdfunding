@@ -27,15 +27,17 @@
                     <form action="#" id="form_don">
                         <p>Quel montant souhaitez-vous effectuer pour votre don?</p>
                         <div>Montant du don :</div>
-                        <div><input type="number" min="10" value="50"/> €</div>
-                        <div><button type="button">Envoyer</button></div>
+                        <div><input type="number" id="dialog-button-value" min="10" value="50"/> €</div>
+                        <div><button type="button" data-sessionid=<?= session_id() ?>
+                            data-id=<?=$project['id']?> id="dialog-button">Envoyer</button></div>
                         <div><img width="100px" height="30px" src="https://www.capitaine-banque.com/wp-content/uploads/2016/09/logo-paypal-300x150.png"/></div>
                         <div>
                             <img width="50px" height="30px" src="https://www.epargne-en-ligne.net/images/visa-1020x510.png"/>
                             <img width="50px" height="30px" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/MasterCard_Logo.svg/300px-MasterCard_Logo.svg.png"/>
                         </div>
                     </form>
-                    <div action="#" id="thanks_don">
+                    
+                    <div id="thanks_don">
                         <p>Toute l'équipe de Crownfunding ainsi que les porteurs du projet</p>
                         <p class="title"><?= $project['titre'] ?></p>
                         <p>vous remercient de votre contribution</p>

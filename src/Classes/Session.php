@@ -11,6 +11,12 @@ class Session
         }
     }
 
+    static function getSessionId()
+    {
+        self::start();
+        return session_id();
+    }
+
     static function destroy(): void
     {
         unset($_SESSION);

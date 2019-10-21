@@ -38,7 +38,8 @@ class Project extends Record
     function getDataId(int $id)
     {
         $res = $this->get($id);
-        $this->setDatas($res);
+        if(is_array($res))
+            $this->setDatas($res);
         return $res;
     }
 
