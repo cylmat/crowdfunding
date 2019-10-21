@@ -11,14 +11,27 @@ class DefaultCtrl extends Ctrl
     function indexAction()
     {
         $project = new ProjectRecord();
-        $list = $project->getAll();
 
-        $last = $project->getLast();
-        $last['category'] = \Model\Category::LIST[$last['category_num']];
+        //set random stats
+        $project->randomizeStats();
+
+        //last
+        $last = $project->getLastData();
+        /*$last['category'] = \Model\ProjectModel::getCategory($last['category_num']);
+        $last['percent'] = \Model\ProjectModel::getDonatorPercent($last['somme_necessaire'], $last['stats_somme_rec']);
+        $last['days_reste'] = \Model\ProjectModel::getDaysToEnd($last['date_fin']);*/
+        
+        //project
+        $list = $project->getAllDatas();
+        /*foreach($list as &$prj) {
+            $prj['category'] = \Model\ProjectModel::getCategory($prj['category_num']);
+            $prj['percent'] = \Model\ProjectModel::getDonatorPercent($prj['somme_necessaire'], $prj['stats_somme_rec']);
+            $prj['days_reste'] = \Model\ProjectModel::getDaysToEnd($prj['date_fin']);
+        }*/
 
         return [
-            'list' => $list,
-            'last_project' => $last
+            'last_project' => $last,
+            'list' => $list
         ];
     }
 }

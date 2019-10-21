@@ -13,15 +13,17 @@
             <div class="side">
                 <h3 class="titre"><?= ucfirst($last_project['titre']) ?></h3>
                 <p class="createur">Créateur du projet: <?= 'bebere' ?></p>
-                <p class="category">Catégorie - <?= $last_project['category'] ?> -</p>
+                <p class="category">Catégorie <?= $last_project['category'] ?></p>
 
                 <p class="short"><?= $last_project['resume'] ?></p>
                 <p class="description"><?= $last_project['description'] ?></p>
-                <p class="stats">32% grâce à 256 donateurs</p>
-                <p class="fonds"><?= '5' ?>€ récoltés</p>
-                <p class="days"><?= 'j-5' ?></p>
+                <p class="stats">
+                    <?= $last_project['percent'] ?>% 
+                    grâce à <?= $last_project['stats_nb_dons'] ?> donateurs</p>
+                <p class="fonds"><?= $last_project['stats_somme_rec'] ?>€ récoltés</p>
+                <p class="days"> j-<?= $last_project['days_reste'] ?> </p>
 
-                <div class="module"><div></div></div>
+                <div class="module" data-percent="<?=$last_project['percent']>100?100:$last_project['percent']?>"><div></div></div>
             </div>
         </div>
 
@@ -41,16 +43,19 @@
                 
                     <p class="short"><?= $project['resume'] ?></p>
                     <p class="description"><?= $project['description'] ?></p>
-                    <p class="stats">32% grâce à 256 donateurs</p>
+                    <p class="stats">
+                        <?= $project['percent'] ?>% 
+                        grâce à <?= $project['stats_nb_dons'] ?> donateurs
+                    </p>
                 </a>
             </div>
             <div class="footer">
                 <p class="category"><?= $project['category_num'] ?></p>
                 <p class="titre"><?= ucfirst($project['titre']) ?></p>
                 <p class="createur"><?= 'bebere' ?></p>
-                <p class="days"><?= 'j-5' ?></p>
-                <p class="fonds"><?= '5' ?>€</p>
-                <div class="module"><div></div></div>
+                <p class="days"> j-<?= $project['days_reste'] ?> </p>
+                <p class="fonds"><?= $project['stats_somme_rec'] ?>€</p>
+                <div class="module" data-percent="<?=$project['percent']>100?100:$project['percent']?>"><div></div></div>
             </div>
         </div>
     

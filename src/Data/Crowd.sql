@@ -9,11 +9,11 @@ CREATE TABLE IF NOT EXISTS `crowd`.`project` (
   `description` text NOT NULL,
   `resume` varchar(255),
   `fk_id_user` int(11) NOT NULL,
-  `somme` int(11) NOT NULL,
-  `max_date` DATE NULL DEFAULT NULL,
+  `somme_necessaire` int(11) NOT NULL,
+  `date_fin` DATE NULL DEFAULT NULL,
   `image_url` varchar(255) NOT NULL,
   `category_num` int(2) NOT NULL,
-  `date` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `date_creation` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   KEY `FK_ID_USER` (`fk_id_user`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -29,7 +29,9 @@ CREATE TABLE IF NOT EXISTS `crowd`.`user` (
   `telephone` int(10) NOT NULL,
   `ville` varchar(200) NOT NULL,
   `is_admin` tinyint(1) NOT NULL,
-  `date` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `date_creation` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `stats_somme_rec` INT NULL, 
+  `stats_nb_dons` INT NULL;
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 

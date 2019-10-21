@@ -276,15 +276,15 @@ form div {
 }
 
 /* barre */
-div.module {
+.module {
   position: absolute;
   left:0;
   right:0;
   bottom: 0;
 }
 
-div.module div {
-  background: linear-gradient(to right, purple 50%, white 50%, white 100%);
+.module div {
+  /*background: dynamic linear-gradient in JS*/
   padding: 3px 0;
   width: 100%;
 }
@@ -359,6 +359,11 @@ footer {
   text-align: center;
   border-top: solid 2px blue;
   background-color: white;
+}
+
+/* list */
+td.others {
+  padding-top: 2rem;
 }
 
 @media screen and (min-width:724px) {

@@ -18,19 +18,24 @@
             <div><label for="resume">Résumé :</label><input type="text" name="resume" value="<?=$form['resume']??''?>"></div>
             <div><label for="image_url">Image :</label>
                 <input <?php if($is_create) echo 'required' ?> type="file" name="image_url" accept=".bmp,.jpg,.jpeg,.gif,.png"></div>
+            <?php if(!$is_create): ?>
+                <div><label>&nbsp;</label><button type="submit">Enregistrer</button></div>
+            <?php endif ?>
         </fieldset>
         
+        <?php if($is_create): ?>
         <fieldset>
             <legend>Réalisation nécessaire</legend>
             <div><label>Fonds nécessaires >800€ :</label>
                 <input required min="800" type="number" name="somme" value="<?=$form['somme']??''?>"/></div>
             <div><label>Date de fin (10j-3 mois) :</label>
-                <input type="date" required name="max_date" 
-                    <?php $date = isset($form['date']) ? $form['date'] : '' ?>
+                <input type="date" required name="date_fin" 
+                    <?php $date = isset($form['date_fin']) ? $form['date_fin'] : '' ?>
                     min="<?= (new \DateTime($date))->add(new DateInterval('P10D'))->format('Y-m-d') ?>"
                     max="<?= (new \DateTime($date))->add(new DateInterval('P3M'))->format('Y-m-d') ?>" 
-                    value="<?=$form['max_date']??''?>"/></div>
+                    value="<?=$form['date_fin']??''?>"/></div>
             <div><label>&nbsp;</label><button type="submit">Enregistrer</button></div>
         </fieldset>
+        <? endif ?>
     </form>
 </section>

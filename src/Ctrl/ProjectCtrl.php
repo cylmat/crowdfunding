@@ -25,8 +25,8 @@ class ProjectCtrl extends Ctrl
             $project->resume = $this->post['resume'];
             $project->fk_id_user = Session::get('id_user');
 
-            $project->somme = $this->post['somme'];
-            $project->max_date = $this->post['max_date'];
+            $project->somme_necessaire = (int)$this->post['somme'];
+            $project->date_fin = $this->post['max_date'];
 
             if(isset($_FILES['image_url']) && !$_FILES['image_url']['error']) {
                 $url = ASSETS.'img/'.$_FILES['image_url']['name'];
@@ -58,7 +58,7 @@ class ProjectCtrl extends Ctrl
         $form = [];
 
         $project = new ProjectRecord();
-        $form = $project->get((int)$this->get['id']);         
+        $form = $project->getData((int)$this->get['id']);         
 
         $user = new UserRecord;
         $user->get( (int)$project->fk_id_user );
@@ -71,9 +71,6 @@ class ProjectCtrl extends Ctrl
             $project->titre = $this->post['titre'];
             $project->description = $this->post['description'];
             $project->resume = $this->post['resume'];
-            
-            $project->somme = $this->post['somme'];
-            $project->max_date = $this->post['max_date'];
             
             if(isset($_FILES['image_url']) && !$_FILES['image_url']['error']) {
                 $url = ASSETS.'img/'.$_FILES['image_url']['name'];
@@ -100,7 +97,7 @@ class ProjectCtrl extends Ctrl
     function randAction()
     {
         $project = new ProjectRecord();
-        $list = $project->getAll();
+        $list = $project->getAllDatas();
 
         $id = $list[array_rand($list)]['id'];
         redirect(url('project_get_id='.$id));
@@ -113,7 +110,7 @@ class ProjectCtrl extends Ctrl
         }
 
         $project = new ProjectRecord();
-        $project = $project->get((int)$this->get['id']);
+        $project = $project->getData((int)$this->get['id']);
         if(is_null($project)) {
             redirect(url('project_list'));
         }
@@ -127,7 +124,7 @@ class ProjectCtrl extends Ctrl
     {
         $project = new ProjectRecord();
         $id_user = \Classes\Session::get('id_user');
-        $list = $project->getAll();
+        $list = $project->getAllDatas();
 
         $result = [];
         $others = [];
@@ -148,7 +145,7 @@ class ProjectCtrl extends Ctrl
     function listAction()
     {
         $project = new ProjectRecord();
-        $list = $project->getAll();
+        $list = $project->getAllDatas();
 
         return [
             'list' => $list

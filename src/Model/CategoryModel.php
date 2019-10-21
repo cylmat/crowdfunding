@@ -2,11 +2,12 @@
 
 namespace Model;
 
-class Category
+class CategoryModel
 {
     const LIST = [
         'Musique',
         'Art',
-        'Cinéma'
+        'Cinéma',
+        'HighTech'
     ];
 }
