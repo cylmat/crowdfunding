@@ -33,7 +33,7 @@ Draw.prototype.drawBarChart = function(datas)
     var count = 0
 
     var text_height = 10
-    var sorted = Object.keys(datas).sort()
+    var sorted = Object.keys(datas).sort((a,b) => {return a.value - b.value})
 
     //boucle sur les donnees
     for(var i in sorted) {

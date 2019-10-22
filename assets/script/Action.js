@@ -48,44 +48,44 @@ Action.prototype.donButtonClick = function()
 Action.prototype.loadStats = function()
 {
     var action = new Action
-    var url = '/?stat&getjson&ajax=1'
+    var url = '/?stat&getallstatsjson&ajax=1'
 
     action.ajaxGetRequest(url, function(){
-        var json_response = this.responseText
+        var json_response = JSON.parse(this.responseText)
+
+        if(null == json_response) return;
+        var canvas_fonds = document.getElementById("canvas_fonds");
+        var stats = {}
+
+        json_response.forEach(function(item) {
+            var month = item.month_don
+            var somme = item.somme
+            stats[month] = somme
+        })
+        
+        /*var stats = {
+            "01": 10,
+            "02": 14,
+            "03": 2,
+            "04": 12,
+            "05": 5,
+            "06": 45,
+            "07": 15,
+            "08": 35,
+            "09": 53,
+            "10": 15,
+            "11": 19
+        };*/
+
+        var draw = new Draw({
+            width: 600,
+            height: 200,
+            canvas: canvas_fonds,
+            colors: ["red", "green", "grey"]
+        })
+
+        draw.drawBarChart(stats);
     })
-
-    var canvas_fonds = document.getElementById("canvas_fonds");
-    
-    var stats = {
-        "01": 10,
-        "02": 14,
-        "03": 2,
-        "04": 12,
-        "05": 5,
-        "06": 45,
-        "07": 15,
-        "08": 35,
-        "09": 53,
-        "10": 15,
-        "11": 19
-    };
-
-    var draw = new Draw({
-        width: 600,
-        height: 200,
-        canvas: canvas_fonds,
-        colors: ["red", "green", "grey"]
-    })
-
-    /*var draw = new Draw({
-        canvas:canvas_fonds,
-        padding:10,
-        gridColor:"#eeeeee",
-        data:stats,
-        colors:["#a55ca5","#67b6c7", "#bccd7a","#eb9743"]
-    });*/
-
-    draw.drawBarChart(stats);
 }
 
 Action.prototype.ajaxGetRequest = function(url, callback)

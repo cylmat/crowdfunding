@@ -9,26 +9,23 @@ class StatCtrl extends Ctrl
 {
     function showAction()
     {
-        $stat = new StatRecord;
-        //$res = $stat->getAll();
-
         return [
-            //'resultats' => $res
+            
         ];
     }
 
     /**
      * Get data from ajax
      */
-    function getjsonAction()
+    function getallstatsjsonAction()
     {
         if(!$_GET['ajax']) die();
 
         $stat = new StatRecord;
-        $res = $stat->getAll();
+        $results = $stat->getAllByDate();
 
-        if(!is_null($res))
-            echo json_encode($res);
+        if(!is_null($results))
+            echo json_encode($results);
         die();
     }
 
