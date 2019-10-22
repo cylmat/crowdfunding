@@ -175,7 +175,10 @@ td.others {
   padding-top: 2rem;
 }
 
-@media screen and (min-width:724px) {
+
+
+/* VERSION TABLETTE */
+@media screen and (min-width:768px) {
   form {
     width: 80%;
     margin: 0 auto;
@@ -191,4 +194,9 @@ td.others {
     display: inline-block;
     width: 79%;
   }
+}
+
+/* VERSION DESKTOP */
+@media screen and (min-width:1024px) {
+
 }

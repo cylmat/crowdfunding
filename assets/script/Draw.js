@@ -109,7 +109,7 @@ Draw.prototype.drawLegend = function(datas)
 
         //texte
         var text_coord_y = this.ctx.height
-        this.text(index, coord_x, text_coord_y, 'black')
+        this.text(index, coord_x, text_coord_y)
 
         //increment
         coord_x += bar_width
@@ -133,12 +133,33 @@ Draw.prototype.drawAxis = function(datas, end_text)
         var coord_y = this.ctx.height - bar_height - text_height
 
         if(0 != index)
-            this.text(index, coord_x, coord_y, 'black')        
+            this.text(index, coord_x, coord_y)        
     }
 
     bar_height = Math.round(this.ctx.height * index / max_val) - text_height
     coord_y = this.ctx.height - bar_height - text_height
-    this.text(end_text, coord_x, coord_y, 'black')
+    this.text(end_text, coord_x, coord_y)
+}
+
+Draw.prototype.drawPart = function(datas)
+{
+    //datas = {'cours':5, 'rea':3}
+    var cours = datas.cours
+    var rea = datas.rea
+    var total = cours+rea
+
+    var split = 2*(rea/total)+1.5
+
+    var rayon = 100
+    this.circle(this.width/2, this.height/2, rayon, 'darkorange',  1.5*Math.PI, split*Math.PI, 15)
+    this.circle(this.width/2, this.height/2, rayon, 'mediumseagreen', split*Math.PI, 1.5*Math.PI, 15)
+    this.circle(this.width/2, this.height/2, rayon-20, 'white')
+
+    this.text(rea+' réalisés', (this.width/2)-5, (this.height/3)+7)
+    this.bar((this.width/2)+50, this.height/3, 10, 10, 'darkorange')
+
+    this.text(cours+' en cours', (this.width/2)-30, (this.height/1.5)+7)
+    this.bar((this.width/2)-50, this.height/1.5, 10, 10, 'mediumseagreen')
 }
 
 
@@ -147,7 +168,7 @@ Draw.prototype.drawAxis = function(datas, end_text)
 
 
 
-Draw.prototype.text = function(text, startX, startY, color, size='8px')
+Draw.prototype.text = function(text, startX, startY, color='black', size='8px')
 {
     this.ctx.save();
     this.ctx.fillStyle = color;
@@ -180,14 +201,17 @@ Draw.prototype.bar = function(upperLeftCornerX, upperLeftCornerY, width, height,
     this.ctx.restore();
 }
 
-Draw.prototype.circle = function(centerX, centerY, rayon, color)
+Draw.prototype.circle = function(centerX, centerY, rayon, color, angleDepart=0, angleFin=(2 * Math.PI), lineWidth=1)
 {
     //void ctx.arc(x, y, rayon, angleDépart, angleFin, sensAntiHoraire);
     this.ctx.save();
     this.ctx.fillStyle=color;
-    this.ctx.strokeStyle=color;  
+    this.ctx.lineWidth=lineWidth;
+    this.ctx.strokeStyle='white';  
     this.ctx.beginPath(); 
-    this.ctx.arc(centerX, centerY, rayon, 0, 2 * Math.PI);
+    this.ctx.lineTo(centerX, centerY);
+    this.ctx.arc(centerX, centerY, rayon, angleDepart, angleFin);
+    this.ctx.lineTo(centerX, centerY);
     this.ctx.stroke();
     this.ctx.fill();
     this.ctx.restore();

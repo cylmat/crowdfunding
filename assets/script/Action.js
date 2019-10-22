@@ -64,8 +64,15 @@ Action.prototype.loadStats = function()
             dons[item.month_don] = item.count_total
         })
 
+        var width_size = 200
+        if(window.matchMedia("(min-width: 768px)").matches) {
+            width_size = 450
+        }else if(window.matchMedia("(min-width: 1024px)").matches) {
+            width_size = 600
+        }
+
         var draw = new Draw({
-            width: 600,
+            width: width_size,
             height: 200,
             canvas: document.getElementById("canvas_fonds"),
             colors: ["darkorange", "mediumseagreen", "chocolate"]
@@ -80,6 +87,11 @@ Action.prototype.loadStats = function()
         draw.drawRoundChart(dons);
         draw.drawLegend(dons);
         draw.drawAxis(dons, 'dons effectués');
+
+        draw.setOptions({
+            canvas: document.getElementById("canvas_rea")
+        })
+        draw.drawPart({'cours':12, 'rea':23})
     })
 }
 
