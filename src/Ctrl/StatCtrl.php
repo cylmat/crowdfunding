@@ -10,15 +10,31 @@ class StatCtrl extends Ctrl
     function showAction()
     {
         $stat = new StatRecord;
-        //$stat->fk_id_project = $id;
-        //$stat->montant = rand(200, 900);
-        //$stat->create();
+        //$res = $stat->getAll();
 
         return [
-            
+            //'resultats' => $res
         ];
     }
 
+    /**
+     * Get data from ajax
+     */
+    function getjsonAction()
+    {
+        if(!$_GET['ajax']) die();
+
+        $stat = new StatRecord;
+        $res = $stat->getAll();
+
+        if(!is_null($res))
+            echo json_encode($res);
+        die();
+    }
+
+    /**
+     * Ajax lors de l'envoi d'un donateur sur le page d'un projet
+     */
     function createAction()
     {
         if(!$_GET['ajax']) die();

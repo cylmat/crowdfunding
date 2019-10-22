@@ -16,7 +16,14 @@ App.prototype.displayProgressBar = function()
 App.prototype.initActions = function()
 {
     var action = new Action
+    
+    if(document.getElementById('contribute')) {
+        document.getElementById('contribute').onclick = action.contributeClick
+        document.getElementById('dialog-button').onclick = action.donButtonClick
+    }
 
-    document.getElementById('contribute').onclick = action.contributeClick
-    document.getElementById('dialog-button').onclick = action.donButtonClick
+    //for stats page
+    if(document.getElementById('stats_fonds')) {
+        action.loadStats()
+    }
 }

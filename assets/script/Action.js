@@ -1,5 +1,7 @@
 'use strict'
 
+/* global Draw */
+
 var Action = function() {}
 
 function param(object) {
@@ -35,13 +37,55 @@ Action.prototype.donButtonClick = function()
     var url = '/?stat&create&ajax=1&don='+value+'&id_project='+id_project+'&session_id='+session_id
 
     action.ajaxGetRequest(url, function(){
-        //console.log(this.responseText)
         if(1 == this.responseText) {
             document.getElementById('dialog-button').style.display = 'none'
             document.getElementById('form_don').style.display = 'none'
             document.getElementById('thanks_don').style.display = 'block'
         }
     })
+} 
+
+Action.prototype.loadStats = function()
+{
+    var action = new Action
+    var url = '/?stat&getjson&ajax=1'
+
+    action.ajaxGetRequest(url, function(){
+        var json_response = this.responseText
+    })
+
+    var canvas_fonds = document.getElementById("canvas_fonds");
+    
+    var stats = {
+        "01": 10,
+        "02": 14,
+        "03": 2,
+        "04": 12,
+        "05": 5,
+        "06": 45,
+        "07": 15,
+        "08": 35,
+        "09": 53,
+        "10": 15,
+        "11": 19
+    };
+
+    var draw = new Draw({
+        width: 600,
+        height: 200,
+        canvas: canvas_fonds,
+        colors: ["red", "green", "grey"]
+    })
+
+    /*var draw = new Draw({
+        canvas:canvas_fonds,
+        padding:10,
+        gridColor:"#eeeeee",
+        data:stats,
+        colors:["#a55ca5","#67b6c7", "#bccd7a","#eb9743"]
+    });*/
+
+    draw.drawBarChart(stats);
 }
 
 Action.prototype.ajaxGetRequest = function(url, callback)
