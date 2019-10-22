@@ -1,15 +1,10 @@
 @import url('https://fonts.googleapis.com/css?family=Copse&display=swap');
 
-:root {
-  --brown: brown;
-  --blue: #22b;
-  --green: #3a3;
-}
-
 * {
   box-sizing: border-box;
 }
 
+/* body */
 body {
   font-family: 'Copse', serif;
   line-height: 1.2rem;
@@ -53,11 +48,8 @@ img {
 .button a {
   margin: 0.1rem;
   border-radius: 15px;
-  background-color:#3a3;
-  color: white;
   padding: 1rem;  
   display: inline-block;
-  box-shadow: 2px 2px 2px grey; 
 }
 
 section {
@@ -83,7 +75,6 @@ section {
 header {
   width: 100%;
   margin: 0 auto;
-  border-bottom: solid 3px #22b;
   text-align: center;
   padding: 0.5rem;
   overflow: hidden;
@@ -113,8 +104,6 @@ nav li {
 }
 
 nav ul li:hover {
-  border-left: solid 2px red;
-  border-right: solid 2px red;
   padding: 0 0.2rem;
   cursor: pointer;
 }
@@ -130,10 +119,7 @@ nav ul li:hover {
 }
 
 h2 {
-  border-top: solid 1px grey;
-  border-bottom: solid 1px grey;
   padding: 0.8rem; 
-  text-shadow: 2px 3px 3px grey;
 }
 
 /* forms */
@@ -158,221 +144,11 @@ form div {
 }
 
 
-/* last project */
-.solo_prj {
-  height: 20rem;
-  position: relative;
-}
-
-.solo_prj .img {
-  display: inline-block;
-  width: 69%;
-  height: 20rem;
-}
-
-.solo_prj img {
-  width: 100%;
-  height: 100%;
-}
-
-.solo_prj .side {
-  display: inline-block;
-  position: relative;
-  width: 25%;
-  background-color: white;
-  vertical-align: top;
-  height: 100%;
-  border: solid 1px grey;
-  font-size: 0.8rem;
-}
-
-.solo_prj .side h3 {
-  background-color: #ddd;
-  margin: 0;
-  padding: 0.5rem 0;
-}
-
-.solo_prj .stats {
-  position: absolute;
-  top: 15rem;
-}
-
-.solo_prj .fonds {
-  color: green;
-  position: absolute;
-  top: 17rem;
-}
-
-.solo_prj .days {
-  position: absolute;
-  top: 17rem;
-  right: 0.6rem;
-}
-
-.solo_prj .side p {
-  padding: 0.05rem 1rem;
-}
-
-
-/* project list */
-.prj {
-  width: 90%;
-  max-width: 15rem;
-  margin: 0.3rem;
-  text-align: center;
-  border: solid 1px grey;
-  margin-bottom: 0.5rem;
-  display: inline-block;
-}
-
-.prj .header {
-  width: 100%;
-  height: 10rem;
-  position: relative;
-  overflow: hidden;
-}
-
-.prj .header p {
-  padding: 0 0.5rem;
-}
-
-.prj .header a {
-  height: 100%;
-  display: block;
-  overflow: hidden;
-  color: black;
-  text-align: left;
-}
-
-.prj .header:hover img {
-  opacity: 0.2;
-  position: absolute;
-}
-
-.prj .header:hover .short,
-.prj .header:hover .stats {
-  display: block;
-}
-
-.prj .header .short, .prj .header .stats {
-  display: none;
-}
-
-.prj .header .stats {
-  top: 7rem;
-  color: green;
-  position: absolute;
-}
-
-.prj .fonds {
-  color: green;
-}
-
-.prj .footer {
-  padding: 0.2rem 0.5rem 0.4rem;
-  overflow: hidden;
-  position: relative;
-}
-
-.prj .footer p {
-  margin: 0.2rem;
-  text-align: left;
-}
-
-.prj .footer .days {
-  float: left;
-}
-
-.prj .footer .days {
-  float: right;
-}
-
-.prj .footer .category {
-  float: right;
-}
-
-/* barre */
-.module {
-  position: absolute;
-  left:0;
-  right:0;
-  bottom: 0;
-}
-
-.module div {
-  /*background: dynamic linear-gradient in JS*/
-  padding: 3px 0;
-  width: 100%;
-}
-
-/* view_project */
-.view_prj {
-  width: 100%;
-  text-align: center;
-  margin-bottom: 0.5rem;
-  display: inline-block;
-  margin-top: 2rem;
-}
-
-.view_prj h3 {
-  border-bottom: solid 1px grey;
-  padding-bottom: 0.5rem;
-  margin: 0;
-  height: 4rem;
-  border-radius: 15px 15px 0 0;
-  padding: 1rem 0;
-  background-color: #ccc;
-}
-
-.view_prj .main {
-  display: inline-block;
-  width: 68%;
-  border: solid 1px grey;
-  border-radius: 15px;
-  background-color: white;
-}
-
-.view_prj .main img {
-  width: 100%;
-  height: 10rem;
-}
-
-.view_prj .side {
-  display: inline-block;
-  width: 29%;
-  vertical-align: top;
-  margin: 0 1%;
-}
-
-.view_prj .contribute {
-  border: solid 1px grey;
-  border-radius: 15px;
-  margin-bottom: 0.5rem;
-  padding-bottom: 1rem;
-  background-color: white;
-}
-
-.view_prj .contribute button {
-  width: 80%;
-  height: 3rem;
-  background-color: aqua;
-  border-radius: 10px;
-}
-
-.view_prj .creator {
-  border: solid 1px grey;
-  border-radius: 15px;
-  background-color: white;
-}
-
-
 
 
 /* dialog contribute */
 #dialog-message {
-  background-color: #cfc;
   border-radius: 15px;
-  box-shadow: 0 0 5px green;
   padding-bottom: 1rem;
   margin: 0.3rem;
 }
@@ -392,8 +168,6 @@ footer {
   width: 100%;
   margin: 0 auto;
   text-align: center;
-  border-top: solid 2px blue;
-  background-color: white;
 }
 
 /* list */

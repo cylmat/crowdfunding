@@ -54,37 +54,32 @@ Action.prototype.loadStats = function()
         var json_response = JSON.parse(this.responseText)
 
         if(null == json_response) return;
-        var canvas_fonds = document.getElementById("canvas_fonds");
-        var stats = {}
 
+        var fonds = {}
+        var dons = {}
+
+        //set stats from response
         json_response.forEach(function(item) {
-            var month = item.month_don
-            var somme = item.somme
-            stats[month] = somme
+            fonds[item.month_don] = item.somme
+            dons[item.month_don] = item.count_total
         })
-        
-        /*var stats = {
-            "01": 10,
-            "02": 14,
-            "03": 2,
-            "04": 12,
-            "05": 5,
-            "06": 45,
-            "07": 15,
-            "08": 35,
-            "09": 53,
-            "10": 15,
-            "11": 19
-        };*/
 
         var draw = new Draw({
             width: 600,
             height: 200,
-            canvas: canvas_fonds,
-            colors: ["red", "green", "grey"]
+            canvas: document.getElementById("canvas_fonds"),
+            colors: ["darkorange", "mediumseagreen", "chocolate"]
         })
+        draw.drawBarChart(fonds);
+        draw.drawLegend(fonds);
+        draw.drawAxis(fonds, 'euros récoltés');
 
-        draw.drawBarChart(stats);
+        draw.setOptions({
+            canvas: document.getElementById("canvas_dons")
+        })
+        draw.drawRoundChart(dons);
+        draw.drawLegend(dons);
+        draw.drawAxis(dons, 'dons effectués');
     })
 }
 

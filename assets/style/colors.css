@@ -1,0 +1,100 @@
+/*
+ * https://colorschemedesigner.com/csd-3.5/#0I31Qw0w0w0w0
+ * Color theme: mediumblue, darkorange, mediumseagreen (turquoise), chocolate
+        bonus: mediumslateblue, aquamarine, lightsteelblue
+ */
+
+ /*
+ * Progress bar (mediumseagreen-white) in App.js 
+ */
+
+/*
+ * global elements
+ */
+h2 {
+    border-top: solid 1px grey;
+    border-bottom: solid 1px grey;
+    text-shadow: 2px 3px 3px grey;
+}
+
+.button a {
+    background-color:mediumseagreen;
+    color: white;
+    box-shadow: 2px 2px 2px grey; 
+}
+
+/*
+ * specifics
+ */
+header {
+    border-bottom: solid 3px mediumslateblue;
+}
+
+nav ul li:hover {
+    border-left: solid 2px darkorange;
+    border-right: solid 2px darkorange;
+}
+
+#dialog-message {
+    background-color: grey;
+    box-shadow: 0 0 5px mediumseagreen;
+}
+
+footer {
+    border-top: solid 2px mediumslateblue;
+    background-color: white;
+}
+
+/* projects */
+.solo_prj .side {
+    background-color: white;
+    border: solid 1px grey;
+}
+
+.solo_prj .side h3 {
+    background-color: lightsteelblue;
+}
+
+.solo_prj .fonds {
+    color: mediumseagreen;
+}
+
+.prj {
+    border: solid 1px  silver;
+  }
+
+.prj .header a {
+    color: black;
+}
+
+.prj .header .stats {
+    color: mediumseagreen;
+}
+  
+.prj .fonds {
+    color: mediumseagreen;
+}
+
+.view_prj h3 {
+    border-bottom: solid 1px grey;
+    background-color: lightsteelblue;
+}
+  
+.view_prj .main {
+    border: solid 1px grey;
+    background-color: white;
+}
+
+.view_prj .contribute {
+    border: solid 1px grey;
+    background-color: white;
+}
+  
+.view_prj .contribute button {
+    background-color: aquamarine;
+}
+  
+.view_prj .creator {
+    border: solid 1px grey;
+    background-color: white;
+}
