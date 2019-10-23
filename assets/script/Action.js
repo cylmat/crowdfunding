@@ -4,20 +4,6 @@
 
 var Action = function() {}
 
-function param(object) {
-    var encodedString = '';
-    for (var prop in object) {
-        if (object.hasOwnProperty(prop)) {
-            if (encodedString.length > 0) {
-                encodedString += '&';
-            }
-            encodedString += encodeURI(prop + '=' + object[prop]);
-        }
-    }
-    return encodedString;
-}
-
-
 Action.prototype.contributeClick = function()
 {
     this.style.display = 'none'
@@ -65,9 +51,9 @@ Action.prototype.loadStats = function()
         })
 
         var width_size = 200
-        if(window.matchMedia("(min-width: 768px)").matches) {
-            width_size = 450
-        }else if(window.matchMedia("(min-width: 1024px)").matches) {
+        if(window.matchMedia("(min-width: 1024px)").matches) {
+            width_size = 800
+        }else if(window.matchMedia("(min-width: 768px)").matches) {
             width_size = 600
         }
 
