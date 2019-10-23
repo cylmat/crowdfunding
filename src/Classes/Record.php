@@ -124,6 +124,7 @@ abstract class Record extends Database
 
     function get(int $id): ?array
     {
+        $sql = "SELECT * FROM {$this->tableName} WHERE id=?;";
         $smt = $this->db->prepare("SELECT * FROM {$this->tableName} WHERE id=?;");
         $smt->execute([$id]);
         $this->smt = $smt;

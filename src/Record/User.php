@@ -8,7 +8,7 @@ class User extends Record
 {
     public function loginExists($login): ?bool
     {
-        $smt = $this->db->prepare("SELECT count(*) AS cnt FROM `user` WHERE login=?");
+        $smt = $this->db->prepare("SELECT count(*) AS cnt FROM `{$this->tableName}` WHERE login=?");
         $smt->execute([$login]);
         $res = $smt->fetch();
 
@@ -22,7 +22,8 @@ class User extends Record
 
     public function checkLoginPassword(string $login, string $password): ?int
     {
-        $smt = $this->db->prepare("SELECT id FROM `user` WHERE login=? AND password=?");
+        $sql = "SELECT id FROM `{$this->tableName}` WHERE login=? AND password=?";
+        $smt = $this->db->prepare($sql);
         $smt->execute([$login, $password]);
         $res = $smt->fetch();
 
