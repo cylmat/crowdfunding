@@ -189,6 +189,7 @@ td.others {
     header .logo {
       float: left;
        width: 2rem;
+       display: block;
     }  
   
     section {
