@@ -45,7 +45,7 @@ abstract class Record extends Database
     public function __construct()
     {
         parent::__construct();
-        $this->tableName = strtolower(basename(static::class));
+        $this->tableName = '3wa_'.strtolower(str_replace('Record\\','',static::class));
         $this->columns = $this->getColumns();
     }
 

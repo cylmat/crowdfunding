@@ -29,7 +29,7 @@ class App
         if(null === ($request = Router::getRequest())) {
             return;
         }
-        
+
         $ctrlName = $request['ctrl'];
         $actionName = $request['action'];
         $params = $request['params'];
@@ -38,7 +38,7 @@ class App
         $banner = $this->callController('layout', 'banner', $params);
         $content = $this->callController($ctrlName, $actionName, $params);
         $footer = $this->callController('layout', 'footer', $params);
-        
+
         $this->sendToLayout(['header'=>$header, 'content'=>$content, 'banner'=>$banner, 'footer'=>$footer]);
     }
 
@@ -49,11 +49,12 @@ class App
     {
         $classCtrl = 'Ctrl\\'.ucfirst($ctrlName).'Ctrl';
         $action = $actionName.'Action';
-        
+
         if(class_exists($classCtrl)) {
             $ctrlObject = new $classCtrl();
             //ex: UpdateAction()
             if(method_exists($classCtrl, $action)) { 
+
                 $return = $ctrlObject->$action($params);
                 if(null === $return) return '';
                 return $this->applyView($ctrlName, $actionName, $return??[]);
@@ -62,6 +63,7 @@ class App
                 redirect(url(''));
             }
         } else {
+
             //throw new \InvalidArgumentException("Le controller $ctrlName n'existe pas");
             redirect(url(''));
         }

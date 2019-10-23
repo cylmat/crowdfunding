@@ -5,12 +5,27 @@ ini_set('display_errors',1);
 
 define('APP', __DIR__.'/app/');
 define('VIEW', APP.'views/');
-define('CORE', APP.'/../src/');
-define('CONFIG', parse_ini_file(APP.'config.ini',true));
+define('CORE', APP.'../src/');
+
+$dist = '';
+if('3wa.camency.fr' == $_SERVER['HTTP_HOST']) {
+    $dist = '.dist';
+}
+    
+define('CONFIG', parse_ini_file(APP.'config.ini'.$dist,true));
 define('ASSETS', APP.'../assets/');
 
 /* lien relatif */
 define('REL_ASSETS', 'assets/');
+
+//debug breakpoint
+function d($brk, $txt='') 
+{
+    if(empty($_GET['debug'])) return;
+    if($brk == $_GET['debug']) {
+        exit($brk.' '.$txt); 
+    }
+}
 
 include 'app/autoload.php';
 

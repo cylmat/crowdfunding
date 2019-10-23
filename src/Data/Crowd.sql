@@ -2,8 +2,8 @@
 CREATE DATABASE `crowd`;
 USE crowd;
 
-DROP TABLE IF EXISTS `crowd`.`user`;
-CREATE TABLE IF NOT EXISTS `crowd`.`user` (
+DROP TABLE IF EXISTS `crowd`.`3wa_user`;
+CREATE TABLE IF NOT EXISTS `crowd`.`3wa_user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `login` varchar(50) UNIQUE NOT NULL,
   `password` varchar(200) NOT NULL,
@@ -21,8 +21,8 @@ CREATE TABLE IF NOT EXISTS `crowd`.`user` (
 
 
 
-DROP TABLE IF EXISTS `crowd`.`project`;
-CREATE TABLE IF NOT EXISTS `crowd`.`project` (
+DROP TABLE IF EXISTS `crowd`.`3wa_project`;
+CREATE TABLE IF NOT EXISTS `crowd`.`3wa_project` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `titre` varchar(255) NOT NULL,
   `description` text NOT NULL,
@@ -38,7 +38,7 @@ CREATE TABLE IF NOT EXISTS `crowd`.`project` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
-ALTER TABLE `crowd`.`project` 
+ALTER TABLE `crowd`.`3wa_project` 
   ADD CONSTRAINT `fk_id_user` FOREIGN KEY (`fk_id_user`) 
 REFERENCES `user`(`id`) 
 ON DELETE RESTRICT ON UPDATE RESTRICT;
@@ -46,17 +46,17 @@ ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 
 
-DROP TABLE IF EXISTS `crowd`.`stat`;
-CREATE TABLE IF NOT EXISTS `crowd`.`stat` (
+DROP TABLE IF EXISTS `crowd`.`3wa_stat`;
+CREATE TABLE IF NOT EXISTS `crowd`.`3wa_stat` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `fk_id_project` int(11) NOT NULL,
   `date_don` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `montant` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_id_project` (`fk_id_project`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-ALTER TABLE `crowd`.`stat` 
+ALTER TABLE `crowd`.`3wa_stat` 
   ADD CONSTRAINT `fk_id_project` FOREIGN KEY (`fk_id_project`) 
 REFERENCES `project`(`id`) 
 ON DELETE RESTRICT ON UPDATE RESTRICT;

@@ -40,10 +40,6 @@ img {
   max-width: 100%;
 }
 
-.clear {
-  clear: both;
-}
-
 /* button */
 .button {
   display: inline-block;
@@ -56,30 +52,9 @@ img {
   display: inline-block;
 }
 
-/* header */
-header {
-  width: 100%;
+section {
+  width: 800px;
   margin: 0 auto;
-  text-align: center;
-  padding: 0.5rem;
-  overflow: hidden;
-}
-
-header .logo {
-  display:none
-}
-
-/* nav */
-nav li {
-   margin: 0.2rem; 
-   padding: 0 5px;
-  display: inline-block;
-  text-align: center;
-}
-
-nav ul li:hover {
-  padding: 0 0.2rem;
-  cursor: pointer;
 }
 
 /* banner */
@@ -94,6 +69,43 @@ nav ul li:hover {
   height: 25rem;
   width: 100%;
   background-size: cover;
+}
+
+/* header */
+header {
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
+  padding: 0.5rem;
+  overflow: hidden;
+}
+
+header .logo {
+  width: 2rem;
+  float: left;
+}
+
+/* nav */
+nav.main {
+  float: left;
+  height: 3rem;
+  margin-left: 3rem;
+}
+
+nav.admin {
+  float: right;
+  height: 3rem;
+}
+
+nav li {
+   margin: 0.2rem; 
+   padding: 0 5px;
+  display: inline-block;
+}
+
+nav ul li:hover {
+  padding: 0 0.2rem;
+  cursor: pointer;
 }
 
 
@@ -186,35 +198,5 @@ td.others {
 
 /* VERSION DESKTOP */
 @media screen and (min-width:1024px) {
-    header .logo {
-      float: left;
-       width: 2rem;
-    }  
-  
-    section {
-      width: 800px;
-      margin: 0 auto;
-    }
-  
-    nav.main {
-      float: left;
-      height: 3rem;
-      margin-left: 3rem;
-    }
 
-    nav.admin {
-      float: right;
-      height: 3rem;
-    }
-
-    nav li {
-       margin: 0.2rem; 
-       padding: 0 5px;
-      display: inline-block;
-    }
-
-    nav ul li:hover {
-      padding: 0 0.2rem;
-      cursor: pointer;
-    }
 }

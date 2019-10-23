@@ -9,10 +9,11 @@ class Database
     public function __construct()
     {
         try {
-            $access = new \PDO("mysql:host=".CONFIG['DB']['host'].";dbname=".CONFIG['DB']['dbname'], CONFIG['DB']['user'], CONFIG['DB']['pass']);
+            $dns = "mysql:host=".CONFIG['DB']['host'].";dbname=".CONFIG['DB']['dbname'];
+            $access = new \PDO($dns, CONFIG['DB']['user'], CONFIG['DB']['pass']);
             $this->db = $access;
         } catch(\PDOException $e) { 
-            echo $e; 
+            //echo $e; 
         }
     }
 }

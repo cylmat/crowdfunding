@@ -10,17 +10,28 @@ class Router
 
     public static function getRequest(): ?array
     {
-        $request = $_REQUEST;
-
         if(!isset($_SERVER['QUERY_STRING'])) { 
             return null;
         }
-
+        
         $query = $_SERVER['QUERY_STRING'];
         if(!preg_match(self::PREG_URL, $query)) {
             return null;
         }
+        
+        $request = $_REQUEST;
 
+        /*
+         * Spécific ovh.net
+         */
+        if(array_key_exists('_ga',$request)) {
+            unset($request['_ga']);
+        }
+        if(array_key_exists('PHPSESSID',$request)) {
+            unset($request['PHPSESSID']);
+        }
+        //ovh
+        
         //default
         $ctrl = self::DEFAULT_CTRL;
         $action = self::DEFAULT_ACTION;

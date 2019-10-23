@@ -1,5 +1,4 @@
-*.code-w
-vendor
-bin
+/vendor
+/bin
 /var
-*.cache
+*.dist

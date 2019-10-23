@@ -1,6 +1,7 @@
 
 /* last project */
 .solo_prj {
+  height: 20rem;
   position: relative;
   width: 100%;
 }
@@ -8,6 +9,7 @@
 .solo_prj .img {
   display: inline-block;
   width: 80%;
+  height: 20rem;
 }
 
 .solo_prj img {
@@ -21,8 +23,6 @@
   vertical-align: top;
   height: 100%;
   font-size: 0.8rem;
-  width: 80%;
-  margin: 0 auto;
 }
 
 .solo_prj .side h3 {
@@ -30,12 +30,20 @@
   padding: 0.5rem 0;
 }
 
+.solo_prj .stats {
+  position: absolute;
+  top: 15rem;
+}
+
 .solo_prj .fonds {
-    float:left;
+  position: absolute;
+  top: 17rem;
 }
 
 .solo_prj .days {
-  float:right;
+  position: absolute;
+  top: 17rem;
+  right: 0.6rem;
 }
 
 .solo_prj .side p {
@@ -179,44 +187,18 @@
 }
 
 /* VERSION DESKTOP */
-@media screen and (min-width:1024px) 
-{
+@media screen and (min-width:1024px) {
   .solo_prj .side {
     display: inline-block;
-  }
+}
 
-  .solo_prj .img {
+.solo_prj .img {
   display: inline-block;
-    width: 69%;
+     width: 80%;
   }
 
-  .solo_prj .side {
-    display: inline-block;
-    width: 29%;
-  }
-
-    .solo_prj {
-    height: 20rem;
-  }
-
-  .solo_prj .img {
-    height: 20rem;
-  }
-  
-  .solo_prj .stats {
-    position: absolute;
-    top: 15rem;
-  }
-
-  .solo_prj .fonds {
-    position: absolute;
-    top: 17rem;
-  }
-  
-  .solo_prj .days {
-    position: absolute;
-    top: 17rem;
-    right: 0.6rem;
-  }
+.solo_prj .side {
+  display: inline-block;
+}
 }
   
