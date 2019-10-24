@@ -174,17 +174,17 @@ abstract class Record extends Database
      */
     protected function getColumns(): ?array
     {
-        $smt = $this->db->prepare(
-            "SELECT column_name FROM information_schema.columns WHERE table_name = ? AND table_schema='crowd';"
-        );
+        $sql =  "SELECT * FROM {$this->tableName}";
+        $smt = $this->db->prepare($sql);
         $smt->execute([$this->tableName]);
         $this->smt = $smt;
 
         if(false !== ($res = $smt->fetchAll(\PDO::FETCH_ASSOC))) {
             $columns=[];
-            foreach($res as $n => $vals) {
-                if('id' !== $vals['column_name']) {
-                    $columns[] = $vals['column_name'];
+
+            foreach($res as $name => $vals) {
+                if('id' !== $name) {
+                    $columns[] = $name;
                 }
             }
             return $columns;

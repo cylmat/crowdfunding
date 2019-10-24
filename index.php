@@ -9,6 +9,8 @@ if('crowdfunding:8888' == $_SERVER['HTTP_HOST']) {
     error_reporting(E_ALL);
     ini_set('display_errors',1);
 }
+error_reporting(E_ALL);
+    ini_set('display_errors',1);
 if('3wa.camency.fr' == $_SERVER['HTTP_HOST']) {
     $dist = '.dist';
 }
