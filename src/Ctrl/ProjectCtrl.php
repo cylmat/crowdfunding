@@ -39,12 +39,13 @@ class ProjectCtrl extends Ctrl
                     //REDIRECT
                     $msg = 'Votre projet a bien été crée';
                     $form = [];
-                    redirect(url('project_listmy'));
                     
                     /**
                      * Random data pour simuler les donateurs
                      */
                     (new StatRecord)->insertRandomDons((int)$project->lastInsertId());
+                    
+                    redirect(url('project_list'));
                 } else {
                     $project->getLastError();
                 }
