@@ -117,12 +117,16 @@ nav ul li:hover {
   overflow: hidden;
   padding:0; 
   width: 100%;
+  background: url('/assets/img/use/mont.jpg');
+  background-size: cover;
+  position: bottom;
 }
 
 .banner img {
   height: 25rem;
   width: 100%;
   background-size: cover;
+  display:none;
 }
 
 
