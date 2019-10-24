@@ -59,12 +59,6 @@ Action.prototype.loadStats = function()
         })
         var div = fonds_total / dons_total;
 
-        /*var width_size = 200
-        if(window.matchMedia("(min-width: 1024px)").matches) {
-            width_size = 800
-        }else if(window.matchMedia("(min-width: 768px)").matches) {
-            width_size = 600
-        }*/
         var width_size = 600
 
         /*

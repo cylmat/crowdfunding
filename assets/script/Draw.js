@@ -143,11 +143,9 @@ Draw.prototype.drawAxis = function(datas, end_text)
 
 Draw.prototype.drawPart = function(datas)
 {
-    //datas = {'cours':5, 'rea':3}
     var cours = datas.cours //fonds
     var rea = datas.rea // dons
     var div = parseInt(datas.div) // rapports fonds/dons
-    //var total = (cours/div)+rea
 
     var split = 2*(rea/div)+1.5
 
