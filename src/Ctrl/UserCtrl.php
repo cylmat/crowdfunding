@@ -17,8 +17,7 @@ class UserCtrl extends Ctrl
         if($this->post) {
             $user = new UserRecord();
             $login = $this->post['login'];
-            ////password_hash($this->post['password'], PASSWORD_DEFAULT);
-            $password = $this->post['password']; 
+            $password = $this->post['password'];
 
             if(null !== ($id = $user->checkLoginPassword($login, $password))) {
                 $user_values = $user->get($id);
@@ -59,12 +58,11 @@ class UserCtrl extends Ctrl
             $user->login = $this->post['login'];
 
             if($this->post['password'] === $this->post['retype_password'] && strlen($this->post['retype_password'])>2) {
-                $pass = $this->post['password']; //password_hash($this->post['password'], PASSWORD_DEFAULT);
+                $pass = password_hash($this->post['password'], PASSWORD_DEFAULT);
                 $user->password = $pass;
             }
 
             if(false === $user->loginExists($this->post['login'])) {
-                //$user->debug = true;
                 $creation = $user->create();
             } else {
                 $creation = 'already_exists';

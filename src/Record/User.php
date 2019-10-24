@@ -6,14 +6,14 @@ use Classes\Record;
 
 class User extends Record
 {
-    public function loginExists($login): ?bool
+    public function loginExists($login): bool
     {
         $smt = $this->db->prepare("SELECT count(*) AS cnt FROM `{$this->tableName}` WHERE login=?");
         $smt->execute([$login]);
         $res = $smt->fetch();
 
         if(!isset($res['cnt']) || false === $res) {
-            return null;
+            return false;
         } elseif($res['cnt']==0) {
             return false;
         }
@@ -22,9 +22,9 @@ class User extends Record
 
     public function checkLoginPassword(string $login, string $password): ?int
     {
-        $sql = "SELECT id FROM `{$this->tableName}` WHERE login=? AND password=?";
+        $sql = "SELECT id, `password` FROM `{$this->tableName}` WHERE login=?";
         $smt = $this->db->prepare($sql);
-        $smt->execute([$login, $password]);
+        $smt->execute([$login]);
         $res = $smt->fetch();
 
         if(!isset($res['id']) || false === $res) {
@@ -33,6 +33,10 @@ class User extends Record
             return false;
         }
 
-        return (int)$res['id'];
+        if(password_verify($password, $res['password'])) {
+            return (int)$res['id'];
+        } else {
+            return null;
+        }
     }
 }

@@ -40,8 +40,31 @@ img {
   max-width: 100%;
 }
 
+section {
+  width: 80%;
+  margin: 0 auto;
+}
+
+section.view .main {
+  width: 100%;
+  display: block;
+}
+
+section.view .side {
+  width: 100%;
+  display: block;
+}
+
+canvas {
+  display:none
+}
+
 .clear {
   clear: both;
+}
+
+img.canvas {
+  width: 80%;
 }
 
 /* banner */
@@ -118,7 +141,7 @@ h2 {
 
 /* forms */
 form {
-  width: 80%;
+  width: 90%;
   margin: 0 auto;
 }
 
@@ -128,9 +151,9 @@ form label {
   display: block;
 }
 
-form input {
+form input, form textarea, form select {
   display: block;
-  width: 90%;
+  width: 100%;
 }
 
 form div {
@@ -165,11 +188,18 @@ footer {
   text-align: center;
 }
 
+table {
+  margin: 0 auto;
+}
+
 /* list */
 td.others {
   padding-top: 2rem;
 }
 
+td.resume, th.resume {
+  display: none;
+}
 
 /* BANNER IMAGE */
 @media screen and (max-width:19rem) {
@@ -181,11 +211,38 @@ td.others {
 }
 
 
+/* taille minimum pour la liste des projets */
+@media screen and (min-width:35rem) {
+  td.resume, th.resume {
+    display: table-cell;
+  }
+  
+  td.title div {
+    display: none;
+  }
+}
+
+
 /* VERSION TABLETTE */
 @media screen and (min-width:768px) {
   form {
     width: 80%;
     margin: 0 auto;
+  }
+
+  section {
+    width: 90%;
+    margin: 0 auto;
+  }
+  
+  section.view .main {
+    width: 69%;
+    display: inline-block;
+  }
+  
+  section.view .side {
+    width: 28%;
+    display: inline-block;
   }
 
   form label {
@@ -194,7 +251,7 @@ td.others {
     display: inline-block;
   }
 
-  form input, form textarea {
+  form input, form textarea, form select {
     display: inline-block;
     width: 79%;
   }

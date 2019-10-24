@@ -25,7 +25,7 @@
                     <form action="#" id="form_don">
                         <p>Quel montant souhaitez-vous effectuer pour votre don?</p>
                         <div>Montant du don :</div>
-                        <div><input type="number" id="dialog-button-value" min="10" value="50"/> €</div>
+                        <div><input type="number" id="dialog-button-value" min="10" value="50"/></div>
                         <div><button type="button" data-sessionid=<?= session_id() ?>
                             data-id=<?=$project['id']?> id="dialog-button">Envoyer</button></div>
                         <div><img width="100px" height="30px" src="https://www.capitaine-banque.com/wp-content/uploads/2016/09/logo-paypal-300x150.png"/></div>
@@ -49,8 +49,8 @@
             <div class="creator">
                 <h3>Créateur du projet</h3>
                 <p class="createur"><?= $project['user_login'] ?></p>
-                <p class="stats_ville">Miroflay</p>
-                <p class="stats_date">Membre depuis le 23/8/1990</p>
+                <p class="ville"><?= $project['user_ville'] ?></p>
+                <p class="date">Membre depuis le <?= $project['user_date_creation'] ?></p>
             </div>
         </section>
     </div>

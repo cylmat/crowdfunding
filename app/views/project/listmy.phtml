@@ -2,37 +2,53 @@
 <h1>Liste des projets</h1>
     
 <section class="list">
+    <?php if($list): ?>
     <table>
         <thead>
             <tr>
-                <th>Nom du projet</th><th>Résumé</th><th>Fonds collectés</th><th>Jours restants</th>
+                <th>Nom du projet</th><th class="resume">Résumé</th>
+                <th class="resume">Fonds collectés</th><th class="resume">Jours restants</th>
             </tr>
         </thead>
         <tbody>
             <?php foreach($list as $project): ?>
                 <tr>
-                    <td><?= $project['titre']?></td>
-                    <td><?= $project['resume']?></td>
-                    <td><?= $project['somme_necessaire']?></td>
-                    <td><?= $project['date_fin']?></td>
-                    <td><a href="<?=url('project_update_id='.$project['id'])?>">Modifier</a></td>
-                    <td><a href="<?=url('project_remove_id='.$project['id'])?>">Supprimer</a></td>
+                    <td class="title"><?= $project['titre']?>
+                        <div class="mobile">
+                            <a href="<?=url('project_update_id='.$project['id'])?>">Modifier</a>
+                            <a href="<?=url('project_remove_id='.$project['id'])?>">Supprimer</a>
+                        </div>
+                    </td>
+                    <td class="resume"><?= $project['resume']?></td>
+                    <td class="resume"><?= $project['somme_necessaire']?></td>
+                    <td class="resume"><?= $project['date_fin']?></td>
+                    <td class="resume"><a href="<?=url('project_update_id='.$project['id'])?>">Modifier</a></td>
+                    <td class="resume"><a href="<?=url('project_remove_id='.$project['id'])?>">Supprimer</a></td>
                 </tr>
             <?php endforeach; ?>
 
             <?php if(is_admin() && !empty($others)): 
-                echo '<tr><td class="others">Autres projets</td><td colspan="3"></td></tr>'; 
+                echo '<tr><td class="others"><b>Autres projets</b></td><td colspan="3"></td></tr>'; 
                 foreach($others as $project): ?>
                 
                 <tr>
-                    <td><?= $project['titre']?></td>
-                    <td><?= $project['resume']?></td>
-                    <td><?= $project['somme_necessaire']?></td>
-                    <td><?= $project['date_fin']?></td>
-                    <td><a href="<?=url('project_update_id='.$project['id'])?>">Modifier</a></td>
-                    <td><a href="<?=url('project_remove_id='.$project['id'])?>">Supprimer</a></td>
+                    <td class="title"><?= $project['titre']?>
+                        <div class="mobile">
+                            <a href="<?=url('project_update_id='.$project['id'])?>">Modifier</a>
+                            <a href="<?=url('project_remove_id='.$project['id'])?>">Supprimer</a>
+                        </div>
+                    </td>
+                    <td class="resume"><?= $project['resume']?></td>
+                    <td class="resume"><?= $project['somme_necessaire']?></td>
+                    <td class="resume"><?= $project['date_fin']?></td>
+                    <td class="resume"><a href="<?=url('project_update_id='.$project['id'])?>">Modifier</a></td>
+                    <td class="resume"><a href="<?=url('project_remove_id='.$project['id'])?>">Supprimer</a></td>
                 </tr>
             <?php endforeach; endif; ?>
         </tbody>
     </table>
+    <?php else: ?>
+            Vous n'avez pas de projets actifs<br/>
+            <a href="<?=url('project_create')?>">Ajouter un projet</a>
+    <?php endif ?>
 </section>

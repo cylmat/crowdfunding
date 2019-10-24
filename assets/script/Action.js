@@ -50,13 +50,17 @@ Action.prototype.loadStats = function()
             dons[item.month_don] = item.count_total
         })
 
-        var width_size = 200
+        /*var width_size = 200
         if(window.matchMedia("(min-width: 1024px)").matches) {
             width_size = 800
         }else if(window.matchMedia("(min-width: 768px)").matches) {
             width_size = 600
-        }
+        }*/
+        var width_size = 600
 
+        /*
+         * Fonds
+         */
         var draw = new Draw({
             width: width_size,
             height: 200,
@@ -67,6 +71,13 @@ Action.prototype.loadStats = function()
         draw.drawLegend(fonds);
         draw.drawAxis(fonds, 'euros récoltés');
 
+        //set to image
+        var dataURL = draw.canvas.toDataURL();
+        document.getElementById('canvas_fonds_img').src = dataURL;
+
+        /*
+         * Dons
+         */
         draw.setOptions({
             canvas: document.getElementById("canvas_dons")
         })
@@ -74,10 +85,21 @@ Action.prototype.loadStats = function()
         draw.drawLegend(dons);
         draw.drawAxis(dons, 'dons effectués');
 
+        //set to image
+        var dataURL = draw.canvas.toDataURL();
+        document.getElementById('canvas_dons_img').src = dataURL;
+
+        /*
+         * Projets realisés
+         */
         draw.setOptions({
             canvas: document.getElementById("canvas_rea")
         })
         draw.drawPart({'cours':12, 'rea':23})
+
+        //set to image
+        var dataURL = draw.canvas.toDataURL();
+        document.getElementById('canvas_rea_img').src = dataURL;
     })
 }
 

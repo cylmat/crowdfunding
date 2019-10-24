@@ -27,12 +27,12 @@ class ProjectCtrl extends Ctrl
             $project->fk_id_user = Session::get('id_user');
 
             $project->somme_necessaire = (int)$this->post['somme'];
-            $project->date_fin = $this->post['max_date'];
+            $project->date_fin = $this->post['date_fin'];
 
             if(isset($_FILES['image_url']) && !$_FILES['image_url']['error']) {
                 $url = ASSETS.'img/'.$_FILES['image_url']['name'];
                 move_uploaded_file($_FILES['image_url']['tmp_name'], $url);
-                
+
                 $project->image_url = REL_ASSETS.'img/'.$_FILES['image_url']['name'];
                 if($project->create()) {
                     //REDIRECT
@@ -43,6 +43,8 @@ class ProjectCtrl extends Ctrl
                      * Random data pour simuler les donateurs
                      */
                     (new StatRecord)->insertRandomDons((int)$project->lastInsertId());
+                } else {
+                    $project->getLastError();
                 }
             } else {
                 $msg = 'Merci de bien vouloir recharger votre image';

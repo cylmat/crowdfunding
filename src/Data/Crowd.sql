@@ -12,7 +12,7 @@ CREATE TABLE IF NOT EXISTS `crowd`.`3wa_user` (
   `email` varchar(100) NOT NULL,
   `telephone` int(10) NOT NULL,
   `ville` varchar(200) NOT NULL,
-  `is_admin` tinyint(1) NOT NULL,
+  `is_admin` tinyint(1) NOT NULL DEFAULT '0',
   `date_creation` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `stats_somme_rec` INT NULL, 
   `stats_nb_dons` INT NULL;

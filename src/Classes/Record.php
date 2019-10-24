@@ -198,13 +198,11 @@ abstract class Record extends Database
      */
     protected function bindingList(): array
     {
-        $values = array_flip($this->values);
-        array_walk(
-            $values, function (&$v, $k) {
-                $v = ':'.$v;
-            }
-        );
-        return array_flip($values);
+        $ret = [];
+        foreach($this->values as $key => $value) {
+            $ret[':'.$key] = $value;
+        }
+        return $ret;
     }
 
     /**

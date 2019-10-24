@@ -51,8 +51,11 @@ class Project extends Record
 
         $user = new UserRecord();
         $userData = $user->get((int)$res['fk_id_user']);
+
         $res += [
-            'user_login' => ucfirst($userData['login'])
+            'user_login' => ucfirst($userData['login']),
+            'user_ville' => ucfirst($userData['ville']),
+            'user_date_creation' => (new \DateTime($userData['date']))->format('Y-m-d')
         ];
     }
 
