@@ -144,21 +144,22 @@ Draw.prototype.drawAxis = function(datas, end_text)
 Draw.prototype.drawPart = function(datas)
 {
     //datas = {'cours':5, 'rea':3}
-    var cours = datas.cours
-    var rea = datas.rea
-    var total = cours+rea
+    var cours = datas.cours //fonds
+    var rea = datas.rea // dons
+    var div = parseInt(datas.div) // rapports fonds/dons
+    //var total = (cours/div)+rea
 
-    var split = 2*(rea/total)+1.5
+    var split = 2*(rea/div)+1.5
 
     var rayon = 100
     this.circle(this.width/2, this.height/2, rayon, 'darkorange',  1.5*Math.PI, split*Math.PI, 15)
     this.circle(this.width/2, this.height/2, rayon, 'mediumseagreen', split*Math.PI, 1.5*Math.PI, 15)
     this.circle(this.width/2, this.height/2, rayon-20, 'white')
 
-    this.text(rea+' réalisés', (this.width/2)-5, (this.height/3)+7)
+    this.text(rea+' dons', (this.width/2)-5, (this.height/3)+7)
     this.bar((this.width/2)+50, this.height/3, 10, 10, 'darkorange')
 
-    this.text(cours+' en cours', (this.width/2)-30, (this.height/1.5)+7)
+    this.text(div+'€ moyens', (this.width/2)-30, (this.height/1.5)+7)
     this.bar((this.width/2)-50, this.height/1.5, 10, 10, 'mediumseagreen')
 }
 

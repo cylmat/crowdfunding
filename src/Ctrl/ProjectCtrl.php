@@ -25,6 +25,7 @@ class ProjectCtrl extends Ctrl
             $project->description = ($this->post['description']);
             $project->resume = ($this->post['resume']);
             $project->fk_id_user = Session::get('id_user');
+            $project->category_num = $this->post['category_num'];
 
             $project->somme_necessaire = (int)$this->post['somme'];
             $project->date_fin = $this->post['date_fin'];
@@ -38,6 +39,7 @@ class ProjectCtrl extends Ctrl
                     //REDIRECT
                     $msg = 'Votre projet a bien été crée';
                     $form = [];
+                    redirect(url('project_listmy'));
                     
                     /**
                      * Random data pour simuler les donateurs
@@ -79,6 +81,7 @@ class ProjectCtrl extends Ctrl
             $project->titre = ($this->post['titre']);
             $project->description = ($this->post['description']);
             $project->resume = ($this->post['resume']);
+            $project->category_num = $this->post['category_num'];
             
             if(isset($_FILES['image_url']) && !$_FILES['image_url']['error']) {
                 $url = ASSETS.'img/'.$_FILES['image_url']['name'];

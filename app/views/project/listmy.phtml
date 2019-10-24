@@ -20,8 +20,8 @@
                         </div>
                     </td>
                     <td class="resume"><?= $project['resume']?></td>
-                    <td class="resume"><?= $project['somme_necessaire']?></td>
-                    <td class="resume"><?= $project['date_fin']?></td>
+                    <td class="resume"><?= $project['stats_somme_rec']?></td>
+                    <td class="resume"><?= (new \DateTime($project['date_fin']))->diff(new \DateTime())->format('%a') ?></td>
                     <td class="resume"><a href="<?=url('project_update_id='.$project['id'])?>">Modifier</a></td>
                     <td class="resume"><a href="<?=url('project_remove_id='.$project['id'])?>">Supprimer</a></td>
                 </tr>
@@ -39,8 +39,8 @@
                         </div>
                     </td>
                     <td class="resume"><?= $project['resume']?></td>
-                    <td class="resume"><?= $project['somme_necessaire']?></td>
-                    <td class="resume"><?= $project['date_fin']?></td>
+                    <td class="resume"><?= $project['stats_somme_rec']?></td>
+                    <td class="resume"><?= (new \DateTime($project['date_fin']))->diff(new \DateTime())->format('%a') ?></td>
                     <td class="resume"><a href="<?=url('project_update_id='.$project['id'])?>">Modifier</a></td>
                     <td class="resume"><a href="<?=url('project_remove_id='.$project['id'])?>">Supprimer</a></td>
                 </tr>

@@ -41,14 +41,23 @@ Action.prototype.loadStats = function()
 
         if(null == json_response) return;
 
+        if(!document.getElementById("canvas_fonds")) return;
+
         var fonds = {}
         var dons = {}
+
+        var fonds_total = 0;
+        var dons_total = 0;
 
         //set stats from response
         json_response.forEach(function(item) {
             fonds[item.month_don] = item.somme
             dons[item.month_don] = item.count_total
+
+            fonds_total += parseInt(item.somme)
+            dons_total += parseInt(item.count_total)
         })
+        var div = fonds_total / dons_total;
 
         /*var width_size = 200
         if(window.matchMedia("(min-width: 1024px)").matches) {
@@ -95,7 +104,7 @@ Action.prototype.loadStats = function()
         draw.setOptions({
             canvas: document.getElementById("canvas_rea")
         })
-        draw.drawPart({'cours':12, 'rea':23})
+        draw.drawPart({'cours':fonds_total, 'rea':dons_total, 'div': div})
 
         //set to image
         var dataURL = draw.canvas.toDataURL();

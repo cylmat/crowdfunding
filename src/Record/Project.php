@@ -4,6 +4,7 @@ namespace Record;
 
 use Classes\Record;
 use Record\User as UserRecord;
+use Record\Stat as StatRecord;
 
 class Project extends Record
 {
@@ -45,8 +46,20 @@ class Project extends Record
 
     function setDatas(array &$res): void
     {
+        $stat = new StatRecord();
+        $statData = $stat->getByIdProject((int)$res['id']);
+
+        $total = $statData[0];
+        $res['stats_somme_rec'] = $total['somme'];
+        $res['stats_nb_dons'] = $total['compte'];
+
         $res['category'] = \Model\ProjectModel::getCategory($res['category_num']);
-        $res['percent'] = \Model\ProjectModel::getDonatorPercent($res['somme_necessaire'], $res['stats_somme_rec']);
+
+        if($res['somme_necessaire'] && $total['somme']) {
+            $res['percent'] = \Model\ProjectModel::getDonatorPercent($res['somme_necessaire'], $total['somme']);
+        } else {
+            $res['percent'] = 0;
+        }
         $res['days_reste'] = \Model\ProjectModel::getDaysToEnd($res['date_fin']);
 
         $user = new UserRecord();

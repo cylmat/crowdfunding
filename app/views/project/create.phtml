@@ -23,7 +23,7 @@
             <div><label for="category_num">Category :</label>
                 <select name="category_num">
                     <?php foreach(\Model\CategoryModel::LIST as $key => $cat): ?>
-                        <option value="<?=$key?>"><?=$cat?></option>
+                        <option <?php if($key == ($form['category_num']??'')) print ' selected '; ?> value="<?=$key?>"><?=$cat?></option>
                     <?php endforeach; ?>
                 </select></div>
             <?php if(!$is_create): ?>

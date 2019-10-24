@@ -38,6 +38,24 @@ class Stat extends Record
         }
     }
 
+    function getByIdProject(int $id_project)
+    {
+        $sql = "SELECT *, 
+            (SELECT COUNT(*) FROM `{$this->tableName}` WHERE `fk_id_project` = $id_project) AS compte,
+            (SELECT SUM(montant) FROM `{$this->tableName}` WHERE `fk_id_project` = $id_project) AS somme
+            FROM `{$this->tableName}` WHERE `fk_id_project` = $id_project";
+        $smt = $this->db->prepare($sql);
+
+        if(self::$debug) {
+            print $sql;
+            return false;
+        } else {
+            $res = $smt->execute($this->bindingList());
+            $this->smt = $smt;
+            return $smt->fetchAll(\PDO::FETCH_ASSOC);
+        }
+    }
+
     function getAllByDate()
     {
         $sql = "SELECT MONTH(date_don) as month_don, YEAR(date_don) as year_don, montant, ".

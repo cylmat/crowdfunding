@@ -11,11 +11,9 @@ CREATE TABLE IF NOT EXISTS `crowd`.`3wa_user` (
   `prenom` varchar(100) NOT NULL,
   `email` varchar(100) NOT NULL,
   `telephone` int(10) NOT NULL,
-  `ville` varchar(200) NOT NULL,
+  `ville` varchar(200) NULL DEFAULT '',
   `is_admin` tinyint(1) NOT NULL DEFAULT '0',
   `date_creation` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `stats_somme_rec` INT NULL, 
-  `stats_nb_dons` INT NULL;
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -26,10 +24,10 @@ CREATE TABLE IF NOT EXISTS `crowd`.`3wa_project` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `titre` varchar(255) NOT NULL,
   `description` text NOT NULL,
-  `resume` varchar(255),
+  `resume` varchar(255) NOT NULL DEFAULT '',
   `fk_id_user` int(11) NOT NULL,
   `somme_necessaire` int(11) NOT NULL,
-  `date_fin` DATE NULL DEFAULT NULL,
+  `date_fin` DATE NOT NULL,
   `image_url` varchar(255) NOT NULL,
   `category_num` int(2) NOT NULL,
   `date_creation` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
