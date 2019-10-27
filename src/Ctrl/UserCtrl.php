@@ -20,8 +20,8 @@ class UserCtrl extends Ctrl
             $password = $this->post['password'];
 
             if(null !== ($id = $user->checkLoginPassword($login, $password))) {
-                $user_values = $user->get($id);
-                $this->setLoginOn($user_values, $id);
+                $user->get($id);
+                $this->setLoginOn($user, $id);
                 redirect(url('project_listmy'));
             }
         }
@@ -31,7 +31,7 @@ class UserCtrl extends Ctrl
         ];
     }
 
-    function setLoginOn($user, $id)
+    function setLoginOn(UserRecord $user, $id)
     {
         Session::set('id_user',$id);
         if('1' === $user->is_admin) {

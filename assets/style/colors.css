@@ -11,10 +11,13 @@
 /*
  * global elements
  */
+h1, h2 {
+    text-shadow: 2px 2px 2px grey;
+}
+
 h2 {
     border-top: solid 1px grey;
     border-bottom: solid 1px grey;
-    text-shadow: 2px 3px 3px grey;
 }
 
 .button a {

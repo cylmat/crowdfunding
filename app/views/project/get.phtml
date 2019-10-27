@@ -1,11 +1,11 @@
-<h1><?= $project['titre'] ?></h1>
 
 <section class="view">
-    <div class="view_prj">
+    <h1><?= $project['titre'] ?></h1>
+    <div class="view_prj section_main">
     
         <section class="main">
             <h3><?= $project['titre'] ?></h3>
-            <img src="<?= $project['image_url'] ?>" alt=""/>
+            <img src="<?= $project['image_url'] ?>" alt="<?= $project['titre'] ?>"/>
             <p class="short"><?= $project['resume'] ?></p>
             <p class="category"> - Catégorie <?= $project['category'] ?> - </p>
             <p class="description"><?= $project['description'] ?></p>
@@ -28,10 +28,10 @@
                         <div><input type="number" id="dialog-button-value" min="10" value="50"/></div>
                         <div><button type="button" data-sessionid=<?= session_id() ?>
                             data-id=<?=$project['id']?> id="dialog-button">Envoyer</button></div>
-                        <div><img width="100px" height="30px" src="https://www.capitaine-banque.com/wp-content/uploads/2016/09/logo-paypal-300x150.png"/></div>
+                        <div><img class="paypal" alt="paypal" src="https://www.capitaine-banque.com/wp-content/uploads/2016/09/logo-paypal-300x150.png"/></div>
                         <div>
-                            <img width="50px" height="30px" src="https://www.epargne-en-ligne.net/images/visa-1020x510.png"/>
-                            <img width="50px" height="30px" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/MasterCard_Logo.svg/300px-MasterCard_Logo.svg.png"/>
+                            <img class="cb" alt="visa" src="https://www.epargne-en-ligne.net/images/visa-1020x510.png"/>
+                            <img class="cb" alt="mastercard" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/MasterCard_Logo.svg/300px-MasterCard_Logo.svg.png"/>
                         </div>
                     </form>
                     

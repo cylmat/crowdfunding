@@ -1,7 +1,7 @@
         <div class="prj">
             <div class="header">
                 <a href="<?=url('project_get',['id'=>$project['id']])?>">
-                    <img src="<?= $project['image_url'] ?>" alt=""/>
+                    <img src="<?= $project['image_url'] ?>" alt="<?= $project['titre'] ?>"/>
                 
                     <p class="short"><?= $project['resume'] ?></p>
                     <p class="stats">
