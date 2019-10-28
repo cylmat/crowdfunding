@@ -1,49 +1,50 @@
 
-
 <section>
     <h1><?= $title ?> de votre projet</h1>
-    <?= $msg ?>
-    <form action="<?=$_SERVER['REQUEST_URI']?>" method="post" enctype="multipart/form-data" >
-        <fieldset>
-            <legend>Créateur du projet</legend>
-            <label><?=$nom_user?></label>
-        </fieldset>
+    <div class="section_main">
+        <?= $msg ?>
+        <form action="<?=$_SERVER['REQUEST_URI']?>" method="post" enctype="multipart/form-data" >
+            <fieldset>
+                <legend>Créateur du projet</legend>
+                <label><?=$nom_user?></label>
+            </fieldset>
 
-        <fieldset>
-            <legend>Détails de votre projet</legend>
-            <div><label for="titre">Titre :</label>
-                <input type="text" required maxlength="20" id="titre" name="titre" placeholder="Titre" value="<?=$form['titre']??''?>"/></div>
-            <div><label for="description">Description :</label>
-                <textarea id="description" required name="description" rows="15" placeholder="Description"><?=$form['description']??''?></textarea></div>
-            <div><label for="resume">Résumé :</label>
-                <input type="text" id="resume" name="resume" maxlength="50" value="<?=$form['resume']??''?>">
-            </div>
-            <div><label for="image_url">Image :</label>
-                <input <?php if($is_create) echo 'required' ?> type="file" id="image_url" name="image_url" accept=".bmp,.jpg,.jpeg,.gif,.png"></div>
-            <div><label for="category_num">Category :</label>
-                <select id="category_num" name="category_num">
-                    <?php foreach(\Model\CategoryModel::LIST as $key => $cat): ?>
-                        <option <?php if($key == ($form['category_num']??'')) print ' selected '; ?> value="<?=$key?>"><?=$cat?></option>
-                    <?php endforeach; ?>
-                </select></div>
-            <?php if(!$is_create): ?>
+            <fieldset>
+                <legend>Détails de votre projet</legend>
+                <div><label for="titre">Titre :</label>
+                    <input type="text" required maxlength="20" id="titre" name="titre" placeholder="Titre" value="<?=$form['titre']??''?>"/></div>
+                <div><label for="description">Description :</label>
+                    <textarea id="description" required name="description" rows="15" placeholder="Description"><?=$form['description']??''?></textarea></div>
+                <div><label for="resume">Résumé :</label>
+                    <input type="text" id="resume" name="resume" maxlength="50" value="<?=$form['resume']??''?>">
+                </div>
+                <div><label for="image_url">Image :</label>
+                    <input <?php if($is_create) echo 'required' ?> type="file" id="image_url" name="image_url" accept=".bmp,.jpg,.jpeg,.gif,.png"></div>
+                <div><label for="category_num">Category :</label>
+                    <select id="category_num" name="category_num">
+                        <?php foreach(\Model\CategoryModel::LIST as $key => $cat): ?>
+                            <option <?php if($key == ($form['category_num']??'')) print ' selected '; ?> value="<?=$key?>"><?=$cat?></option>
+                        <?php endforeach; ?>
+                    </select></div>
+                <?php if(!$is_create): ?>
+                    <div><label>&nbsp;</label><button type="submit">Enregistrer</button></div>
+                <?php endif; ?>
+            </fieldset>
+            
+            <?php if($is_create): ?>
+            <fieldset>
+                <legend>Réalisation nécessaire</legend>
+                <div><label>Fonds nécessaires >800€ :</label>
+                    <input required min="800" type="number" name="somme" value="<?=$form['somme']??''?>"/></div>
+                <div><label>Date de fin (10j-3 mois) :</label>
+                    <input type="date" required name="date_fin" 
+                        <?php $date = isset($form['date_fin']) ? $form['date_fin'] : '' ?>
+                        min="<?= (new \DateTime())->add(new DateInterval('P10D'))->format('Y-m-d') ?>"
+                        max="<?= (new \DateTime())->add(new DateInterval('P3M'))->format('Y-m-d') ?>" 
+                        value="<?=$form['date_fin']??''?>"/></div>
                 <div><label>&nbsp;</label><button type="submit">Enregistrer</button></div>
+            </fieldset>
             <?php endif; ?>
-        </fieldset>
-        
-        <?php if($is_create): ?>
-        <fieldset>
-            <legend>Réalisation nécessaire</legend>
-            <div><label>Fonds nécessaires >800€ :</label>
-                <input required min="800" type="number" name="somme" value="<?=$form['somme']??''?>"/></div>
-            <div><label>Date de fin (10j-3 mois) :</label>
-                <input type="date" required name="date_fin" 
-                    <?php $date = isset($form['date_fin']) ? $form['date_fin'] : '' ?>
-                    min="<?= (new \DateTime())->add(new DateInterval('P10D'))->format('Y-m-d') ?>"
-                    max="<?= (new \DateTime())->add(new DateInterval('P3M'))->format('Y-m-d') ?>" 
-                    value="<?=$form['date_fin']??''?>"/></div>
-            <div><label>&nbsp;</label><button type="submit">Enregistrer</button></div>
-        </fieldset>
-        <?php endif; ?>
-    </form>
+        </form>
+    </div>
 </section>
