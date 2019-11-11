@@ -61,10 +61,17 @@ class UserCtrl extends Ctrl
             $user->telephone = $this->post['telephone'];
             $user->ville = $this->post['ville'];
             $user->login = $this->post['login'];
+            $user->is_admin = 0;
+
+            if(!ctype_digit($this->post['telephone'])) {
+                $msg .= 'Le numéro de téléphone est erroné<br/>';
+            }
 
             if($this->post['password'] === $this->post['retype_password'] && strlen($this->post['retype_password'])>2) {
                 $pass = password_hash($this->post['password'], PASSWORD_DEFAULT);
                 $user->password = $pass;
+            } else {
+                $msg .= 'Les mots de passe ne correspondent pas<br/>';
             }
 
             if(false === $user->loginExists($this->post['login'])) {
@@ -74,9 +81,13 @@ class UserCtrl extends Ctrl
                     redirect(url('project_create'));
                 }
             } else {
-                $creation = 'already_exists';
+                $msg .= "L'utilisateur existe déjà<br/>";
             }
-            $msg = \Model\UserModel::getFormMessage($creation) . $user->getLastError();
+
+            if($msg != '') {
+                $msg = "Une erreur est survenue pendant la création du compte<br/>" . $msg;
+            }
+            //$msg .= $user->getLastError();
         }
         
         return [

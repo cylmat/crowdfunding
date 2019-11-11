@@ -26,7 +26,7 @@ class Project extends Record
      */
     function getAllDatas()
     {
-        $results = $this->getAll();
+        $results = $this->getAll('WHERE actif=1');
         foreach($results as &$res) {
             $this->setDatas($res);
         }
@@ -38,7 +38,7 @@ class Project extends Record
      */
     function getDataId(int $id)
     {
-        $res = $this->get($id);
+        $res = $this->get($id, "AND actif=1");
         if(is_array($res))
             $this->setDatas($res);
         return $res;
@@ -68,7 +68,7 @@ class Project extends Record
         $res += [
             'user_login' => ucfirst($userData['login']),
             'user_ville' => ucfirst($userData['ville']),
-            'user_date_creation' => (new \DateTime($userData['date']))->format('Y-m-d')
+            'user_date_creation' => (new \DateTime($userData['date_creation']))->format('Y-m-d')
         ];
     }
 

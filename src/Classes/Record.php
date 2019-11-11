@@ -75,7 +75,7 @@ abstract class Record extends Database
         if('id' === $name && !is_null($this->id)) {
             return $this->id;
         }
-        
+        print_r($this->values);
         if(array_key_exists($name, $this->values)) {
             return $this->values[$name];
         }
@@ -122,9 +122,9 @@ abstract class Record extends Database
         return $exec;
     }
 
-    function get(int $id): ?array
+    function get(int $id, $and_where=''): ?array
     {
-        $sql = "SELECT * FROM {$this->tableName} WHERE id=?;";
+        $sql = "SELECT * FROM {$this->tableName} WHERE id=? $and_where;";
         $smt = $this->db->prepare("SELECT * FROM {$this->tableName} WHERE id=?;");
         $smt->execute([$id]);
         $this->smt = $smt;
@@ -138,9 +138,9 @@ abstract class Record extends Database
         return null; 
     }
 
-    public function getAll(): array
+    public function getAll($where=''): array
     {
-        $smt = $this->db->prepare("SELECT * FROM {$this->tableName};");
+        $smt = $this->db->prepare("SELECT * FROM {$this->tableName} $where;");
         $smt->execute();
         $this->smt = $smt;
         
