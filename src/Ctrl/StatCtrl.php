@@ -30,7 +30,7 @@ class StatCtrl extends Ctrl
     }
 
     /**
-     * Ajax lors de l'envoi d'un donateur sur le page d'un projet
+     * Ajax lors de l'envoi d'un donateur sur la page d'un projet
      */
     function createAction()
     {
@@ -44,10 +44,10 @@ class StatCtrl extends Ctrl
         $stat->montant = $this->get['don'];
 
         if($stat->create()) {
-            echo '1';
+            echo json_encode('1');
         }
         else {
-            echo '0';
+            echo json_encode('0');
         }
         die();
     }

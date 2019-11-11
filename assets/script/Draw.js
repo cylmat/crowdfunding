@@ -4,6 +4,8 @@ var Draw = function(opt)
 {
     if(opt)
         this.setOptions(opt)
+    
+    this.labelDates = ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"]
 }
 
 Draw.prototype.setOptions = function(options) 
@@ -109,7 +111,7 @@ Draw.prototype.drawLegend = function(datas)
 
         //texte
         var text_coord_y = this.ctx.height
-        this.text(index, coord_x, text_coord_y)
+        this.text(this.labelDates[index-1], coord_x, text_coord_y)
 
         //increment
         coord_x += bar_width
@@ -124,11 +126,14 @@ Draw.prototype.drawAxis = function(datas, end_text)
 
     var ref = Math.round(max_val/10)
 
+    //evite erreurs 0
+    ref = 0 === ref ? 1 : ref
+
     var coord_x = 0
     var text_height = 10
-    
+
     //de 0 à max
-    for(var index=0; index<max_val-ref; index+=ref) {
+    for(var index=0; index<(max_val-ref); index+=ref) {
         var bar_height = Math.round(this.ctx.height * index / max_val) - text_height
         var coord_y = this.ctx.height - bar_height - text_height
 

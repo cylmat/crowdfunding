@@ -60,7 +60,7 @@ class Stat extends Record
     {
         $sql = "SELECT MONTH(date_don) as month_don, YEAR(date_don) as year_don, montant, ".
             "COUNT(*) as count_total, SUM(montant) as somme ".
-            "FROM `{$this->tableName}` GROUP BY MONTH(date_don) ORDER BY date_don";
+            "FROM `{$this->tableName}` GROUP BY MONTH(date_don), YEAR(date_don), montant";
         $smt = $this->db->prepare($sql);
 
         if(self::$debug) {

@@ -23,7 +23,7 @@ Action.prototype.donButtonClick = function()
     var url = '/?stat&create&ajax=1&don='+value+'&id_project='+id_project+'&session_id='+session_id
 
     action.ajaxGetRequest(url, function(){
-        if(1 == this.responseText) {
+        if(1 == JSON.parse(this.responseText)) {
             document.getElementById('dialog-button').style.display = 'none'
             document.getElementById('form_don').style.display = 'none'
             document.getElementById('thanks_don').style.display = 'block'
@@ -79,11 +79,12 @@ Action.prototype.loadStats = function()
         document.getElementById('canvas_fonds_img').src = dataURL;
 
         /*
-         * Dons
-         */
+        * Dons
+        */
         draw.setOptions({
-            canvas: document.getElementById("canvas_dons")
+           canvas: document.getElementById("canvas_dons")
         })
+        
         draw.drawRoundChart(dons);
         draw.drawLegend(dons);
         draw.drawAxis(dons, 'dons effectués');
