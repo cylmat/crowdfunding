@@ -4,6 +4,13 @@ define('APP', __DIR__.'/app/');
 define('VIEW', APP.'views/');
 define('CORE', APP.'../src/');
 
+define('CONFIG', parse_ini_file(APP.'config.ini'.$dist,true));
+define('ASSETS', APP.'../assets/');
+
+/* lien relatif */
+define('REL_ASSETS', 'assets/');
+
+
 $dist = '';
 if('crowdfunding:8888' == $_SERVER['HTTP_HOST']) {
     error_reporting(E_ALL);
@@ -13,12 +20,6 @@ if('crowdfunding:8888' == $_SERVER['HTTP_HOST']) {
 if('3wa.camency.fr' == $_SERVER['HTTP_HOST']) {
     $dist = '.dist';
 }
-    
-define('CONFIG', parse_ini_file(APP.'config.ini'.$dist,true));
-define('ASSETS', APP.'../assets/');
-
-/* lien relatif */
-define('REL_ASSETS', 'assets/');
 
 //debug breakpoint
 function d($brk, $txt='') 

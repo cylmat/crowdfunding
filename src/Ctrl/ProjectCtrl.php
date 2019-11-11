@@ -116,6 +116,11 @@ class ProjectCtrl extends Ctrl
         $project = new ProjectRecord();
         $list = $project->getAllDatas();
 
+        //Si pas de projets actifs
+        if(empty($list)) {
+            redirect(url('project_list'));
+        }
+
         $id = $list[array_rand($list)]['id'];
         redirect(url('project_get_id='.$id));
     }

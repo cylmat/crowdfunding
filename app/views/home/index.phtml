@@ -28,15 +28,21 @@
             </div>
         </div>
     </section>
+<?php else: ?>
+    <section class="last_proj">
+        <h2>Les projets</h2>
+        <p>Il n'y a pas encore de projets inscrits sur le site, soyez les premiers ;)</p>
+    </section>
 <?php endif; ?>
 
 
-
-<section id="#projects_list">
-    <h2>Les projets du moment</h2>
-    <div class="section_main">
-        <?php foreach($list as $project): ?>
-            <?php include __DIR__.'/../project/_project_bloc.phtml' ?>
-        <?php endforeach; ?>
-    </div>
-</section> 
+<?php if(!empty($last_project)): ?>
+    <section id="#projects_list">
+        <h2>Les projets du moment</h2>
+        <div class="section_main">
+            <?php foreach($list as $project): ?>
+                <?php include __DIR__.'/../project/_project_bloc.phtml' ?>
+            <?php endforeach; ?>
+        </div>
+    </section> 
+<?php endif; ?>

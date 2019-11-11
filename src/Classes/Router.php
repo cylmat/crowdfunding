@@ -4,7 +4,7 @@ namespace Classes;
 
 class Router
 {
-    const DEFAULT_CTRL='Default';
+    const DEFAULT_CTRL='Home';
     const DEFAULT_ACTION='index';
     const PREG_URL='/^(\w\&?)*/'; //format ctrl&action&id
 

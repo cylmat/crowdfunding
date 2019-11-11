@@ -6,7 +6,7 @@ use Classes\Ctrl;
 use Classes\Records;
 use Record\Project as ProjectRecord;
 
-class DefaultCtrl extends Ctrl
+class HomeCtrl extends Ctrl
 {
     function indexAction()
     {
