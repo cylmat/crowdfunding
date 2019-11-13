@@ -2,9 +2,11 @@
 
 namespace Classes;
 
- /** 
-  * Controller class
-  */
+/** 
+ * Controller class
+ *
+ * Recupère la requete 
+ */
 class Ctrl
 {
     protected $get, $post;
@@ -14,6 +16,12 @@ class Ctrl
         $this->getRequest();
     }
 
+    /**
+     * Recupère la requete
+     * 
+     * Les requêtes sont dejà protégées grâce au router
+     * Router::PREG_URL
+     */
     protected function getRequest()
     {
         if(isset($_GET) && !empty($_GET)) {

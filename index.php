@@ -1,15 +1,19 @@
 <?php
 
+/**
+ * Definition des constantes
+ */
 define('APP', __DIR__.'/app/');
 define('VIEW', APP.'views/');
 define('CORE', APP.'../src/');
-
 define('ASSETS', APP.'../assets/');
 
 /* lien relatif */
 define('REL_ASSETS', 'assets/');
 
-
+/**
+ * Change la configuration si serveur distant
+ */
 $dist = '';
 if('crowdfunding:8888' == $_SERVER['HTTP_HOST']) {
     error_reporting(E_ALL);
@@ -20,9 +24,14 @@ if('3wa.camency.fr' == $_SERVER['HTTP_HOST']) {
     $dist = '.dist';
 }
 
+/**
+ * Configuration file
+ */
 define('CONFIG', parse_ini_file(APP.'config.ini'.$dist,true));
 
-//debug breakpoint
+/*
+ * debug breakpoint
+ */ 
 function d($brk, $txt='') 
 {
     if(empty($_GET['debug'])) return;

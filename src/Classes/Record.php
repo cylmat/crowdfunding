@@ -2,16 +2,22 @@
 
 namespace Classes;
 
+/**
+ * Simule un ORM ActiveRecord
+ * 
+ * Permet la relation entre la base de données et les classes d'appel
+ * Le nom des colonnes est récupéré grâce à une première requête SELECT
+ */
 abstract class Record extends Database
 {
     /**
-     * Values
+     * Valeurs
      */
     protected $values = [];
 
     
     /**
-     * Columns
+     * Nom des colonnes
      */
     protected $columns;
     
@@ -21,21 +27,21 @@ abstract class Record extends Database
     protected $id;
     
     /**
-     * Class name
+     * Table name
      * 
      * @var string
      */
     protected $tableName;
     
     /**
-     * Statement
+     * Statement PDO
      * 
      * @var PDOStatement
      */
     protected $smt;
     
     /**
-     * DEbug mode
+     * Debug mode activé ou non
      */
     protected static $debug = false;
     
@@ -49,6 +55,9 @@ abstract class Record extends Database
         $this->columns = $this->getColumns();
     }
 
+    /**
+     * Set debug
+     */
     public function debug()
     {
         self::$debug = true;
@@ -56,7 +65,8 @@ abstract class Record extends Database
     }
     
     /**
-     * throw InvalidArgumentException
+     * @return void
+     * @throw InvalidArgumentException
      */
     function __set(string $name,  $value)
     {
@@ -68,20 +78,24 @@ abstract class Record extends Database
     }
 
     /**
-     * throw InvalidArgumentException
+     * @return mixed
+     * @throw InvalidArgumentException
      */
     function __get(string $name)
     {
         if('id' === $name && !is_null($this->id)) {
             return $this->id;
         }
-        print_r($this->values);
+        
         if(array_key_exists($name, $this->values)) {
             return $this->values[$name];
         }
         throw new \InvalidArgumentException("Le paramètre $name n'existe pas dans la base de données");
     }
 
+    /**
+     * Créer une requête INSERT
+     */
     function create(): bool
     {
         $smt = $this->db->prepare("INSERT INTO {$this->tableName} ( {$this->keysList()} ) VALUES ( {$this->valuesToPrepare()} );");
@@ -99,6 +113,9 @@ abstract class Record extends Database
         }
     }
 
+    /**
+     * Requête UPDATE
+     */
     function update(): bool
     {
         $prep = "UPDATE {$this->tableName} SET {$this->valuesToUpdate()} WHERE id={$this->id};";
@@ -114,6 +131,9 @@ abstract class Record extends Database
         }
     }
 
+    /**
+     * Requête DELETE
+     */
     function delete(int $id): bool
     {
         $smt = $this->db->prepare("DELETE FROM {$this->tableName} WHERE id=?;");
@@ -122,6 +142,10 @@ abstract class Record extends Database
         return $exec;
     }
 
+    /**
+     * Requête SELECT 
+     * Un seul retour, sélectionné par l'ID
+     */
     function get(int $id, $and_where=''): ?array
     {
         $sql = "SELECT * FROM {$this->tableName} WHERE id=? $and_where;";
@@ -138,6 +162,9 @@ abstract class Record extends Database
         return null; 
     }
 
+    /**
+     * Requete SELECT globale
+     */
     public function getAll($where=''): array
     {
         $smt = $this->db->prepare("SELECT * FROM {$this->tableName} $where;");
@@ -156,7 +183,7 @@ abstract class Record extends Database
     }
 
     /**
-     * Get mysql statemement error
+     * Retourne erreur statemement si il y en a
      */
     public function getLastError(): ?string
     {

@@ -2,6 +2,9 @@
 
 namespace Classes;
 
+/**
+ * Class de session
+ */
 class Session
 {
     static function start(): void

@@ -5,11 +5,15 @@ namespace Classes;
 use Ctrl\Layout;
 use Classes\Router;
 
+/**
+ * Class Application
+ * 
+ * Charge l'application, appel le routeur et redirige vers le bon controleur 
+ * Affiche ensuite le template correspondant
+ */
 class App
 {
     /**
-     * Request value with controller
-     * action and params if any
      * 
      * @var array
      */
@@ -21,11 +25,11 @@ class App
     }
 
     /**
-     * Run the application
+     * Charge l'application
      */
-    public function run(): void
+    private function run(): void
     {
-        //get query request
+        //Requete Query
         if(null === ($request = Router::getRequest())) {
             return;
         }
@@ -34,6 +38,9 @@ class App
         $actionName = $request['action'];
         $params = $request['params'];
 
+        /**
+         * Appel les controleurs correspondants
+         */
         $header = $this->callController('layout', 'header', $params);
         $banner = $this->callController('layout', 'banner', $params);
         $content = $this->callController($ctrlName, $actionName, $params);
@@ -43,9 +50,9 @@ class App
     }
 
     /**
-     * Call controller and view
+     * Appel le controleur et la vue
      */
-    public function callController($ctrlName, $actionName, $params=[]): string
+    private function callController($ctrlName, $actionName, $params=[]): string
     {
         $classCtrl = 'Ctrl\\'.ucfirst($ctrlName).'Ctrl';
         $action = $actionName.'Action';
@@ -69,7 +76,10 @@ class App
         }
     }
 
-    public function applyView( string $ctrl, string $action, array $responseParams ): string
+    /**
+     * Charge la vue correspondante au controleur
+     */
+    private function applyView( string $ctrl, string $action, array $responseParams ): string
     {
         extract($responseParams);
         $post = $_POST;
@@ -87,7 +97,10 @@ class App
         return $content;
     }
 
-    public function sendToLayout($params)
+    /**
+     * Inclus le layout
+     */
+    private function sendToLayout($params)
     {
         extract($params);
         include VIEW.'layout/layout.phtml';

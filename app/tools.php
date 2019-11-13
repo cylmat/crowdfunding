@@ -1,6 +1,7 @@
 <?php
 
 /**
+ * Inclus une url en fonction du controlleur
  * url('controller_action')
  */
 function url(string $url, array $params=[]): string
@@ -12,7 +13,7 @@ function url(string $url, array $params=[]): string
 }
 
 /**
- * Redirection
+ * Redirection vers une url
  */
 function redirect(string $url): void
 {
@@ -21,6 +22,9 @@ function redirect(string $url): void
     die();
 }
 
+/**
+ * Verifie si un user est loggé
+ */
 function is_logged()
 {
     $id_user = \Classes\Session::get('id_user');
@@ -29,6 +33,9 @@ function is_logged()
     return $logged;
 }
 
+/**
+ * Vérifie si un user est admin
+ */
 function is_admin()
 {
     $id_user = \Classes\Session::get('id_user');

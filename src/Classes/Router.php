@@ -2,18 +2,29 @@
 
 namespace Classes;
 
+/**
+ * Class de routage
+ * 
+ * Empêche toute requête qui n'est pas du texte alphanum 
+ */
 class Router
 {
     const DEFAULT_CTRL='Home';
     const DEFAULT_ACTION='index';
     const PREG_URL='/^(\w\&?)*/'; //format ctrl&action&id
 
+    /**
+     * Recupère la requête
+     */
     public static function getRequest(): ?array
     {
         if(!isset($_SERVER['QUERY_STRING'])) { 
             return null;
         }
         
+        /**
+         * Verifie la conformité
+         */
         $query = $_SERVER['QUERY_STRING'];
         if(!preg_match(self::PREG_URL, $query)) {
             return null;
@@ -22,7 +33,8 @@ class Router
         $request = $_REQUEST;
 
         /*
-         * Spécific ovh.net
+         * Spécific ovh.net issue
+         * Enlève les requêtes incorrectes
          */
         if(array_key_exists('_ga',$request)) {
             unset($request['_ga']);
@@ -30,7 +42,7 @@ class Router
         if(array_key_exists('PHPSESSID',$request)) {
             unset($request['PHPSESSID']);
         }
-        //ovh
+        //-ovh
         
         //default
         $ctrl = self::DEFAULT_CTRL;
@@ -49,12 +61,12 @@ class Router
             array_shift($request);
         }
         
-        //params if any
+        //params si il y en a
         if(key($request)) {
             $params = $request;
         }
 
-        //set
+        //set resutat
         $request = [
             'ctrl'=>$ctrl,
             'action'=>$action,

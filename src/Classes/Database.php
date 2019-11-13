@@ -2,6 +2,9 @@
 
 namespace Classes;
 
+/**
+ * Connexion à la base
+ */
 class Database
 {
     protected $db=null;
