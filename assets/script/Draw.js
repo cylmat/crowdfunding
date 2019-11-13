@@ -127,7 +127,7 @@ Draw.prototype.drawAxis = function(datas, end_text)
     var ref = Math.round(max_val/10)
 
     //evite erreurs 0
-    ref = 0 === ref ? 1 : ref
+    ref = (0 === ref) ? 1 : ref
 
     var coord_x = 0
     var text_height = 10
