@@ -8,8 +8,14 @@ use Record\USer as UserRecord;
 use Record\Stat as StatRecord;
 use Classes\Session;
 
+/**
+ * Controleur pour les projets
+ */
 class ProjectCtrl extends Ctrl
 {
+    /*
+     * Création d'un nouveau projet
+     */
     function createAction()
     {   
         $msg = '';
@@ -63,6 +69,9 @@ class ProjectCtrl extends Ctrl
         ];
     }
 
+    /**
+     * Modifier un projet
+     */
     function updateAction()
     {
         $msg = '';
@@ -111,6 +120,9 @@ class ProjectCtrl extends Ctrl
         ];
     }
 
+    /**
+     * Sélectionne un projet au hasard
+     */
     function randAction()
     {
         $project = new ProjectRecord();
@@ -125,6 +137,9 @@ class ProjectCtrl extends Ctrl
         redirect(url('project_get_id='.$id));
     }
 
+    /**
+     * Recupère un projet pour affichage
+     */
     function getAction()
     {
         if(is_null($this->get['id'] || !ctype_digit($this->get['id']))) {
@@ -143,6 +158,9 @@ class ProjectCtrl extends Ctrl
         ];
     }
 
+    /**
+     * Récupère la liste des projets pour un user défini (par Session)
+     */
     function listmyAction()
     {
         $project = new ProjectRecord();
@@ -165,6 +183,9 @@ class ProjectCtrl extends Ctrl
         ];
     }
 
+    /**
+     * Liste tous les projets
+     */
     function listAction()
     {
         $project = new ProjectRecord();

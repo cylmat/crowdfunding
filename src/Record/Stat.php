@@ -4,11 +4,14 @@ namespace Record;
 
 use Classes\Record;
 
+/**
+ * Statistiques
+ */
 class Stat extends Record
 {
     /**
      * Permet de simuler les dons 
-     * Dans le cadre du Projet -Crowdfunding-
+     * dans le cadre du Projet -Crowdfunding-
      */
     function insertRandomDons(int $project_id)
     {
@@ -38,6 +41,9 @@ class Stat extends Record
         }
     }
 
+    /**
+     * Récupère les stats pour un projet
+     */
     function getByIdProject(int $id_project)
     {
         $sql = "SELECT *, 
@@ -56,6 +62,9 @@ class Stat extends Record
         }
     }
 
+    /**
+     * Selectionne groupé par date
+     */
     function getAllByDate()
     {
         $sql = "SELECT MONTH(date_don) as month_don, YEAR(date_don) as year_don, montant, ".

@@ -7,15 +7,16 @@ use Record\Stat as StatRecord;
 
 class StatCtrl extends Ctrl
 {
-    function showAction()
+    /**
+     * Page des statistiques
+     */
+    function showAction(): array
     {
-        return [
-            
-        ];
+        return [];
     }
 
     /**
-     * Get data from ajax
+     * Get data pour l'ajax
      */
     function getallstatsjsonAction()
     {
@@ -30,7 +31,7 @@ class StatCtrl extends Ctrl
     }
 
     /**
-     * Ajax lors de l'envoi d'un donateur sur la page d'un projet
+     * Ajax lors de l'envoi d'une donation sur la page d'un projet
      */
     function createAction()
     {
@@ -43,6 +44,9 @@ class StatCtrl extends Ctrl
         $stat->fk_id_project = $this->get['id_project'];
         $stat->montant = $this->get['don'];
 
+        /**
+         * Si le don a bien été effectué
+         */
         if($stat->create()) {
             echo json_encode('1');
         }

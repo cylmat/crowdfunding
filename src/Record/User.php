@@ -6,6 +6,9 @@ use Classes\Record;
 
 class User extends Record
 {
+    /**
+     * Vérifie si un user existe
+     */
     public function loginExists($login): bool
     {
         $smt = $this->db->prepare("SELECT count(*) AS cnt FROM `{$this->tableName}` WHERE login=?");
@@ -20,6 +23,9 @@ class User extends Record
         return true;
     }
 
+    /**
+     * Vérifie le password
+     */
     public function checkLoginPassword(string $login, string $password): ?int
     {
         $sql = "SELECT id, `password` FROM `{$this->tableName}` WHERE login=?";

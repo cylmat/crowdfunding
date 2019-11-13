@@ -6,6 +6,9 @@ use Classes\Ctrl;
 use Classes\Records;
 use Record\Project as ProjectRecord;
 
+/**
+ * Page d'accueil
+ */
 class HomeCtrl extends Ctrl
 {
     function indexAction()

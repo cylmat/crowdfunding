@@ -6,8 +6,14 @@ use Classes\Record;
 use Record\User as UserRecord;
 use Record\Stat as StatRecord;
 
+/**
+ * Recupère les données d'un projet
+ */
 class Project extends Record
 {
+    /**
+     * Récupère le dernier projet pour la page d'accueil
+     */
     function getLastData()
     {
         $smt = $this->db->prepare("SELECT * FROM {$this->tableName} ORDER by DATE_CREATION DESC LIMIT 1");
@@ -22,7 +28,7 @@ class Project extends Record
     }
 
     /**
-     * Get all projects with added datas
+     * Recupère les projets 
      */
     function getAllDatas()
     {
@@ -44,6 +50,11 @@ class Project extends Record
         return $res;
     }
 
+    /**
+     * Rajoute des données au projets récupérés
+     * 
+     * ex: le nombre de dons récoltés, le pourcentage correspondant, les jours restants, etc...
+     */
     function setDatas(array &$res): void
     {
         $stat = new StatRecord();

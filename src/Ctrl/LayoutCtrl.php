@@ -5,6 +5,9 @@ namespace Ctrl;
 use Classes\Ctrl;
 use Classes\Session;
 
+/**
+ * Layout général
+ */
 class LayoutCtrl extends Ctrl
 {
     function headerAction()
@@ -23,10 +26,11 @@ class LayoutCtrl extends Ctrl
         ];
     }
 
+    /**
+     * Bannière de la page d'accueil
+     */
     function bannerAction()
-    {
-        //home
-        
+    {     
         if(empty($_GET))
             return [
                 'banner_html'=>1
