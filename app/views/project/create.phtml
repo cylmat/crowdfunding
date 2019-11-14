@@ -6,17 +6,17 @@
         <form action="<?=$_SERVER['REQUEST_URI']?>" method="post" enctype="multipart/form-data" >
             <fieldset>
                 <legend>Créateur du projet</legend>
-                <label><?=$nom_user?></label>
+                <label><?=write(ucfirst($nom_user))?></label>
             </fieldset>
 
             <fieldset>
                 <legend>Détails de votre projet</legend>
                 <div><label for="titre">Titre :</label>
-                    <input type="text" required maxlength="20" id="titre" name="titre" placeholder="Titre" value="<?=$form['titre']??''?>"/></div>
+                    <input type="text" required maxlength="20" id="titre" name="titre" placeholder="Titre" value="<?=write($form['titre']??'')?>"/></div>
                 <div><label for="description">Description :</label>
-                    <textarea id="description" required name="description" rows="15" placeholder="Description"><?=$form['description']??''?></textarea></div>
+                    <textarea id="description" required name="description" rows="15" placeholder="Description"><?=write($form['description']??'')?></textarea></div>
                 <div><label for="resume">Résumé :</label>
-                    <input type="text" id="resume" name="resume" maxlength="50" value="<?=$form['resume']??''?>">
+                    <input type="text" id="resume" name="resume" maxlength="50" value="<?=write($form['resume']??'')?>">
                 </div>
                 <div><label for="image_url">Image :</label>
                     <input <?php if($is_create) echo 'required' ?> type="file" id="image_url" name="image_url" accept=".bmp,.jpg,.jpeg,.gif,.png"></div>

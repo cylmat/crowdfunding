@@ -4,11 +4,11 @@
     <div class="view_prj section_main">
     
         <section class="main">
-            <h3><?= $project['titre'] ?></h3>
-            <img src="<?= $project['image_url'] ?>" alt="<?= $project['titre'] ?>"/>
-            <p class="short"><?= $project['resume'] ?></p>
+            <h3><?= write($project['titre']) ?></h3>
+            <img src="<?= $project['image_url'] ?>" alt="<?= write($project['titre']) ?>"/>
+            <p class="short"><?= write($project['resume']) ?></p>
             <p class="category"> - Catégorie <?= $project['category'] ?> - </p>
-            <p class="description"><?= $project['description'] ?></p>
+            <p class="description"><?= write($project['description']) ?></p>
         </section>
 
         <section class="side">
@@ -37,7 +37,7 @@
                     
                     <div id="thanks_don">
                         <p>Toute l'équipe de Crownfunding ainsi que les porteurs du projet</p>
-                        <p class="title"><?= $project['titre'] ?></p>
+                        <p class="title"><?= write($project['titre']) ?></p>
                         <p>vous remercient de votre contribution</p>
                         <p><i class="far fa-grin-beam"></i></p>
                     </div>

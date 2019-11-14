@@ -14,13 +14,13 @@
             <tbody>
                 <?php foreach($list as $project): ?>
                     <tr>
-                        <td class="title"><?= $project['titre']?>
+                        <td class="title"><?= write($project['titre']) ?>
                             <div class="mobile">
                                 <a href="<?=url('project_update_id='.$project['id'])?>">Modifier</a>
                                 <a href="<?=url('project_remove_id='.$project['id'])?>">Supprimer</a>
                             </div>
                         </td>
-                        <td class="resume"><?= $project['resume']?></td>
+                        <td class="resume"><?= write($project['resume']) ?></td>
                         <td class="resume"><?= $project['stats_somme_rec']?></td>
                         <td class="resume"><?= (new \DateTime($project['date_fin']))->diff(new \DateTime())->format('%a') ?></td>
                         <td class="resume"><a href="<?=url('project_update_id='.$project['id'])?>">Modifier</a></td>
@@ -33,13 +33,13 @@
                     foreach($others as $project): ?>
                     
                     <tr>
-                        <td class="title"><?= $project['titre']?>
+                        <td class="title"><?= write($project['titre']) ?>
                             <div class="mobile">
                                 <a href="<?=url('project_update_id='.$project['id'])?>">Modifier</a>
                                 <a href="<?=url('project_remove_id='.$project['id'])?>">Supprimer</a>
                             </div>
                         </td>
-                        <td class="resume"><?= $project['resume']?></td>
+                        <td class="resume"><?= write($project['resume']) ?></td>
                         <td class="resume"><?= $project['stats_somme_rec']?></td>
                         <td class="resume"><?= (new \DateTime($project['date_fin']))->diff(new \DateTime())->format('%a') ?></td>
                         <td class="resume"><a href="<?=url('project_update_id='.$project['id'])?>">Modifier</a></td>

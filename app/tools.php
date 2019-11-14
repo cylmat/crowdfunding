@@ -23,6 +23,14 @@ function redirect(string $url): void
 }
 
 /**
+ * Evite les failles xss
+ */
+function write(string $txt)
+{
+    return htmlspecialchars($txt);
+}
+
+/**
  * Verifie si un user est loggé
  */
 function is_logged()

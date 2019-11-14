@@ -11,11 +11,11 @@
                     </a>
                 </div>
                 <div class="side">
-                    <h3 class="titre"><?= ucfirst($last_project['titre']) ?></h3>
-                    <p class="createur">Créateur du projet: <?= $last_project['user_login'] ?></p>
+                    <h3 class="titre"><?= write(ucfirst($last_project['titre'])) ?></h3>
+                    <p class="createur">Créateur du projet: <?= write($last_project['user_login']) ?></p>
                     <p class="category">Catégorie <?= $last_project['category'] ?></p>
 
-                    <p class="short"><?= $last_project['resume'] ?></p>
+                    <p class="short"><?= write($last_project['resume']) ?></p>
                     <p class="stats">
                         <?= $last_project['percent'] ?>% 
                         grâce à <?= $last_project['stats_nb_dons'] ?> donateurs</p>
