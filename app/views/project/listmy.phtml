@@ -8,7 +8,7 @@
             <thead>
                 <tr>
                     <th>Nom du projet</th><th class="resume">Résumé</th>
-                    <th class="resume">Fonds collectés</th><th class="resume">Jours restants</th>
+                    <th class="resume">Fonds collectés</th><th class="resume">Jours restants</th><th colspan="2"></th>
                 </tr>
             </thead>
             <tbody>
@@ -29,7 +29,7 @@
                 <?php endforeach; ?>
 
                 <?php if(is_admin() && !empty($others)): 
-                    echo '<tr><td class="others"><b>Autres projets</b></td><td colspan="3"></td></tr>'; 
+                    echo '<tr><td class="others"><b>Autres projets</b></td><td colspan="5"></td></tr>'; 
                     foreach($others as $project): ?>
                     
                     <tr>
