@@ -56,7 +56,7 @@ class UserCtrl extends Ctrl
             if(!ctype_digit($this->post['telephone'])) {
                 $msg .= 'Le numéro de téléphone est erroné<br/>';
             }
-            
+           
             if($this->post['password'] === $this->post['retype_password'] && strlen($this->post['retype_password'])>2) {
                 $pass = password_hash($this->post['password'], PASSWORD_DEFAULT);
                 $user->password = $pass;
@@ -64,20 +64,20 @@ class UserCtrl extends Ctrl
                 $msg .= 'Les mots de passe ne correspondent pas<br/>';
             }
             
-            if(false === $user->loginExists($this->post['login'])) {
-                $creation = $user->create();
-                if($creation) {
-                    $this->setLoginOn($user, $user->lastInsertId());
-                    redirect(url('project_create'));
-                }
-            } else {
+            if(false !== $user->loginExists($this->post['login'])) {
                 $msg .= "L'utilisateur existe déjà<br/>";
+            } 
+
+            //Check if user created
+            if('' === $msg && $user->create()) {
+                $this->setLoginOn($user, $user->lastInsertId());
+                redirect(url('project_create'));
             }
-            
+
             if($msg != '') {
                 $msg = "Une erreur est survenue pendant la création du compte<br/>" . $msg;
             }
-            //$msg .= $user->getLastError();
+            
         }
         
         return [
