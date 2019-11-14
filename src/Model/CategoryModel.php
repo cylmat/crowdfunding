@@ -5,9 +5,13 @@ namespace Model;
 class CategoryModel
 {
     const LIST = [
-        'Musique',
         'Art',
+        'Biomédical',
         'Cinéma',
-        'HighTech'
+        'Construction',
+        'Environnement',
+        'HighTech',
+        'Musique',
+        'Santé'
     ];
 }
