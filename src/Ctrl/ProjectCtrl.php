@@ -195,4 +195,17 @@ class ProjectCtrl extends Ctrl
             'list' => $list
         ];
     }
+
+    /**
+     * Remove
+     */
+    function removeAction()
+    {
+        if(ctype_digit($this->get['id'])) {
+            $project = new ProjectRecord();
+            $project->delete((int)$this->get['id']);
+        }
+
+        redirect(url('project_list'));
+    }
 }
